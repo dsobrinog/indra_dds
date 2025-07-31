@@ -1,0 +1,3 @@
+/workspaces/fastdds/build/CMakeFiles/Fast_DDS.dir
+/workspaces/fastdds/build/CMakeFiles/edit_cache.dir
+/workspaces/fastdds/build/CMakeFiles/rebuild_cache.dir
