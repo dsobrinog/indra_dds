@@ -85,12 +85,12 @@ clean: CMakeFiles/Fast_DDS.dir/clean
 CMakeFiles/Fast_DDS.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=1,2,3,4 "Built target Fast_DDS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Fast_DDS"
 .PHONY : CMakeFiles/Fast_DDS.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Fast_DDS.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/fastdds/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/fastdds/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Fast_DDS.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/fastdds/build/CMakeFiles 0
 .PHONY : CMakeFiles/Fast_DDS.dir/rule
@@ -102,7 +102,7 @@ Fast_DDS: CMakeFiles/Fast_DDS.dir/rule
 # codegen rule for target.
 CMakeFiles/Fast_DDS.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target Fast_DDS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target Fast_DDS"
 .PHONY : CMakeFiles/Fast_DDS.dir/codegen
 
 # clean rule for target.

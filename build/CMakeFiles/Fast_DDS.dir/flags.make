@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspaces/fastdds/src -I/workspaces/fastdds/lib/Fast-DDS/install/include -I/workspaces/fastdds/src/indra_dds -I/workspaces/fastdds/src/indra_dds/Fast-DDS-API
+CXX_INCLUDES = -I/workspaces/fastdds/src -I/workspaces/fastdds/lib/Fast-DDS/install/include -I/workspaces/fastdds/src/indra_dds -I/workspaces/fastdds/src/indra_dds/Fast-DDS-API -I/workspaces/fastdds/src/indra_dds/Fast-DDS-API/DomainParticipant
 
 CXX_FLAGS =  -fdiagnostics-color=auto -g -std=gnu++14
 

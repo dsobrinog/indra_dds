@@ -130,6 +130,54 @@ Fast_DDS/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/build
 .PHONY : Fast_DDS/fast
 
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.o: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.o
+
+# target to build an object file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o
+
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.i: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.i
+
+# target to preprocess a source file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.i
+
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.s: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.s
+
+# target to generate assembly for a file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.s
+
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.o: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.o
+
+# target to build an object file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o
+
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.i: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.i
+
+# target to preprocess a source file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.i
+
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.s: src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.s
+
+# target to generate assembly for a file
+src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.s
+
 src/indra_dds/Fast-DDS-API/FastDomain.o: src/indra_dds/Fast-DDS-API/FastDomain.cpp.o
 .PHONY : src/indra_dds/Fast-DDS-API/FastDomain.o
 
@@ -154,29 +202,29 @@ src/indra_dds/Fast-DDS-API/FastDomain.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.s
 .PHONY : src/indra_dds/Fast-DDS-API/FastDomain.cpp.s
 
-src/indra_dds/Fast-DDS-API/FastParticipant.o: src/indra_dds/Fast-DDS-API/FastParticipant.cpp.o
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.o
+src/indra_dds/Fast-DDS-API/FastTopic.o: src/indra_dds/Fast-DDS-API/FastTopic.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.o
 
 # target to build an object file
-src/indra_dds/Fast-DDS-API/FastParticipant.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastParticipant.cpp.o
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.cpp.o
+src/indra_dds/Fast-DDS-API/FastTopic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastTopic.cpp.o
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.cpp.o
 
-src/indra_dds/Fast-DDS-API/FastParticipant.i: src/indra_dds/Fast-DDS-API/FastParticipant.cpp.i
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.i
+src/indra_dds/Fast-DDS-API/FastTopic.i: src/indra_dds/Fast-DDS-API/FastTopic.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.i
 
 # target to preprocess a source file
-src/indra_dds/Fast-DDS-API/FastParticipant.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastParticipant.cpp.i
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.cpp.i
+src/indra_dds/Fast-DDS-API/FastTopic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastTopic.cpp.i
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.cpp.i
 
-src/indra_dds/Fast-DDS-API/FastParticipant.s: src/indra_dds/Fast-DDS-API/FastParticipant.cpp.s
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.s
+src/indra_dds/Fast-DDS-API/FastTopic.s: src/indra_dds/Fast-DDS-API/FastTopic.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.s
 
 # target to generate assembly for a file
-src/indra_dds/Fast-DDS-API/FastParticipant.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastParticipant.cpp.s
-.PHONY : src/indra_dds/Fast-DDS-API/FastParticipant.cpp.s
+src/indra_dds/Fast-DDS-API/FastTopic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fast_DDS.dir/build.make CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastTopic.cpp.s
+.PHONY : src/indra_dds/Fast-DDS-API/FastTopic.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -211,12 +259,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Fast_DDS"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.o"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.i"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.s"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.o"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.i"
+	@echo "... src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.s"
 	@echo "... src/indra_dds/Fast-DDS-API/FastDomain.o"
 	@echo "... src/indra_dds/Fast-DDS-API/FastDomain.i"
 	@echo "... src/indra_dds/Fast-DDS-API/FastDomain.s"
-	@echo "... src/indra_dds/Fast-DDS-API/FastParticipant.o"
-	@echo "... src/indra_dds/Fast-DDS-API/FastParticipant.i"
-	@echo "... src/indra_dds/Fast-DDS-API/FastParticipant.s"
+	@echo "... src/indra_dds/Fast-DDS-API/FastTopic.o"
+	@echo "... src/indra_dds/Fast-DDS-API/FastTopic.i"
+	@echo "... src/indra_dds/Fast-DDS-API/FastTopic.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -7,23 +7,26 @@
 #include <IParticipant.h>
 
 
-// ABSTRACTION LAYER ONLY ( Don't try to call Fast DDS directly )
+// ABSTRACTION LAYER ONLY ( Don't call Fast DDS directly )
 
 int main()
 {
     std::cout << "Start Simulation" << std::endl;
 
+    // Create domain specifie
     auto domain = DDSFactory::CreateDomain(DDSLibrary::FAST_DDS, 0);
     domain->Init();
 
+    // Create participant
     auto participant = domain->CreateParticipant();
-    participant->Enable();
+    participant->enable();
 
-    IPublisher* pub = participant->create_pub();
-    ISubscriber* sub = participant->create_sub();
-    ITopic* topic = participant->create_topic();
+    // Create pub/sub/topic
+    // IPublisher* pub = participant->create_pub();
+    // ISubscriber* sub = participant->create_sub();
+    // ITopic* topic = participant->create_topic();
 
-    participant->Disable();
+    participant->disable();
 
     domain->Close();
     

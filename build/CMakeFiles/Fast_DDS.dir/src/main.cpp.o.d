@@ -181,8 +181,10 @@ CMakeFiles/Fast_DDS.dir/src/main.cpp.o: /workspaces/fastdds/src/main.cpp \
  /usr/include/c++/14/bits/vector.tcc \
  /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.h \
  /workspaces/fastdds/src/indra_dds/IParticipant.h \
- /workspaces/fastdds/src/indra_dds/IDDSEntity.h \
+ /workspaces/fastdds/src/indra_dds/IEntity.h \
  /workspaces/fastdds/src/indra_dds/IQoS.h \
  /workspaces/fastdds/src/indra_dds/IPublisher.h \
  /workspaces/fastdds/src/indra_dds/ISubscriber.h \
- /workspaces/fastdds/src/indra_dds/ITopic.h
+ /workspaces/fastdds/src/indra_dds/ITopic.h \
+ /workspaces/fastdds/src/indra_dds/ITypeSupport.h \
+ /usr/include/c++/14/cstdint

@@ -1,9 +1,8 @@
 #include <FastDomain.h>
-#include <FastParticipant.h>
-
+#include <DomainParticipant/FastParticipant.h>
 #include <algorithm>
 
-using namespace ddscomms;
+using namespace indraDDS;
 
 FastDomain::FastDomain(int id) : IDomain(id) {}
 
@@ -28,20 +27,20 @@ void FastDomain::RemoveParticipant(IParticipant* participant) {
     
     // 2 If founded, remove
     if (it != participants_.end()) {
-        (*it)->Disable(); // Optional cleanup before removal
+        (*it)->disable(); // Optional cleanup before removal
         participants_.erase(it, participants_.end()); // This calls the destructor
     }
 }
 
 void FastDomain::EnableAll() {
     for (auto& p : participants_) {
-        p->Enable();
+        p->enable();
     }
 }
 
 void FastDomain::ShutdownAll() {
     for (auto& p : participants_) {
-        p->Disable();
+        p->disable();
     }
     participants_.clear();
 }

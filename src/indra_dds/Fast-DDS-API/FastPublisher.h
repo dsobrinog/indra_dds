@@ -2,7 +2,7 @@
 
 #include <IPublisher.h>
 
-namespace ddscomms
+namespace indraDDS
 {
     class FastPublisher : public IPublisher
     {

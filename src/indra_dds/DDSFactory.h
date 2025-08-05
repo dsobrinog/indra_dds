@@ -16,7 +16,7 @@ class DDSFactory{
         {
             switch (library) {
                 case DDSLibrary::FAST_DDS:
-                    return std::make_unique<ddscomms::FastDomain>(domain_id);
+                    return std::make_unique<indraDDS::FastDomain>(domain_id);
             
                 default:
                     throw std::runtime_error("Unsupported DDS library");

@@ -4,7 +4,7 @@
 
 class IParticipant;
 
-namespace ddscomms{
+namespace indraDDS{
     
     class FastDomain : public IDomain
     {

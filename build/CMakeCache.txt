@@ -216,24 +216,6 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-DDSHelloWorldPublisher_BINARY_DIR:STATIC=/workspaces/fastdds/build
-
-//Value Computed by CMake
-DDSHelloWorldPublisher_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-DDSHelloWorldPublisher_SOURCE_DIR:STATIC=/workspaces/fastdds
-
-//Value Computed by CMake
-DDSHelloWorldSubscriber_BINARY_DIR:STATIC=/workspaces/fastdds/build
-
-//Value Computed by CMake
-DDSHelloWorldSubscriber_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-DDSHelloWorldSubscriber_SOURCE_DIR:STATIC=/workspaces/fastdds
-
-//Value Computed by CMake
 Fast_DDS_BINARY_DIR:STATIC=/workspaces/fastdds/build
 
 //Value Computed by CMake

@@ -1,14 +1,18 @@
 #pragma once
 
+#include <string>
+
 // Responsable for creating and configuring IReaders.
 class ISubscriber
 {
 public:
-    // Create IReader
+    virtual ~ISubscriber() = default;
 
-    // Create IListener
+    virtual void start() = 0;
+    virtual void stop() = 0;
+    virtual void update() = 0;
 
-    // Destructor
+    virtual const std::string& get_topic_name() const = 0;
 
 protected:
 

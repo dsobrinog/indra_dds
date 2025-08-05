@@ -40,6 +40,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/include
     ${CMAKE_SOURCE_DIR}/src/indra_dds
     ${CMAKE_SOURCE_DIR}/src/indra_dds/Fast-DDS-API
+    ${CMAKE_SOURCE_DIR}/src/indra_dds/Fast-DDS-API/DomainParticipant
+
 )
 
 #3 Link libraries

@@ -8,9 +8,18 @@
 class ITopic
 {
     public:
+        ITopic(const std::string& _topic_name, const std::string& _type_name)
+        {
+            topic_name = _topic_name;
+            type_name = _type_name;
+        }
+
+        virtual ~ITopic() = default;
+        
         virtual std::string GetName() const = 0;
         virtual std::string GetTypeName() const = 0;
-        virtual ~ITopic() = default;
+
+        // Configuration QoS
 
         // ITypeSupport std::shared_ptr<ITypeSupport>
 

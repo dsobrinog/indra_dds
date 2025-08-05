@@ -31,16 +31,6 @@ enum Standard_QoS_Policy
 
 class IQoS
 {
-
-    // Set reliability
-
-    // Set durability
-
-    // Set History
-
-    // Destructor
-
-
     virtual void set_qos_id(int id);
     inline int get_qos_id() { return qos_id;}
 
