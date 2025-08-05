@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ISubscriber.h"
+#include "Core/Subscriber/ISubscriber.h"
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/subscriber/DataReader.hpp>
 #include <fastdds/dds/subscriber/Subscriber.hpp>
@@ -12,7 +12,7 @@
 #include <queue>
 #include <condition_variable>
 
-namespace indraDDS
+namespace indradds
 {
     template<typename T>
     class FastSubscriber : public ISubscriber, public eprosima::fastdds::dds::DataReaderListener

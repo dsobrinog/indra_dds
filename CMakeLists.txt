@@ -37,11 +37,8 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 #2 Añadir includes desde la instalación local
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/src/
-    ${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/include
     ${CMAKE_SOURCE_DIR}/src/indra_dds
-    ${CMAKE_SOURCE_DIR}/src/indra_dds/Fast-DDS-API
-    ${CMAKE_SOURCE_DIR}/src/indra_dds/Fast-DDS-API/DomainParticipant
-
+    ${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/include
 )
 
 #3 Link libraries

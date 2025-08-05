@@ -157,8 +157,8 @@ CMakeFiles/Fast_DDS.dir/src/main.cpp.o: /workspaces/fastdds/src/main.cpp \
  /usr/include/c++/14/bits/istream.tcc \
  /workspaces/fastdds/src/indra_dds/dds_definitions.h \
  /workspaces/fastdds/src/indra_dds/DDSFactory.h \
- /workspaces/fastdds/src/indra_dds/IDomain.h /usr/include/c++/14/memory \
- /usr/include/c++/14/bits/stl_tempbuf.h \
+ /workspaces/fastdds/src/indra_dds/Core/IDomain.h \
+ /usr/include/c++/14/memory /usr/include/c++/14/bits/stl_tempbuf.h \
  /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_raw_storage_iter.h \
  /usr/include/c++/14/bits/align.h \
@@ -180,11 +180,11 @@ CMakeFiles/Fast_DDS.dir/src/main.cpp.o: /workspaces/fastdds/src/main.cpp \
  /usr/include/c++/14/bits/stl_bvector.h \
  /usr/include/c++/14/bits/vector.tcc \
  /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.h \
- /workspaces/fastdds/src/indra_dds/IParticipant.h \
- /workspaces/fastdds/src/indra_dds/IEntity.h \
- /workspaces/fastdds/src/indra_dds/IQoS.h \
- /workspaces/fastdds/src/indra_dds/IPublisher.h \
- /workspaces/fastdds/src/indra_dds/ISubscriber.h \
- /workspaces/fastdds/src/indra_dds/ITopic.h \
- /workspaces/fastdds/src/indra_dds/ITypeSupport.h \
+ /workspaces/fastdds/src/indra_dds/Core/Participant/IParticipant.h \
+ /workspaces/fastdds/src/indra_dds/Core/IEntity.h \
+ /workspaces/fastdds/src/indra_dds/Core/IQoS.h \
+ /workspaces/fastdds/src/indra_dds/Core/Publisher/IPublisher.h \
+ /workspaces/fastdds/src/indra_dds/Core/Subscriber/ISubscriber.h \
+ /workspaces/fastdds/src/indra_dds/Core/Topic/ITopic.h \
+ /workspaces/fastdds/src/indra_dds/Core/TypeSupport/ITypeSupport.h \
  /usr/include/c++/14/cstdint

@@ -1,7 +1,10 @@
 #pragma once
 
-#include <IQoS.h>
+#include <Core/IQoS.h>
 #include <dds_definitions.h>
+
+
+namespace indradds{
 
 class IEntity
 {
@@ -29,3 +32,5 @@ protected:
     
     // StatusCondition
 };
+
+}

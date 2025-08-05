@@ -2,7 +2,7 @@
 #include <vector>
 #include <stdint.h>
 
-namespace indraDDS {
+namespace indradds {
 
     class IUserDataQoS
     {

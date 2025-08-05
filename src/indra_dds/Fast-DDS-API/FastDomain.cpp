@@ -1,8 +1,8 @@
-#include <FastDomain.h>
-#include <DomainParticipant/FastParticipant.h>
+#include "FastDomain.h"
+#include <Fast-DDS-API/Participant/FastParticipant.h>
 #include <algorithm>
 
-using namespace indraDDS;
+using namespace indradds;
 
 FastDomain::FastDomain(int id) : IDomain(id) {}
 
@@ -10,14 +10,14 @@ FastDomain::~FastDomain() {
     ShutdownAll();
 }
 
-IParticipant* FastDomain::CreateParticipant() {
+IParticipant* FastDomain::create_participant() {
     auto participant = std::make_unique<FastParticipant>();
     IParticipant* ptr = participant.get(); 
     participants_.push_back(std::move(participant));
     return ptr; 
 }
 
-void FastDomain::RemoveParticipant(IParticipant* participant) {
+void FastDomain::remove_participant(IParticipant* participant) {
    
     // 1 Search for the Participant
     auto it = std::remove_if(participants_.begin(), participants_.end(),

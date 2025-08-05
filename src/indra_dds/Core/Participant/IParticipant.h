@@ -3,15 +3,18 @@
 #include <memory>
 
 #include <dds_definitions.h>
-#include <IEntity.h>
+#include <Core/IEntity.h>
 
-#include <IPublisher.h>
-#include <ISubscriber.h>
-#include <ITopic.h>
-#include <ITypeSupport.h>
+#include <Core/Publisher/IPublisher.h>
+#include <Core/Subscriber/ISubscriber.h>
+#include <Core/Topic/ITopic.h>
+#include <Core/TypeSupport/ITypeSupport.h>
 
 #include <vector>
 #include <memory>
+
+
+namespace indradds{
 
 // A participant contains pub/sub and manage topics.
 class IParticipant : public IEntity
@@ -52,3 +55,5 @@ protected:
 
     bool enabled = false;
 };
+
+}

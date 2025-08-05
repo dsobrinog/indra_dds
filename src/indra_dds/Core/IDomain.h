@@ -5,6 +5,9 @@
 #include <memory>
 #include <vector>
 
+
+namespace indradds{
+
 class IParticipant;
 
 // A domain is a common context for all participants so that they can communicate and discover.
@@ -17,10 +20,10 @@ public:
     void Close() { ShutdownAll(); };
 
     // Add IParticipant
-    virtual IParticipant* CreateParticipant() = 0;
+    virtual IParticipant* create_participant() = 0;
 
     // Delete IParticipant
-    virtual void RemoveParticipant(IParticipant* participant) = 0;
+    virtual void remove_participant(IParticipant* participant) = 0;
 
     virtual void EnableAll() = 0;
     virtual void ShutdownAll() = 0;
@@ -36,3 +39,5 @@ protected:
     int domain_id = -1;
   
 };
+
+}

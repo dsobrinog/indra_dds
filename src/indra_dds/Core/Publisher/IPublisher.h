@@ -1,5 +1,8 @@
 #pragma once
 
+
+namespace indradds{
+
 // Responsable for the creation and configuration of DataWriters
 class IPublisher
 {
@@ -13,3 +16,5 @@ protected:
     // Lista de Writers
 
 };
+
+}

@@ -2,7 +2,7 @@
 
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 
-using namespace indraDDS;
+using namespace indradds;
 
 
 void FastParticipantQoS::set_user_data(std::vector<u_int8_t>& data)
@@ -22,7 +22,7 @@ void FastParticipantQoS::set_property(const std::string &key, const std::string 
 }
 
 
-void indraDDS::FastParticipantQoS::set_resource_limits()
+void indradds::FastParticipantQoS::set_resource_limits()
 {
     auto& allocation = participant_qos->allocation();
 

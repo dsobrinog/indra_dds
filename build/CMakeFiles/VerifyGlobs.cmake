@@ -5,10 +5,10 @@ cmake_policy(SET CMP0009 NEW)
 # SOURCES at CMakeLists.txt:8 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/fastdds/src/*.cpp")
 set(OLD_GLOB
-  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp"
-  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp"
   "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp"
-  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastTopic.cpp"
+  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp"
+  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp"
+  "/workspaces/fastdds/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp"
   "/workspaces/fastdds/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

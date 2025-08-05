@@ -1,11 +1,11 @@
 #pragma once
 
-#include <IDomain.h>
+#include <Core/IDomain.h>
 
-class IParticipant;
-
-namespace indraDDS{
+namespace indradds{
     
+    class IParticipant;
+
     class FastDomain : public IDomain
     {
     public:
@@ -13,8 +13,11 @@ namespace indraDDS{
         FastDomain(int id);
         ~FastDomain();
 
-        IParticipant* CreateParticipant() override;
-        void RemoveParticipant(IParticipant* participant) override;
+        // factory
+
+        IParticipant* create_participant() override;
+        void remove_participant(IParticipant* participant) override;
+
 
         void EnableAll() override;
         void ShutdownAll() override;

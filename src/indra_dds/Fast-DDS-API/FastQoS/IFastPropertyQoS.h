@@ -3,7 +3,7 @@
 
 #include <IQoS/IPropertyQoS.h>
 
-namespace indraDDS {
+namespace indradds {
 
     class IFastPropertyQoS : IPropertyQoS
     {

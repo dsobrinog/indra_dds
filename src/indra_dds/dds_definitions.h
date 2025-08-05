@@ -1,5 +1,7 @@
 #pragma once
 
+namespace indradds{
+
 enum class DDSLibrary
 {
     FAST_DDS,
@@ -19,3 +21,5 @@ enum class DDSResult{
     FAILURE = -1,
     SUCCESS = 0
 };
+
+}

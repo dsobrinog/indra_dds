@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FastSubscriber.h>
+#include "FastSubscriber.h"
 
 #include <fastdds/dds/subscriber/InstanceState.hpp>
 #include <fastdds/dds/core/ReturnCode.hpp>
@@ -9,7 +9,7 @@
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::rtps;
 
-namespace indraDDS
+namespace indradds
 {
 
 template<typename T>

@@ -1,11 +1,11 @@
 #pragma once
 
-#include <ITopic.h>
+#include <Core/Topic/ITopic.h>
 
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 
-namespace indraDDS
+namespace indradds
 {
     class FastTopic : public ITopic
     {

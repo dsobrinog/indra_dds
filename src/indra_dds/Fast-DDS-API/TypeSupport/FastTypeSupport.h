@@ -1,7 +1,7 @@
-    #include "ITypeSupport.h"
+    #include <Core/TypeSupport/ITypeSupport.h>
     #include <fastdds/dds/topic/TypeSupport.hpp>
 
-    namespace indraDDS
+    namespace indradds
     {
 
         class FastTypeSupport : public ITypeSupport

@@ -1,7 +1,10 @@
 #pragma once
 
+
+namespace indradds{
+
 // Send a buffer to a topic channel with a QoS
-class IWriter
+class IDataWriter
 {
 public:
     // Constructor (topic, QoS)
@@ -11,3 +14,5 @@ public:
     
     // Destructor
 };
+
+}

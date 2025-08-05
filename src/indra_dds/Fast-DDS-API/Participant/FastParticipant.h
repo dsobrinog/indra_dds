@@ -2,20 +2,22 @@
 
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 
-#include <IParticipant.h>
-#include <FastParticipantQoS.h>
+#include <Core/Participant/IParticipant.h>
+#include "FastParticipantQoS.h"
 #include <Configuration/DomainParticipantQosConfig.h>
 
-class IPublisher;
-class ISubscriber;
-class ITopic;
 
 namespace eprosima { namespace fastdds { namespace dds { 
     class DomainParticipant; 
     class DomainParticipantQos; 
 }}}
 
-namespace indraDDS{
+namespace indradds{
+
+    class IPublisher;
+    class ISubscriber;
+    class ITopic;
+
 
     class FastParticipant : public IParticipant
     {
@@ -43,6 +45,9 @@ namespace indraDDS{
 
         /// @brief It is needed to apply QoS manually after changing properties
         virtual void apply_qos() override;
+        virtual void apply_qos(eprosima::fastdds::dds::DomainParticipantQos& qos);
+
+        const  eprosima::fastdds::dds::DomainParticipantQos& get_qos();
 
     private:
         virtual void on_init() override;

@@ -2,6 +2,9 @@
 
 #include <string>
 
+
+namespace indradds{
+
 // Responsable for creating and configuring IReaders.
 class ISubscriber
 {
@@ -19,3 +22,5 @@ protected:
     // Lista de IReaders
 
 };
+
+}

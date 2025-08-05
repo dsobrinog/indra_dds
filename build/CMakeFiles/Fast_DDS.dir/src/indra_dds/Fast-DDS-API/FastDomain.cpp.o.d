@@ -2,7 +2,7 @@ CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: \
  /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp \
  /usr/include/stdc-predef.h \
  /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.h \
- /workspaces/fastdds/src/indra_dds/IDomain.h \
+ /workspaces/fastdds/src/indra_dds/Core/IDomain.h \
  /workspaces/fastdds/src/indra_dds/dds_definitions.h \
  /usr/include/c++/14/memory /usr/include/c++/14/bits/memoryfwd.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \
@@ -129,7 +129,7 @@ CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: \
  /usr/include/c++/14/bits/stl_bvector.h \
  /usr/include/c++/14/bits/range_access.h \
  /usr/include/c++/14/bits/vector.tcc \
- /workspaces/fastdds/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.h \
+ /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.h \
  /workspaces/fastdds/lib/Fast-DDS/install/include/fastdds/dds/domain/qos/DomainParticipantQos.hpp \
  /usr/include/c++/14/string /usr/include/c++/14/bits/char_traits.h \
  /usr/include/c++/14/bits/localefwd.h \
@@ -311,14 +311,14 @@ CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: \
  /workspaces/fastdds/lib/Fast-DDS/install/include/fastdds/rtps/flowcontrol/FlowControllerConsts.hpp \
  /workspaces/fastdds/lib/Fast-DDS/install/include/fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.hpp \
  /workspaces/fastdds/lib/Fast-DDS/install/include/fastdds/rtps/flowcontrol/FlowControllerConsts.hpp \
- /workspaces/fastdds/src/indra_dds/IParticipant.h \
- /workspaces/fastdds/src/indra_dds/IEntity.h \
- /workspaces/fastdds/src/indra_dds/IQoS.h \
- /workspaces/fastdds/src/indra_dds/IPublisher.h \
- /workspaces/fastdds/src/indra_dds/ISubscriber.h \
- /workspaces/fastdds/src/indra_dds/ITopic.h \
- /workspaces/fastdds/src/indra_dds/ITypeSupport.h \
- /workspaces/fastdds/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.h \
+ /workspaces/fastdds/src/indra_dds/Core/Participant/IParticipant.h \
+ /workspaces/fastdds/src/indra_dds/Core/IEntity.h \
+ /workspaces/fastdds/src/indra_dds/Core/IQoS.h \
+ /workspaces/fastdds/src/indra_dds/Core/Publisher/IPublisher.h \
+ /workspaces/fastdds/src/indra_dds/Core/Subscriber/ISubscriber.h \
+ /workspaces/fastdds/src/indra_dds/Core/Topic/ITopic.h \
+ /workspaces/fastdds/src/indra_dds/Core/TypeSupport/ITypeSupport.h \
+ /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.h \
  /workspaces/fastdds/src/indra_dds/IQoS/IPropertyQoS.h \
  /workspaces/fastdds/src/indra_dds/IQoS/IUserDataQoS.h \
  /workspaces/fastdds/src/indra_dds/IQoS/IAutoEnableFactoryQoS.h \

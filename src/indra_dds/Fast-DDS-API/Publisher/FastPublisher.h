@@ -1,8 +1,8 @@
 #pragma once
 
-#include <IPublisher.h>
+#include <Core/Publisher/IPublisher.h>
 
-namespace indraDDS
+namespace indradds
 {
     class FastPublisher : public IPublisher
     {

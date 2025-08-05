@@ -1,16 +1,15 @@
-#include <FastParticipant.h>
+#include <indra_dds/Fast-DDS-API/Participant/FastParticipant.h>
 
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 
-#include <indra_dds/Fast-DDS-API/FastPublisher.h>
-#include <indra_dds/Fast-DDS-API/FastSubscriber.h>
-#include <indra_dds/Fast-DDS-API/FastTopic.h>
-#include <indra_dds/Fast-DDS-API/FastTypeSupport.h>
+#include <indra_dds/Fast-DDS-API/Publisher/FastPublisher.h>
+#include <indra_dds/Fast-DDS-API/Subscriber/FastSubscriber.h>
+#include <indra_dds/Fast-DDS-API/Topic/FastTopic.h>
+#include <indra_dds/Fast-DDS-API/TypeSupport/FastTypeSupport.h>
 
-using namespace indraDDS;
+using namespace indradds;
 using namespace eprosima::fastdds::dds;
-
 
 
 FastParticipant::FastParticipant(): IParticipant()
@@ -55,7 +54,7 @@ void FastParticipant::on_init()
     std::cout << "FastParticipant created!" << std::endl; 
 }
 
-void indraDDS::FastParticipant::intitialize_qos()
+void indradds::FastParticipant::intitialize_qos()
 {
 }
 
@@ -142,4 +141,16 @@ void FastParticipant::apply_qos()
     if (participant_)
         participant_->set_qos(participant_qos);
 }
+
+void indradds::FastParticipant::apply_qos(eprosima::fastdds::dds::DomainParticipantQos &qos)
+{
+     if (participant_)
+        participant_->set_qos(qos);
+}
+
+const DomainParticipantQos& FastParticipant::get_qos()
+{
+    return participant_->get_qos();
+}
+
 

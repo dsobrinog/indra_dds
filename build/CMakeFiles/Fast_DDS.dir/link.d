@@ -2,10 +2,10 @@ Fast_DDS: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o \
   CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastTopic.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o \
   CMakeFiles/Fast_DDS.dir/src/main.cpp.o \
   /workspaces/fastdds/lib/Fast-DDS/install/lib/libfastdds.so \
   /workspaces/fastdds/lib/Fast-DDS/install/lib/libfastcdr.so \
@@ -52,13 +52,13 @@ Fast_DDS: \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipant.cpp.o:
-
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/DomainParticipant/FastParticipantQoS.cpp.o:
-
 CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastTopic.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o:
+
+CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o:
+
+CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o:
 
 CMakeFiles/Fast_DDS.dir/src/main.cpp.o:
 

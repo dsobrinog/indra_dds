@@ -5,7 +5,7 @@
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 
 
-namespace indraDDS
+namespace indradds
 {
     class FastParticipantQoS : IUserDataQoS, IAutoEnableFactoryQoS, IPropertyQoS
     {
@@ -16,7 +16,7 @@ namespace indraDDS
         participant_qos(part_qos){}
 
 
-        // Participant QoS:
+        // Participant Quality of Services:
         // https://fast-dds.docs.eprosima.com/en/stable/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#
         
         // User Data (Mutable)

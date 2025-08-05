@@ -1,5 +1,8 @@
 #pragma once
 
+
+namespace indradds{
+
 // DOC: https://fast-dds.docs.eprosima.com/en/stable/fastdds/dds_layer/core/policy/standardQosPolicies.html#durabilityserviceqospolicy
 enum Standard_QoS_Policy
 {
@@ -41,3 +44,5 @@ protected:
     // QoS only be specified either at the entity creation or before callingthe enable option
     bool immutable = false;
 };
+
+}
