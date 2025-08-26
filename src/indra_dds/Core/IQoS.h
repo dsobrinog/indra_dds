@@ -34,15 +34,10 @@ enum Standard_QoS_Policy
 
 class IQoS
 {
-    virtual void set_qos_id(int id);
-    inline int get_qos_id() { return qos_id;}
+public:
+    virtual ~IQoS() = default;  
 
 
-protected:
-    int qos_id = -1;
-
-    // QoS only be specified either at the entity creation or before callingthe enable option
-    bool immutable = false;
 };
 
 }

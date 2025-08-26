@@ -1,0 +1,225 @@
+    enum EntityClass
+    {
+        @value(0)
+        None,
+        Air,
+        MovingGround,
+        MovingNaval,
+        NoMovingGround,
+        HumanBeing,
+        Submarine,
+        Weapon
+    };
+
+        enum EntityTypesAir
+    {
+        @value(1)
+        Tanker,
+        TransportAircraft,
+        FighterAircraft,
+        Helicopter,
+        UAV
+    };
+
+        enum EntityTypesGround
+    {
+        Generic,
+        TrafficManAvatar
+    };
+
+        enum EntityTypesNaval
+    {
+        @value(1)
+        Generic,
+        Complex
+    };
+ 
+    enum EntityTypesNoMovingGround
+    {
+        @value(1)
+        Generic
+    };
+ 
+    enum EntityTypesHuman
+    {
+        @value(1)
+        Generic,
+        Sniper,
+        TrafficManAvatar,
+        Marshaller,
+        Survivor
+    };
+ 
+    enum DamageStatus
+    {
+        None,
+        Light,
+        Severed,
+        Destroyed
+    };
+ 
+	enum ActivationMode // lo paso a ‘scope enum’ para mantener el estilo presente en la estructura
+	{
+        @value(0)
+		OnCreation, // la entidad es creada y se toma como valor el manadado en el campo active de EntityID
+		@value(1)
+        SessionTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr), incluidas las pausas
+		@value(2)
+        FlightTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr)
+		@value(3)
+        MissionTime, //la entidad es creada y desactivada. Se toma como referencia el tiempo UTC marcado en la IOS para el visual
+		@value(4)
+        Manual // la entidad es creada y desactivada. Se queda a la espera de que la active el instructor (¿redundante con el caso OnCreation y entityID.state igual a false?)
+	};
+ 
+
+struct EntityID
+{
+    long id;
+    long creatorID;
+    char entityName[20];
+    char modelName[20];
+    long visualID;
+    long visualModel;
+    long visualDetail;
+    char active;
+    DamageStatus damageStatus;
+    
+	// HOTFIX: Added to match with IOS and INSE ICD.
+	// TOFIX: Same structure as t_idEntity
+    ActivationMode activationMode;
+    
+    unsigned long delayedActivationTime; // en modo mission time tendra el siguiente formato: MMddsssss (5 digitos para los
+    char manned;
+    char remote;
+    EntityClass entityClass;
+    char entityType;
+    char side;
+    double weight;
+};
+
+
+
+
+struct Target
+{
+    long entity_id;
+};
+
+struct Position
+{
+    /// (decimal degrees)
+    double latitude;
+    /// (decimal degrees)
+    double longitude;
+    /// (meters)
+    float altitude;
+    /// (meters)
+    float altitudeAGL;
+    /// (meters)
+    float altitude_target;
+
+};
+
+ 
+struct Attitude
+{
+    /// (radians)
+    float pitch;
+    /// (radians)
+    float yaw;
+    /// (radians)
+    float roll;
+
+
+};
+
+    enum MovementTypesAir
+    {
+        Rectilinear,
+        Mission,
+        Roleplay
+    };
+
+struct MovementAirEntity
+{
+
+ 
+    //union MovementInfoAir
+    //{
+    //    char a;
+    //    //MovementConstantTurns constantTurns;
+    //    //MovementAutomaticLogic automaticLogic;
+    //    //MovementRouteWaypoint_inses routeWaypoint_inses;
+    //    //MovementRecordedRoute recordedRoute;
+    //    //MovementInEntitiesGroup inEntitiesGroup;
+    //};
+ 
+    MovementTypesAir movementMode;
+    float speed;
+    float speed_target;
+    float geographicHeading;
+    float geographicHeading_target; // target saves the objective value commanded in the IOS
+    float magneticHeading;
+    /// This variable is the Terrain Mask Low Level Flight flag. It is only used
+    /// for rectilinear, waypoint_inses and alternate turns movement modes
+    char tmllf;
+    /// Says if Air Entity is flying (0) or placed on ground (1)
+    char onGround;
+    char missionName[32];
+    // union MovementInfoAir movementInfoAir;
+    float indicatedSpeed;
+    float indicatedSpeed_target;
+    float loadFactor;
+    float verticalSpeed;
+    float verticalSpeed_target;
+    float groundSpeed;
+    float groundSpeed_target;
+    float throttle; // throttle position from 0 (min) to 1 (max)
+    boolean infiniteFuel; // boolean to define if air entity has fuel consumption or not
+    float initialFuel; // Kg. Max value (typical value): Heavy: 111000 kg (65000 kg)   Fighters: 15000 kg (4700 kg)
+    float currentFuel; // Kg
+    float fuelConsumption; // Kg/s
+ };
+
+    @bit_bound(32)
+    bitmask Commands
+    {
+        None,
+        Add,
+        Delete,
+        ChangeStatus,
+        ChangeSide,
+        ChangeTarget,
+        ChangePos,
+        ChangeAltitude,
+        ChangeMovementType,
+        ChangeIndicatedSpeed,
+        ChangeHeading,
+        ChangeMovementParams,
+        ChangeCommsFlag,
+        ChangeDamage,
+        GCIManoeuvreCmd,
+        ChangeVerticalSpeed,
+        ChangeGroundSpeed,
+        ChangeCurrentFuel,
+        ChangeInfiniteFuel
+    };
+
+// Air Entity
+struct AirEntity
+{
+
+ 
+    Commands commands;
+    EntityID entity_id;
+    Target target_entity;
+    Position entity_position;
+    Attitude entity_attitude;
+    MovementAirEntity movement;
+    char commsActive;
+    //GCIManoeuvre gciManoeuvre;
+    long formationID;
+    long posInt_inseoFormation;
+    char isAutomaticTraffic;
+};

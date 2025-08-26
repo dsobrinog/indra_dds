@@ -1,3 +1,7 @@
+#pragma once
+
+#include <Core/IQoS.h>
+
 #include <IQoS/IPropertyQoS.h>
 #include <IQoS/IUserDataQoS.h>
 #include <IQoS/IAutoEnableFactoryQoS.h>
@@ -7,7 +11,8 @@
 
 namespace indradds
 {
-    class FastParticipantQoS : IUserDataQoS, IAutoEnableFactoryQoS, IPropertyQoS
+    class FastParticipantQoS : public IQoS,
+                             IUserDataQoS, IAutoEnableFactoryQoS, IPropertyQoS
     {
 
     public:
@@ -15,12 +20,17 @@ namespace indradds
         FastParticipantQoS(eprosima::fastdds::dds::DomainParticipantQos* part_qos):
         participant_qos(part_qos){}
 
+        ~FastParticipantQoS();
+
+        inline eprosima::fastdds::dds::DomainParticipantQos* get_native_qos(){ return participant_qos; }
+
 
         // Participant Quality of Services:
         // https://fast-dds.docs.eprosima.com/en/stable/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#
         
         // User Data (Mutable)
         virtual void set_user_data(std::vector<u_int8_t>& data);
+        virtual void set_user_data(std::string text);
 
         // Auto-Enable Factory (Mutable)
         virtual void set_auto_enable_entities(bool enable);

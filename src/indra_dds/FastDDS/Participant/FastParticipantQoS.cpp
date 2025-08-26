@@ -4,10 +4,20 @@
 
 using namespace indradds;
 
+FastParticipantQoS::~FastParticipantQoS()
+{
+
+}
 
 void FastParticipantQoS::set_user_data(std::vector<u_int8_t>& data)
 {
     std::vector<eprosima::fastdds::rtps::octet> octet_data(data.begin(), data.end());
+    participant_qos->user_data().data_vec(octet_data);
+}
+
+void indradds::FastParticipantQoS::set_user_data(std::string text)
+{
+    std::vector<eprosima::fastdds::rtps::octet> octet_data(text.begin(), text.end());
     participant_qos->user_data().data_vec(octet_data);
 }
 

@@ -2,11 +2,14 @@ Fast_DDS: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o \
-  CMakeFiles/Fast_DDS.dir/src/main.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o \
+  CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o \
   /workspaces/fastdds/lib/Fast-DDS/install/lib/libfastdds.so \
   /workspaces/fastdds/lib/Fast-DDS/install/lib/libfastcdr.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libpthread.a \
@@ -52,15 +55,21 @@ Fast_DDS: \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o:
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o:
 
-CMakeFiles/Fast_DDS.dir/src/main.cpp.o:
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o:
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o:
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o:
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o:
 
 /workspaces/fastdds/lib/Fast-DDS/install/lib/libfastdds.so:
 

@@ -4,7 +4,7 @@
 #include <Core/IDomain.h>
 
 // Concrete Layer
-#include <Fast-DDS-API/FastDomain.h>
+#include <FastDDS/FastDomain.h>
 
 #include <memory>
 #include <stdexcept>

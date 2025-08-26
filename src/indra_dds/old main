@@ -1,0 +1,17 @@
+
+// ABSTRACTION LAYER ONLY ( Don't call Fast DDS directly )
+// void abstraction_text()
+// {
+// // Create domain specifie
+//     auto domain = DDSFactory::CreateDomain(DDSLibrary::FAST_DDS, 0);
+//     domain->init();
+//     // Create participant
+//     auto participant = domain->create_participant();
+//     participant->enable();
+//     // Create pub/sub/topic
+//     // IPublisher* pub = participant->create_pub();
+//     // ISubscriber* sub = participant->create_sub();
+//     // ITopic* topic = participant->create_topic();
+//     participant->disable();
+//     domain->close();
+// }

@@ -1,12 +1,12 @@
-#include <indra_dds/Fast-DDS-API/Participant/FastParticipant.h>
+#include <indra_dds/FastDDS/Participant/FastParticipant.h>
 
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 
-#include <indra_dds/Fast-DDS-API/Publisher/FastPublisher.h>
-#include <indra_dds/Fast-DDS-API/Subscriber/FastSubscriber.h>
-#include <indra_dds/Fast-DDS-API/Topic/FastTopic.h>
-#include <indra_dds/Fast-DDS-API/TypeSupport/FastTypeSupport.h>
+#include <indra_dds/FastDDS/Publisher/FastPublisher.h>
+#include <indra_dds/FastDDS/Subscriber/FastSubscriber.h>
+#include <indra_dds/FastDDS/Topic/FastTopic.h>
+#include <indra_dds/FastDDS/TypeSupport/FastTypeSupport.h>
 
 using namespace indradds;
 using namespace eprosima::fastdds::dds;
@@ -14,12 +14,13 @@ using namespace eprosima::fastdds::dds;
 
 FastParticipant::FastParticipant(): IParticipant()
 {
-   on_init();
+    // Creation of Fast DDS Domain Participant
+    on_init();
 }
 
 FastParticipant::~FastParticipant()
 {
-   on_destroy();
+    on_destroy();
 }
 
 void FastParticipant::update()
@@ -31,12 +32,22 @@ void FastParticipant::update()
 
 void FastParticipant::on_init()
 {
-    participant_qos = DomainParticipantQos();
+
+    // Fast dds native QoS
+    DomainParticipantQos participant_qos;
+
+    // Initial QoS (Non variable)
+    // DomainParticipantQos participant_qos(PARTICIPANT_QOS_DEFAULT);
+
+    // Default (User custom)
+    DomainParticipantFactory::get_instance()->get_default_participant_qos(participant_qos);
+
     qos_ = new FastParticipantQoS(&participant_qos);
 
     // Apply inmutable Quality of Service configuration
     intitialize_qos();
 
+    // Creation of domain participant
     participant_ = DomainParticipantFactory::get_instance()->create_participant(
         0,                       // domain id
         participant_qos,         // QoS con valores por defecto
@@ -46,7 +57,7 @@ void FastParticipant::on_init()
 
     if(participant_ == nullptr)
     {
-        std::cerr << "Error initializing FastParticipant" << std::endl; 
+        std::cerr << "Error creating FastParticipant" << std::endl; 
         DDSStatus::ERROR;
         return;
     }
@@ -56,6 +67,8 @@ void FastParticipant::on_init()
 
 void indradds::FastParticipant::intitialize_qos()
 {
+    // Apply all Quality of Services configuration before enable the entity
+    // Once enable, inmutable qualities can not be edited.
 }
 
 void FastParticipant::on_destroy()

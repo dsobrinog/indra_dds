@@ -72,96 +72,144 @@ include CMakeFiles/Fast_DDS.dir/flags.make
 CMakeFiles/Fast_DDS.dir/codegen:
 .PHONY : CMakeFiles/Fast_DDS.dir/codegen
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o -c /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o: /workspaces/fastdds/src/indra_dds/FastDDS/FastDomain.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o -c /workspaces/fastdds/src/indra_dds/FastDDS/FastDomain.cpp
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.i
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/FastDDS/FastDomain.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.i
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/Fast-DDS-API/FastDomain.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.s
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/FastDDS/FastDomain.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.s
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o: /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o -c /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o: /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipant.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o -c /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipant.cpp
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.i
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipant.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.i
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.s
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipant.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.s
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o: /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o -c /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o: /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o -c /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.i
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.i
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.s
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.s
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o: /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o -c /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o: /workspaces/fastdds/src/indra_dds/FastDDS/Topic/FastTopic.cpp
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o -c /workspaces/fastdds/src/indra_dds/FastDDS/Topic/FastTopic.cpp
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.i
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/indra_dds/FastDDS/Topic/FastTopic.cpp > CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.i
 
-CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.s
+CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/indra_dds/FastDDS/Topic/FastTopic.cpp -o CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.s
 
-CMakeFiles/Fast_DDS.dir/src/main.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
-CMakeFiles/Fast_DDS.dir/src/main.cpp.o: /workspaces/fastdds/src/main.cpp
-CMakeFiles/Fast_DDS.dir/src/main.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Fast_DDS.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/main.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/main.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/main.cpp.o -c /workspaces/fastdds/src/main.cpp
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o: /workspaces/fastdds/src/stress_test/core/dds_module.cpp
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o -c /workspaces/fastdds/src/stress_test/core/dds_module.cpp
 
-CMakeFiles/Fast_DDS.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/main.cpp > CMakeFiles/Fast_DDS.dir/src/main.cpp.i
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/stress_test/core/dds_module.cpp > CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.i
 
-CMakeFiles/Fast_DDS.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/main.cpp -o CMakeFiles/Fast_DDS.dir/src/main.cpp.s
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/stress_test/core/dds_module.cpp -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.s
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o: /workspaces/fastdds/src/stress_test/core/executive.cpp
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o -c /workspaces/fastdds/src/stress_test/core/executive.cpp
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/stress_test/core/executive.cpp > CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.i
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/stress_test/core/executive.cpp -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.s
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o: /workspaces/fastdds/src/stress_test/core/module.cpp
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o -c /workspaces/fastdds/src/stress_test/core/module.cpp
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/stress_test/core/module.cpp > CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.i
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/stress_test/core/module.cpp -o CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.s
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o: CMakeFiles/Fast_DDS.dir/flags.make
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o: /workspaces/fastdds/src/stress_test/main.cpp
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o -MF CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o.d -o CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o -c /workspaces/fastdds/src/stress_test/main.cpp
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/fastdds/src/stress_test/main.cpp > CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.i
+
+CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/fastdds/src/stress_test/main.cpp -o CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.s
 
 # Object files for target Fast_DDS
 Fast_DDS_OBJECTS = \
-"CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o" \
-"CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o" \
-"CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o" \
-"CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o" \
-"CMakeFiles/Fast_DDS.dir/src/main.cpp.o"
+"CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o" \
+"CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o"
 
 # External object files for target Fast_DDS
 Fast_DDS_EXTERNAL_OBJECTS =
 
-Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/FastDomain.cpp.o
-Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipant.cpp.o
-Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Participant/FastParticipantQoS.cpp.o
-Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/Fast-DDS-API/Topic/FastTopic.cpp.o
-Fast_DDS: CMakeFiles/Fast_DDS.dir/src/main.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/FastDomain.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipant.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Participant/FastParticipantQoS.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/indra_dds/FastDDS/Topic/FastTopic.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/stress_test/core/dds_module.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/stress_test/core/executive.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/stress_test/core/module.cpp.o
+Fast_DDS: CMakeFiles/Fast_DDS.dir/src/stress_test/main.cpp.o
 Fast_DDS: CMakeFiles/Fast_DDS.dir/build.make
 Fast_DDS: CMakeFiles/Fast_DDS.dir/compiler_depend.ts
 Fast_DDS: CMakeFiles/Fast_DDS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Fast_DDS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/fastdds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable Fast_DDS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Fast_DDS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
