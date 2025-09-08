@@ -18,3 +18,36 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "/workspaces/fastdds/build/CMakeFiles/cmake.verify_globs")
 endif()
+
+# SOURCES at CMakeLists.txt:9 (file)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/fastdds/src/*.cxx")
+set(OLD_GLOB
+  "/workspaces/fastdds/src/IDLs/generated/inseApplication.cxx"
+  "/workspaces/fastdds/src/IDLs/generated/insePubSubTypes.cxx"
+  "/workspaces/fastdds/src/IDLs/generated/insePublisherApp.cxx"
+  "/workspaces/fastdds/src/IDLs/generated/inseSubscriberApp.cxx"
+  "/workspaces/fastdds/src/IDLs/generated/inseTypeObjectSupport.cxx"
+  "/workspaces/fastdds/src/IDLs/generated/insemain.cxx"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/workspaces/fastdds/build/CMakeFiles/cmake.verify_globs")
+endif()
+
+# SOURCES at CMakeLists.txt:9 (file)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/fastdds/src/*.hpp")
+set(OLD_GLOB
+  "/workspaces/fastdds/src/IDLs/generated/inse.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/inseApplication.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/inseCdrAux.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/insePubSubTypes.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/insePublisherApp.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/inseSubscriberApp.hpp"
+  "/workspaces/fastdds/src/IDLs/generated/inseTypeObjectSupport.hpp"
+  "/workspaces/fastdds/src/stress_test/pub_custom.hpp"
+  "/workspaces/fastdds/src/stress_test/sub_custom.hpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/workspaces/fastdds/build/CMakeFiles/cmake.verify_globs")
+endif()

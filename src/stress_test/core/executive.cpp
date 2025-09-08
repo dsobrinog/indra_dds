@@ -1,4 +1,6 @@
 #include "executive.h"
+#include <chrono>
+
 
 
 void Executive::init()
@@ -55,14 +57,26 @@ void Executive::execute_cycle()
     auto start = steady_clock::now();
 
     // Execute modules for read/write
-    for (const auto module : submodules) module->run();
-    for (const auto module : submodules) module->run();
+    for (const auto module : submodules) module->read();
+    for (const auto module : submodules) module->write();
+    for (const auto module : submodules) module->update();
+
 
     auto end = steady_clock::now();
     auto processing_time = end - start;
 
+    
+
     // Determine if we need to wait to meet the minimum cycle duration
     auto min_duration = duration_cast<steady_clock::duration>(cycle_min_duration);
+
+    if (processing_time > min_duration)
+    {
+        std::cout << "Warning! Cycle time exceeded: "
+                  << std::chrono::duration_cast<std::chrono::milliseconds>(processing_time).count()
+                  << " ms" << std::endl;
+    }
+
     if (processing_time < min_duration) {
             auto wait_time = min_duration - processing_time;
             // Log sleep time
@@ -79,8 +93,8 @@ void Executive::execute_cycle()
     // Display execution time in milliseconds with high precision
     using double_millis = duration<double, std::milli>;
     auto elapsed_ms = duration_cast<double_millis>(total_cycle_time);
-    //std::cout << "Cycle " << current_cycle << " execution time: " << elapsed_ms.count() << "ms\n";
-    std::cout << "----- CYCLE ----- " << current_cycle << std::endl;
+    // std::cout << "Cycle " << current_cycle << " execution time: " << elapsed_ms.count() << "ms\n";
+    // std::cout << "----- CYCLE ----- " << current_cycle << std::endl;
  
     // Update cycle count and total time
     current_cycle++;

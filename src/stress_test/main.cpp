@@ -1,44 +1,29 @@
 #include <iostream>
 
 // Executive Test
-
 #include "core/executive.h"
 #include "core/dds_module.h"
 
-// Fast DDS includes
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-// IDL include
-#include <IDLs/generated/inse.hpp>
-
-#include "pub_test.h"
-#include "sub_test.h"
-
-
-using namespace eprosima::fastdds::dds;
 
 Executive* _exec; 
 
-int main()
+int main(int argc, char* argv[])
 {
-    // Select pub or sub
-    std::cout << "Select mode: 1) Pub 2) Sub" << std::endl;
-
-
+    int mode = -1;
+    if(argc > 1)
+    {
+        mode = std::stoi(argv[1]);
+    }
+    
     // Start Simulation
-    std::cout << "Start Simulation" << std::endl;
+    std::cout << "EXECUTIVE*** : Start Simulation" << std::endl;
     _exec = new Executive;
-    cl_dds* moduleDDS = new cl_dds(0, _exec);
+    cl_dds* moduleDDS = new cl_dds(0, mode, _exec);
     _exec->add_module(moduleDDS);
     _exec->init();
 
     // Loop
-    std::cout << "Begining Execution..." << std::endl;
+    std::cout << "EXECUTIVE*** : Begining Execution..." << std::endl;
     while (_exec->in_execution())
     {
         _exec->execute_cycle();
@@ -47,6 +32,6 @@ int main()
     
     // End
     _exec->end_simulation();
-    std::cout << "End Simulation..." << std::endl;
+    std::cout << "EXECUTIVE*** : End Simulation..." << std::endl;
     return 0;
 }

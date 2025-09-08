@@ -59,54 +59,54 @@ std::string parse_signal(
     }
 }
 
-int main(
-        int argc,
-        char** argv)
-{
-    auto ret = EXIT_SUCCESS;
-    int domain_id = 0;
-    std::shared_ptr<inseApplication> app;
+// int main(
+//         int argc,
+//         char** argv)
+// {
+//     auto ret = EXIT_SUCCESS;
+//     int domain_id = 0;
+//     std::shared_ptr<inseApplication> app;
 
-    if (argc != 2 || (strcmp(argv[1], "publisher") != 0 && strcmp(argv[1], "subscriber") != 0))
-    {
-        std::cout << "Error: Incorrect arguments." << std::endl;
-        std::cout << "Usage: " << std::endl << std::endl;
-        std::cout << argv[0] << " publisher|subscriber" << std::endl << std::endl;
-        ret = EXIT_FAILURE;
-    }
-    else
-    {
-        try
-        {
-            app = inseApplication::make_app(domain_id, argv[1]);
-        }
-        catch (const std::runtime_error& e)
-        {
-            EPROSIMA_LOG_ERROR(app_name, e.what());
-            ret = EXIT_FAILURE;
-        }
+//     if (argc != 2 || (strcmp(argv[1], "publisher") != 0 && strcmp(argv[1], "subscriber") != 0))
+//     {
+//         std::cout << "Error: Incorrect arguments." << std::endl;
+//         std::cout << "Usage: " << std::endl << std::endl;
+//         std::cout << argv[0] << " publisher|subscriber" << std::endl << std::endl;
+//         ret = EXIT_FAILURE;
+//     }
+//     else
+//     {
+//         try
+//         {
+//             app = inseApplication::make_app(domain_id, argv[1]);
+//         }
+//         catch (const std::runtime_error& e)
+//         {
+//             EPROSIMA_LOG_ERROR(app_name, e.what());
+//             ret = EXIT_FAILURE;
+//         }
 
-        std::thread thread(&inseApplication::run, app);
+//         std::thread thread(&inseApplication::run, app);
 
-        std::cout << argv[1] << " running. Please press Ctrl+C to stop the " << argv[1] << " at any time." << std::endl;
+//         std::cout << argv[1] << " running. Please press Ctrl+C to stop the " << argv[1] << " at any time." << std::endl;
 
-        stop_handler = [&](int signum)
-                {
-                    std::cout << "\n" << parse_signal(signum) << " received, stopping " << argv[1]
-                              << " execution." << std::endl;
-                    app->stop();
-                };
+//         stop_handler = [&](int signum)
+//                 {
+//                     std::cout << "\n" << parse_signal(signum) << " received, stopping " << argv[1]
+//                               << " execution." << std::endl;
+//                     app->stop();
+//                 };
 
-        signal(SIGINT, signal_handler);
-        signal(SIGTERM, signal_handler);
-#ifndef _WIN32
-        signal(SIGQUIT, signal_handler);
-        signal(SIGHUP, signal_handler);
-#endif // _WIN32
+//         signal(SIGINT, signal_handler);
+//         signal(SIGTERM, signal_handler);
+// #ifndef _WIN32
+//         signal(SIGQUIT, signal_handler);
+//         signal(SIGHUP, signal_handler);
+// #endif // _WIN32
 
-        thread.join();
-    }
+//         thread.join();
+//     }
 
-    Log::Reset();
-    return ret;
-}
+//     Log::Reset();
+//     return ret;
+// }
