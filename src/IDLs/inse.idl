@@ -1,78 +1,85 @@
-    enum EntityClass
-    {
-        @value(0)
-        None,
-        Air,
-        MovingGround,
-        MovingNaval,
-        NoMovingGround,
-        HumanBeing,
-        Submarine,
-        Weapon
-    };
-
-        enum EntityTypesAir
-    {
-        @value(1)
-        Tanker,
-        TransportAircraft,
-        FighterAircraft,
-        Helicopter,
-        UAV
-    };
-
-        enum EntityTypesGround
-    {
-        Generic,
-        TrafficManAvatar
-    };
-
-        enum EntityTypesNaval
-    {
-        @value(1)
-        Generic,
-        Complex
-    };
+    //@extensibility(FINAL)
+    //enum EntityClass
+    //{
+    //    @value(0)
+    //    None,
+    //    Air,
+    //    MovingGround,
+    //    MovingNaval,
+    //    NoMovingGround,
+    //    HumanBeing,
+    //    Submarine,
+    //    Weapon
+    //};
+//
+    //@extensibility(FINAL)
+    //enum EntityTypesAir
+    //{
+    //    @value(1)
+    //    Tanker,
+    //    TransportAircraft,
+    //    FighterAircraft,
+    //    Helicopter,
+    //    UAV
+    //};
+//
+    //@extensibility(FINAL)
+    //enum EntityTypesGround
+    //{
+    //    Generic,
+    //    TrafficManAvatar
+    //};
+//
+    //@extensibility(FINAL)    
+    //enum EntityTypesNaval
+    //{
+    //    @value(1)
+    //    Generic,
+    //    Complex
+    //};
+//
+    //@extensibility(FINAL)
+    //enum EntityTypesNoMovingGround
+    //{
+    //    @value(1)
+    //    Generic
+    //};
+//
+    //@extensibility(FINAL)
+    //enum EntityTypesHuman
+    //{
+    //    @value(1)
+    //    Generic,
+    //    Sniper,
+    //    TrafficManAvatar,
+    //    Marshaller,
+    //    Survivor
+    //};
+//
+    //@extensibility(FINAL)
+    //enum DamageStatus
+    //{
+    //    None,
+    //    Light,
+    //    Severed,
+    //    Destroyed
+    //};
+    //@extensibility(FINAL)
+	//enum ActivationMode // lo paso a ‘scope enum’ para mantener el estilo presente en la estructura
+	//{
+    //    @value(0)
+	//	OnCreation, // la entidad es creada y se toma como valor el manadado en el campo active de EntityID
+	//	@value(1)
+    //    SessionTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr), incluidas las pausas
+	//	@value(2)
+    //    FlightTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr)
+	//	@value(3)
+    //    MissionTime, //la entidad es creada y desactivada. Se toma como referencia el tiempo UTC marcado en la IOS para el visual
+	//	@value(4)
+    //    Manual // la entidad es creada y desactivada. Se queda a la espera de que la active el instructor (¿redundante con el caso OnCreation y entityID.state igual a false?)
+	//};
  
-    enum EntityTypesNoMovingGround
-    {
-        @value(1)
-        Generic
-    };
- 
-    enum EntityTypesHuman
-    {
-        @value(1)
-        Generic,
-        Sniper,
-        TrafficManAvatar,
-        Marshaller,
-        Survivor
-    };
- 
-    enum DamageStatus
-    {
-        None,
-        Light,
-        Severed,
-        Destroyed
-    };
- 
-	enum ActivationMode // lo paso a ‘scope enum’ para mantener el estilo presente en la estructura
-	{
-        @value(0)
-		OnCreation, // la entidad es creada y se toma como valor el manadado en el campo active de EntityID
-		@value(1)
-        SessionTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr), incluidas las pausas
-		@value(2)
-        FlightTime, // la entidad es creada y desactivada. Se toma como referencia el tiempo de simulacion marcado por HOST (xdistr)
-		@value(3)
-        MissionTime, //la entidad es creada y desactivada. Se toma como referencia el tiempo UTC marcado en la IOS para el visual
-		@value(4)
-        Manual // la entidad es creada y desactivada. Se queda a la espera de que la active el instructor (¿redundante con el caso OnCreation y entityID.state igual a false?)
-	};
- 
-
+@extensibility(FINAL)
 struct EntityID
 {
     long id;
@@ -83,16 +90,16 @@ struct EntityID
     long visualModel;
     long visualDetail;
     char active;
-    DamageStatus damageStatus;
+    // DamageStatus damageStatus;
     
 	// HOTFIX: Added to match with IOS and INSE ICD.
 	// TOFIX: Same structure as t_idEntity
-    ActivationMode activationMode;
+    // ActivationMode activationMode;
     
     unsigned long delayedActivationTime; // en modo mission time tendra el siguiente formato: MMddsssss (5 digitos para los
     char manned;
     char remote;
-    EntityClass entityClass;
+    // EntityClass entityClass;
     char entityType;
     char side;
     double weight;
@@ -100,12 +107,12 @@ struct EntityID
 
 
 
-
+@extensibility(FINAL)
 struct Target
 {
     long entity_id;
 };
-
+@extensibility(FINAL)
 struct Position
 {
     /// (decimal degrees)
@@ -121,7 +128,7 @@ struct Position
 
 };
 
- 
+@extensibility(FINAL)
 struct Attitude
 {
     /// (radians)
@@ -133,18 +140,16 @@ struct Attitude
 
 
 };
-
-    enum MovementTypesAir
-    {
-        Rectilinear,
-        Mission,
-        Roleplay
-    };
+@extensibility(FINAL)
+//enum MovementTypesAir
+//{
+//    Rectilinear,
+//    Mission,
+//    Roleplay
+//};
 
 struct MovementAirEntity
 {
-
- 
     //union MovementInfoAir
     //{
     //    char a;
@@ -155,7 +160,7 @@ struct MovementAirEntity
     //    //MovementInEntitiesGroup inEntitiesGroup;
     //};
  
-    MovementTypesAir movementMode;
+    // MovementTypesAir movementMode;
     float speed;
     float speed_target;
     float geographicHeading;
@@ -182,39 +187,40 @@ struct MovementAirEntity
     float fuelConsumption; // Kg/s
  };
 
-    @bit_bound(32)
-    bitmask Commands
-    {
-        None,
-        Add,
-        Delete,
-        ChangeStatus,
-        ChangeSide,
-        ChangeTarget,
-        ChangePos,
-        ChangeAltitude,
-        ChangeMovementType,
-        ChangeIndicatedSpeed,
-        ChangeHeading,
-        ChangeMovementParams,
-        ChangeCommsFlag,
-        ChangeDamage,
-        GCIManoeuvreCmd,
-        ChangeVerticalSpeed,
-        ChangeGroundSpeed,
-        ChangeCurrentFuel,
-        ChangeInfiniteFuel
-    };
+    //@bit_bound(32)
+    //bitmask Commands
+    //{
+    //    None,
+    //    Add,
+    //    Delete,
+    //    ChangeStatus,
+    //    ChangeSide,
+    //    ChangeTarget,
+    //    ChangePos,
+    //    ChangeAltitude,
+    //    ChangeMovementType,
+    //    ChangeIndicatedSpeed,
+    //    ChangeHeading,
+    //    ChangeMovementParams,
+    //    ChangeCommsFlag,
+    //    ChangeDamage,
+    //    GCIManoeuvreCmd,
+    //    ChangeVerticalSpeed,
+    //    ChangeGroundSpeed,
+    //    ChangeCurrentFuel,
+    //    ChangeInfiniteFuel
+    //};
 
 // Air Entity
+@extensibility(FINAL)
 struct AirEntity
 {
+    @key long id;       // Unique identifier for the entity
 
- 
-    Commands commands;
-    EntityID entity_id;
-    Target target_entity;
-    Position entity_position;
+    //Commands commands;
+    //EntityID entity_id;
+    // Target target_entity;
+    // Position entity_position;
     Attitude entity_attitude;
     MovementAirEntity movement;
     char commsActive;

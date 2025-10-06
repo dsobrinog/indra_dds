@@ -12,19 +12,23 @@ class Distribution
 public:
     Distribution() = default;
 
-    // Add a value to the distribution
+    std::string name_distribution = "DISTRIBUTION";
+
+    inline void set_distribution_name(std::string name)
+    {
+        name_distribution = name;
+    }
+
     void addValue(double value)
     {
         _values.push_back(value);
     }
 
-    // Number of values
     size_t size() const
     {
         return _values.size();
     }
 
-    // Calculate mean
     double mean() const
     {
         if (_values.empty()) return 0.0;
@@ -32,21 +36,18 @@ public:
         return sum / _values.size();
     }
 
-    // Minimum value
     double min() const
     {
         if (_values.empty()) return 0.0;
         return *std::min_element(_values.begin(), _values.end());
     }
 
-    // Maximum value
     double max() const
     {
         if (_values.empty()) return 0.0;
         return *std::max_element(_values.begin(), _values.end());
     }
 
-    // Mode (most frequent value)
     double mode() const
     {
         if (_values.empty()) return 0.0;
@@ -58,7 +59,7 @@ public:
         int maxCount = 0;
         double modeValue = _values[0];
 
-        for (std::unordered_map<double,int>::const_iterator it = freq.begin(); it != freq.end(); ++it)
+        for (auto it = freq.begin(); it != freq.end(); ++it)
         {
             if (it->second > maxCount)
             {
@@ -70,7 +71,6 @@ public:
         return modeValue;
     }
 
-    // Standard deviation
     double stdDev() const
     {
         if (_values.size() < 2) return 0.0;
@@ -84,16 +84,44 @@ public:
         return std::sqrt(accum / (_values.size() - 1));
     }
 
-    // Print all statistics
+    // --- Local jitter ---
+    double localJitter() const
+    {
+        if (_values.size() < 2) return 0.0;
+
+        // 1. Compute deltas between consecutive samples
+        std::vector<double> diffs;
+        diffs.reserve(_values.size() - 1);
+
+        for (size_t i = 1; i < _values.size(); ++i)
+        {
+            diffs.push_back(std::abs(_values[i] - _values[i - 1]));
+        }
+
+        // 2. Mean of deltas
+        double meanDiff = std::accumulate(diffs.begin(), diffs.end(), 0.0) / diffs.size();
+
+        // 3. Standard deviation of deltas
+        double accum = 0.0;
+        for (size_t i = 0; i < diffs.size(); ++i)
+        {
+            double diff = diffs[i] - meanDiff;
+            accum += diff * diff;
+        }
+
+        return std::sqrt(accum / (diffs.size() - 1));
+    }
+
     void printReport() const
     {
-        std::cout << "\n**** DISTRIBUTION REPORT ****\n";
+        std::cout << "\n**** " << name_distribution <<" REPORT ****\n";
         std::cout << "Count: " << _values.size() << "\n";
         std::cout << "Mean: " << mean() << "\n";
         std::cout << "Min: " << min() << "\n";
         std::cout << "Max: " << max() << "\n";
         std::cout << "Mode: " << mode() << "\n";
-        std::cout << "StdDev: " << stdDev() << "\n";
+        std::cout << "StdDev (global): " << stdDev() << "\n";
+        std::cout << "Local Jitter: " << localJitter() << "\n";
         std::cout << "-----------------------------\n";
     }
 

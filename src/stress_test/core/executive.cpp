@@ -5,6 +5,10 @@
 
 void Executive::init()
 {
+    // Pin the current thread (the one running init())
+    pinThreadToCore(2);   // choose a core that is free / isolated if possible
+    setRealtimePriority();
+
     for (auto& module : submodules)
     {
         module->init();

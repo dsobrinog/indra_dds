@@ -1,0 +1,31 @@
+1. Architectural design
+
+Option 0: Dual-threaded, Zero Copy, Tick-Aligned
+Main thread 
+    - Runs eveyr 10 ms cycle
+    - Uses inputs from input data (snapshot/double buffer)
+    - Sends outputs to pre-allocated DDS publisher
+    - Never interacts with DDS readers
+Input Fetcher Thread(s)
+    - Dedicated thread(s) for all DDS readers
+    - At MS 0 of each 10ms tick, drains all DDS sample since the last tick.
+    - Writes into pre-allocated double buffer /snapshot coantiner visible to the main thread.
+    - Uses loaned smaples if possible to avoid expensive copying.
+    - Pinned to dedicated core, high-priority scheduling.
+Output publisher Thread(s)
+    - Optional: if publishing is heavy, a secondary thread handles sending outputs via Fast DDS.
+    - Can use loaned smaples / zero-copy.
+    - Syncronizes with amin thread: main threads fills "ready-to-publish" buffer at tick end, publisher thread pushes it immediatly
+Buffer / Snapshot containers
+    - Double-buffer or lock-free SPSC queue to safely transfer data between fetcher thread(s) and main thread.
+    - Main thread swaps or reads snapshot at tick start.
+    - Fetch thread prepares next snapshot in parallel while main thread executes models.
+
+Option 1: Asyn DDS Callbacks -> copy data into double buffer -> simulation fetch data every 10ms at the begining
+    + Complexity: Medium 
+    - Risk if some copy operation are heavy because we block DDS threads
+    - DDS threads can be saturated (to chekc in profiling)
+
+Option 2: Asyn DDS Callbacks trigger signals to secondary threads -> secondary threads fetch all data avaible -> simulator fetch all data every 10 ms 
+    + DDS thread never gets blocked by multithreading lock
+    - More complex

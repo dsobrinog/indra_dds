@@ -4,13 +4,17 @@
 #include "stress_test/core/executive.h"
 #include "stress_test/core/dds_module.h"
 
-#include "stress_test/pub_custom.hpp"
-#include "stress_test/sub_custom.hpp"
+#include "stress_test/pub_test.hpp"
+#include "stress_test/sub_test.hpp"
 
 #include "stress_test/stats/Distribution.h"
 #include "stress_test/stats/TestValidation.h"
 
 #include "stress_test/core/tests/test_def.h"
+
+#include <pthread.h>
+#include <sched.h>
+#include <unistd.h>
 
 #include <sstream>
 
@@ -46,21 +50,20 @@ class pattern_base
         {
             on_test_finished(value);
             current_test++;
-            if(current_test > number_test)
+            if(current_test > max_test)
             {
                 make_final_report();
-                dds_module->exec->end_simulation();
+                // dds_module->exec->end_simulation();
                 return;
             }
-
-            reset_test();
         }
+
 
     protected:
         cl_dds* dds_module = nullptr;
 
         // Number of test that will be performed to create stats
-        int number_test = 5;
+        int max_test = 100;
         int current_test = 0;
 };
 

@@ -12,7 +12,7 @@
 #include <vector>
 #include <iostream>
 
-constexpr int CYCLE_TIME = 10000;
+constexpr int CYCLE_TIME = 100;
 
 enum class ExecutiveState
 {
@@ -48,8 +48,6 @@ class Executive
         const inline uint32_t       get_execution_cycle()   { return execution_cycle;   }
         const inline uint32_t       get_simulation_cycle()  { return simulation_cycle;  }
 
-                      // Solicita Operacion
-
         // STATES
         ExecutiveState currentState = ExecutiveState::INIT;
         void change_state(ExecutiveState newState);
@@ -61,6 +59,40 @@ class Executive
         void request_mission_initialization();      // Solicita Reiniciar la Simulacionn
         void request_simulation_reinitialization(); // Solicita Reiniciar la Simulacion
         void request_operation();  
+
+        inline void pinThreadToCore(int core_id)
+        {
+            cpu_set_t cpuset;
+            CPU_ZERO(&cpuset);
+            CPU_SET(core_id, &cpuset);
+
+            pthread_t current_thread = pthread_self();
+
+            int rc = pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+            if (rc != 0)
+            {
+                std::cerr << "Error calling pthread_setaffinity_np: " << rc << std::endl;
+            }
+            else
+            {
+                std::cout << "Thread pinned to core " << core_id << std::endl;
+            }
+        }
+
+        inline void setRealtimePriority(int priority = 80)
+        {
+            sched_param sch;
+            sch.sched_priority = priority; // 1–99 for SCHED_FIFO/RR
+            if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sch) != 0)
+            {
+                perror("pthread_setschedparam");
+            }
+            else
+            {
+                std::cout << "Thread set to SCHED_FIFO with priority " << priority << std::endl;
+            }
+        }
+
 
     private:
 

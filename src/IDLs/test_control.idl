@@ -1,0 +1,10 @@
+// TestControl.idl
+struct TestControl
+{
+    @key long test_id;            // groups messages for a given test run
+    boolean start;                // true = start (or update), false = stop
+    long expected_entities;       // messages per 10ms cycle
+    long cycle_time_ms;           // e.g., 10
+    long reserve1;                // spare (for future use)
+    long reserve2;                // spare
+};

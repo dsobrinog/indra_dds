@@ -4,7 +4,7 @@
 #include "stress_test/core/tests/1_1/pub_test_1_to_1.h"
 #include "stress_test/core/tests/1_1/sub_test_1_to_1.h"
 
-#include "patterns/ping_pong_pattern.h"
+// #include "patterns/ping_pong_pattern.h"
 
 cl_dds::cl_dds(int moduleId, int mode, Executive * _exec) : cl_module(moduleId, _exec)
 {
@@ -83,7 +83,7 @@ void cl_dds::test_patterns(int mode)
         case 3:
         {
             // PING-PONG
-            p_pattern = new ping_pong_pattern(this);
+            // p_pattern = new ping_pong_pattern(this);
             break;
         }
         default:

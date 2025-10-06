@@ -1,0 +1,4 @@
+struct BigSample
+{
+    octet payload[10000];
+};
