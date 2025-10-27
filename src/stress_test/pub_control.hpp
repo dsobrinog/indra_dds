@@ -67,13 +67,13 @@ public:
 
     bool is_matched() const { return listener_.matched_ > 0; }
 
-    bool publish_start(int testId, int expected, int cycleMs)
+    bool publish_start(int testId, int expected, bool loan)
     {
         TestControl msg;
         msg.test_id() = testId;
         msg.start() = true;
         msg.expected_entities() = expected;
-        msg.cycle_time_ms() = cycleMs;
+        msg.loan() = loan;
 
         // Debug output
         std::cout << "[DEBUG] Publishing START control message:\n"

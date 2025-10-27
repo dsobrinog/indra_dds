@@ -31,19 +31,21 @@ class pattern_base
         // 2. Write       
         virtual void write() = 0;
         // 3. Update
-        virtual void update() = 0;
+        virtual void update(){};
         
         // Configurable by input
-        virtual void test_command() = 0;
+        virtual void test_command(){};
 
         // Reset test variables
-        virtual void reset_test() = 0;
+        virtual void reset_test(){};
         
         // Make final report
-        virtual void make_final_report() = 0;
+        virtual void make_final_report(){};
 
         // Logic when test is finished
-        virtual void on_test_finished(bool value) = 0;
+        virtual void on_test_finished(bool value){};
+
+        virtual void on_end_test(){};
         
         // Finish test
         void finish_test(bool value)
@@ -53,7 +55,7 @@ class pattern_base
             if(current_test > max_test)
             {
                 make_final_report();
-                // dds_module->exec->end_simulation();
+                on_end_test();
                 return;
             }
         }
@@ -61,6 +63,8 @@ class pattern_base
 
     protected:
         cl_dds* dds_module = nullptr;
+
+        int id_agent = 0;
 
         // Number of test that will be performed to create stats
         int max_test = 100;

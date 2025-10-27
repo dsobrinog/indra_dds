@@ -161,34 +161,34 @@ void register_TestControl_type_identifier(
             TypeObjectUtils::add_complete_struct_member(member_seq_TestControl, member_expected_entities);
         }
         {
-            TypeIdentifierPair type_ids_cycle_time_ms;
-            ReturnCode_t return_code_cycle_time_ms {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_cycle_time_ms =
+            TypeIdentifierPair type_ids_loan;
+            ReturnCode_t return_code_loan {eprosima::fastdds::dds::RETCODE_OK};
+            return_code_loan =
                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "_int32_t", type_ids_cycle_time_ms);
+                "_bool", type_ids_loan);
 
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_cycle_time_ms)
+            if (eprosima::fastdds::dds::RETCODE_OK != return_code_loan)
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                        "cycle_time_ms Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                        "loan Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_cycle_time_ms = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
+            StructMemberFlag member_flags_loan = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
-            MemberId member_id_cycle_time_ms = 0x00000003;
-            bool common_cycle_time_ms_ec {false};
-            CommonStructMember common_cycle_time_ms {TypeObjectUtils::build_common_struct_member(member_id_cycle_time_ms, member_flags_cycle_time_ms, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_cycle_time_ms, common_cycle_time_ms_ec))};
-            if (!common_cycle_time_ms_ec)
+            MemberId member_id_loan = 0x00000003;
+            bool common_loan_ec {false};
+            CommonStructMember common_loan {TypeObjectUtils::build_common_struct_member(member_id_loan, member_flags_loan, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_loan, common_loan_ec))};
+            if (!common_loan_ec)
             {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure cycle_time_ms member TypeIdentifier inconsistent.");
+                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure loan member TypeIdentifier inconsistent.");
                 return;
             }
-            MemberName name_cycle_time_ms = "cycle_time_ms";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_cycle_time_ms;
+            MemberName name_loan = "loan";
+            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_loan;
             ann_custom_TestControl.reset();
-            CompleteMemberDetail detail_cycle_time_ms = TypeObjectUtils::build_complete_member_detail(name_cycle_time_ms, member_ann_builtin_cycle_time_ms, ann_custom_TestControl);
-            CompleteStructMember member_cycle_time_ms = TypeObjectUtils::build_complete_struct_member(common_cycle_time_ms, detail_cycle_time_ms);
-            TypeObjectUtils::add_complete_struct_member(member_seq_TestControl, member_cycle_time_ms);
+            CompleteMemberDetail detail_loan = TypeObjectUtils::build_complete_member_detail(name_loan, member_ann_builtin_loan, ann_custom_TestControl);
+            CompleteStructMember member_loan = TypeObjectUtils::build_complete_struct_member(common_loan, detail_loan);
+            TypeObjectUtils::add_complete_struct_member(member_seq_TestControl, member_loan);
         }
         {
             TypeIdentifierPair type_ids_reserve1;

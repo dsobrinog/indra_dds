@@ -2,6 +2,8 @@
 #define DDS_H
 
 #include "module.h"
+#include "common_defs.h"
+#include "stats/Distribution.h"
 
 class pattern_base;
 
@@ -22,10 +24,31 @@ public:
     // test purpuse
     void main_menu();
     void test_patterns(int mode);
-   
+
+    void set_expected_messages(int messages){
+        num_messages = messages;
+    }
+    void set_tests(int tests){
+        num_tests = tests;
+    }
+
+    void set_mode(bool mode){
+        manual_mode = mode;
+    }
+
+    void set_loan(bool loan){
+        loan_mode = loan;
+    }
+
+    // Distributions for multiple subscribers
+    Distribution lost_samples;
+
 private:
-    // Mode: -1 (Not), 0 (PUB), 1 (SUB)
     int _mode = -1;
+    int num_messages = 100;
+    int num_tests = 25;
+    bool manual_mode = false;
+    bool loan_mode = false;
 };
 
 

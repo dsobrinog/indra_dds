@@ -216,7 +216,7 @@ public:
     // SYNC CONSUME PATTERN
     // Main thread drains samples enqeueud in DDS
 
-    virtual bool run_without_loan()
+    virtual bool run_without_loan(int& lost_samples)
     {
         received_ids.clear();
         int total_samples = 0;
@@ -252,6 +252,8 @@ public:
                     << received_ids.size()
                     << "/" << expected_messages_cycle
                     << " entities this cycle (total samples: " << total_samples << ")\n";
+
+            lost_samples = expected_messages_cycle - received_ids.size();
         }
         else
         {
@@ -262,7 +264,7 @@ public:
         return all_received;
     }
 
-    virtual bool run_with_loan()
+    virtual bool run_with_loan(int& lost_samples)
     {
         received_ids.clear();
         int total_samples = 0;
@@ -303,6 +305,8 @@ public:
                     << received_ids.size() 
                     << "/" << expected_messages_cycle 
                     << " entities this cycle (total samples: " << total_samples << ")\n";
+
+            lost_samples = expected_messages_cycle - received_ids.size();
         }
         else
         {

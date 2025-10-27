@@ -3,6 +3,7 @@
 #include "patterns/pattern_base.h"
 #include "stress_test/core/tests/1_1/pub_test_1_to_1.h"
 #include "stress_test/core/tests/1_1/sub_test_1_to_1.h"
+#include "stress_test/core/tests/1_many/sub_test_1_to_many.hpp"
 
 // #include "patterns/ping_pong_pattern.h"
 
@@ -18,7 +19,6 @@ cl_dds::~cl_dds()
 
 void cl_dds::init()
 {
-
     test_patterns(_mode);
     p_pattern->init();
 }
@@ -47,10 +47,10 @@ void cl_dds::test_patterns(int mode)
 {
     int number = 0; // Default command
 
-    if(_mode <= 0)
+    if(_mode < 0)
     {
         char input;
-        std::cout << "Select test: \n 1) PUB \n 2) SUB \n 3) PING-PONG \n";
+        std::cout << "Select test: \n 1) PUB \n 2) SUB \n 3) PUB 1:MANY \n 4) SUB 1:MANY \n";
         std::cin >> input;
 
 
@@ -68,24 +68,30 @@ void cl_dds::test_patterns(int mode)
 
     switch (number)
     {
-        case 1: 
+        case TestMode::One_to_One_Pub: 
         {
-            // PUB
-            p_pattern = new pub_test_1_to_1(this);
+            // PUB - 
+            p_pattern = new pub_test_1_to_1(this, num_tests, manual_mode, loan_mode);
             break;
         }
-        case 2:
+        case TestMode::One_to_One_Sub:
         {
-            // SUB
-            p_pattern = new sub_test_1_to_1(this);
+            // SUB - 
+            p_pattern = new sub_test_1_to_1(this, num_messages, num_tests);
             break;
         }
-        case 3:
+        case TestMode::One_to_Many_Pub:
         {
-            // PING-PONG
-            // p_pattern = new ping_pong_pattern(this);
+            //1:Many Pub
+            p_pattern = new pub_test_1_to_1(this, num_tests, manual_mode, loan_mode);
             break;
         }
+        case TestMode::One_to_Many_Sub:
+        {
+            //1:Many Sub
+            break;
+        }
+
         default:
         test_patterns(number);
             break;

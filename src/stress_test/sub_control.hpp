@@ -16,7 +16,7 @@ struct TestConfig
 {
     int testId = 0;
     int expectedEntities = 0;
-    int cycleMs = 10;
+    bool loan = false;
     bool active = false;
 };
 
@@ -83,7 +83,7 @@ public:
 
             last_.testId = ctrl.test_id();
             last_.expectedEntities = static_cast<int>(ctrl.expected_entities());
-            last_.cycleMs = static_cast<int>(ctrl.cycle_time_ms());
+            last_.loan = ctrl.loan();
             last_.active = ctrl.start();
             out = last_;
             applied = true;

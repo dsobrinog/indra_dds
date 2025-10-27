@@ -84,7 +84,7 @@ public:
 
                     m_expected_entities = x.m_expected_entities;
 
-                    m_cycle_time_ms = x.m_cycle_time_ms;
+                    m_loan = x.m_loan;
 
                     m_reserve1 = x.m_reserve1;
 
@@ -102,7 +102,7 @@ public:
         m_test_id = x.m_test_id;
         m_start = x.m_start;
         m_expected_entities = x.m_expected_entities;
-        m_cycle_time_ms = x.m_cycle_time_ms;
+        m_loan = x.m_loan;
         m_reserve1 = x.m_reserve1;
         m_reserve2 = x.m_reserve2;
     }
@@ -121,7 +121,7 @@ public:
 
                     m_expected_entities = x.m_expected_entities;
 
-                    m_cycle_time_ms = x.m_cycle_time_ms;
+                    m_loan = x.m_loan;
 
                     m_reserve1 = x.m_reserve1;
 
@@ -141,7 +141,7 @@ public:
         m_test_id = x.m_test_id;
         m_start = x.m_start;
         m_expected_entities = x.m_expected_entities;
-        m_cycle_time_ms = x.m_cycle_time_ms;
+        m_loan = x.m_loan;
         m_reserve1 = x.m_reserve1;
         m_reserve2 = x.m_reserve2;
         return *this;
@@ -157,7 +157,7 @@ public:
         return (m_test_id == x.m_test_id &&
            m_start == x.m_start &&
            m_expected_entities == x.m_expected_entities &&
-           m_cycle_time_ms == x.m_cycle_time_ms &&
+           m_loan == x.m_loan &&
            m_reserve1 == x.m_reserve1 &&
            m_reserve2 == x.m_reserve2);
     }
@@ -260,31 +260,31 @@ public:
 
 
     /*!
-     * @brief This function sets a value in member cycle_time_ms
-     * @param _cycle_time_ms New value for member cycle_time_ms
+     * @brief This function sets a value in member loan
+     * @param _loan New value for member loan
      */
-    eProsima_user_DllExport void cycle_time_ms(
-            int32_t _cycle_time_ms)
+    eProsima_user_DllExport void loan(
+            bool _loan)
     {
-        m_cycle_time_ms = _cycle_time_ms;
+        m_loan = _loan;
     }
 
     /*!
-     * @brief This function returns the value of member cycle_time_ms
-     * @return Value of member cycle_time_ms
+     * @brief This function returns the value of member loan
+     * @return Value of member loan
      */
-    eProsima_user_DllExport int32_t cycle_time_ms() const
+    eProsima_user_DllExport bool loan() const
     {
-        return m_cycle_time_ms;
+        return m_loan;
     }
 
     /*!
-     * @brief This function returns a reference to member cycle_time_ms
-     * @return Reference to member cycle_time_ms
+     * @brief This function returns a reference to member loan
+     * @return Reference to member loan
      */
-    eProsima_user_DllExport int32_t& cycle_time_ms()
+    eProsima_user_DllExport bool& loan()
     {
-        return m_cycle_time_ms;
+        return m_loan;
     }
 
 
@@ -352,7 +352,7 @@ private:
     int32_t m_test_id{0};
     bool m_start{false};
     int32_t m_expected_entities{0};
-    int32_t m_cycle_time_ms{0};
+    bool m_loan{false};
     int32_t m_reserve1{0};
     int32_t m_reserve2{0};
 

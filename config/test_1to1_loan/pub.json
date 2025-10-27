@@ -1,0 +1,9 @@
+{
+    "name": "pub_loan",
+    "mode": 0,
+    "messageCount": 100,
+    "test": 10,
+    "logFile": "pub.log",
+    "manual_process": true,
+    "loan": false
+}

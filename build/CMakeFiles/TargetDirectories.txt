@@ -1,3 +1,5 @@
-/workspaces/fastdds/build/CMakeFiles/Fast_DDS.dir
+/workspaces/fastdds/build/CMakeFiles/DDS_STRESS_TEST.dir
 /workspaces/fastdds/build/CMakeFiles/edit_cache.dir
 /workspaces/fastdds/build/CMakeFiles/rebuild_cache.dir
+/workspaces/fastdds/build/lib/json/CMakeFiles/edit_cache.dir
+/workspaces/fastdds/build/lib/json/CMakeFiles/rebuild_cache.dir

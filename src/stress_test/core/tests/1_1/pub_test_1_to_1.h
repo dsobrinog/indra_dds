@@ -10,7 +10,11 @@
 class pub_test_1_to_1 : public pattern_base
 {
 public:
-    pub_test_1_to_1(cl_dds* dds) : pattern_base(dds), exec(dds->exec){};
+    pub_test_1_to_1(cl_dds* dds, int num_test, bool manual, bool loan) : pattern_base(dds), exec(dds->exec)
+    {
+        manual ? command_type = CommandType::Manual : command_type = CommandType::Auto;
+        max_test = num_test;
+    };
 
     Executive* exec;
 
@@ -19,18 +23,22 @@ public:
 
     Distribution cpu_times;
 
-
+    int message_to_send = 100;
+    
     std::vector<AirEntity> pre_allocated_entities;
     LoanableSequence<AirEntity> pre_allocated_seq;
 
+    enum CommandType{ Manual = 1, Auto = 2} command_type = CommandType::Manual;
     enum ProcessType{ Normal = 1, Loan = 2} process_type = ProcessType::Loan;
+
+    void SetCommandType(CommandType type){command_type = type; };
+    void SetProcessType(ProcessType type){process_type = type; };
 
     bool reset;
     int current_cyles_reset = 0;
     int offset_cyles_reset = 5;
 
     bool send = false;
-    int  cycleMs = 10;
 
     enum class State { WaitingMatch, Announce, Streaming } state = State::WaitingMatch;
 
@@ -63,11 +71,12 @@ public:
         else
             std::cout << "Failed start publisher control" << std::endl;
 
-        test_command();
-        pre_allocated_entities.resize(pub.messages_per_cycle);
-        
-        current_test = 1;
 
+        if(command_type == CommandType::Manual)
+            test_command();
+        
+        pre_allocated_entities.resize(message_to_send);
+        current_test = 1;
         cpu_times.set_distribution_name("CPU TIME");
     }
 
@@ -106,6 +115,7 @@ public:
             number = 0;
         }
 
+        message_to_send = number;
         pub.messages_per_cycle = number;
         send = true;
         state = State::Announce;
@@ -146,7 +156,7 @@ public:
 
         if (state == State::Announce)
         {
-            pub_control.publish_start(current_test, pub.messages_per_cycle, cycleMs);
+            pub_control.publish_start(current_test, pub.messages_per_cycle, process_type == ProcessType::Loan);
             state = State::Streaming;
             return;
         }

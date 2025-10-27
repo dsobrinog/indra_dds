@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  pub:
+    image: dds_test_image
+    container_name: publisher
+    command: >
+      /workspaces/fastdds/build/DDS_STRESS_TEST
+      --config /workspaces/fastdds/config/test_1to1_loan/pub.json
+    volumes:
+      - ./config:/workspaces/fastdds/config
+    networks:
+      - dds_test_net
+
+  sub:
+    image: dds_test_image
+    command: >
+      /workspaces/fastdds/build/DDS_STRESS_TEST
+      --config /workspaces/fastdds/config/test_1to1_loan/sub.json
+    volumes:
+      - ./config:/workspaces/fastdds/config
+    deploy:
+      replicas: 3 # N subs
+    networks:
+      - dds_test_net
+
+networks:
+  dds_test_net:

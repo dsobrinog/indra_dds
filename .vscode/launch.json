@@ -8,7 +8,7 @@
             "name": "(gdb) Attach",
             "type": "cppdbg",
             "request": "attach",
-            "program": "${workspaceFolder}/build/Fast_DDS",
+            "program": "${workspaceFolder}/build/DDS_STRESS_TEST",
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -27,7 +27,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Fast_DDS",
+            "program": "${workspaceFolder}/build/DDS_STRESS_TEST",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
