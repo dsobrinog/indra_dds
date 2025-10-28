@@ -10,10 +10,13 @@
 class pub_test_1_to_1 : public pattern_base
 {
 public:
-    pub_test_1_to_1(cl_dds* dds, int num_test, bool manual, bool loan) : pattern_base(dds), exec(dds->exec)
+    pub_test_1_to_1(cl_dds* dds, test_config config) : pattern_base(dds), exec(dds->exec), _config(config)
     {
-        manual ? command_type = CommandType::Manual : command_type = CommandType::Auto;
-        max_test = num_test;
+        config.manual_mode ? command_type = CommandType::Manual : command_type = CommandType::Auto;
+        max_test = config.test_count;
+        set_num_messages(config.message_count);
+        pub.set_expected_subs(config.listener_number);
+        process_type = (ProcessType)config.loan_mode;
     };
 
     Executive* exec;
@@ -22,6 +25,7 @@ public:
     PubControl pub_control;
 
     Distribution cpu_times;
+    test_config _config;
 
     int message_to_send = 100;
     
@@ -76,8 +80,9 @@ public:
             test_command();
         
         pre_allocated_entities.resize(message_to_send);
-        current_test = 1;
+        current_test = 0;
         cpu_times.set_distribution_name("CPU TIME");
+        start_send();
     }
 
     void test_command()
@@ -115,8 +120,15 @@ public:
             number = 0;
         }
 
-        message_to_send = number;
-        pub.messages_per_cycle = number;
+        set_num_messages(number);
+    }
+
+    void set_num_messages(int num_messages){
+        message_to_send = num_messages;
+        pub.messages_per_cycle = num_messages;
+    }
+
+    void start_send(){
         send = true;
         state = State::Announce;
     }
@@ -149,6 +161,8 @@ public:
         }
     };
 
+    int offset_cycle_start = 50;
+    int current_cycle = 0;
     void write()
     {
         if(!send) return;
@@ -156,7 +170,11 @@ public:
 
         if (state == State::Announce)
         {
-            pub_control.publish_start(current_test, pub.messages_per_cycle, process_type == ProcessType::Loan);
+            if(current_cycle++ < offset_cycle_start){
+                return;
+            }
+
+            pub_control.publish_start(current_test + 1, pub.messages_per_cycle, process_type == ProcessType::Loan);
             state = State::Streaming;
             return;
         }
@@ -206,7 +224,7 @@ public:
     {
         if(current_test <= max_test)
         {
-            pub_control.publish_stop(current_test);
+            pub_control.publish_stop(current_test + 1);
             current_entity_id = 0;
             state = State::Announce;
             reset = true;
@@ -214,9 +232,18 @@ public:
        
         finish_test(true);
     };
+
+    bool export_result = true;
     void make_final_report()
     {
-        cpu_times.printReport();
+        if(export_result)
+        {
+            export_result = !export_result;
+            cpu_times.printReport();
+            cpu_times.exportReport(_config.logFile);
+        }
+
+        exec->request_simulation_end();
     };
    
 };

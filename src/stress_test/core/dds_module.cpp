@@ -9,7 +9,12 @@
 
 cl_dds::cl_dds(int moduleId, int mode, Executive * _exec) : cl_module(moduleId, _exec)
 {
-    _mode = mode;
+}
+
+cl_dds::cl_dds(test_config _config, Executive* _exec) : cl_module(0, _exec), config(_config)
+{
+    if(config.manual_mode)
+        config.listener_number = 1;
 }
 
 cl_dds::~cl_dds()
@@ -19,8 +24,9 @@ cl_dds::~cl_dds()
 
 void cl_dds::init()
 {
-    test_patterns(_mode);
-    p_pattern->init();
+    test_patterns(config.test_mode);
+    if(p_pattern)
+        p_pattern->init();
 }
 
 void cl_dds::read()
@@ -47,7 +53,7 @@ void cl_dds::test_patterns(int mode)
 {
     int number = 0; // Default command
 
-    if(_mode < 0)
+    if(mode <= 0)
     {
         char input;
         std::cout << "Select test: \n 1) PUB \n 2) SUB \n 3) PUB 1:MANY \n 4) SUB 1:MANY \n";
@@ -71,19 +77,19 @@ void cl_dds::test_patterns(int mode)
         case TestMode::One_to_One_Pub: 
         {
             // PUB - 
-            p_pattern = new pub_test_1_to_1(this, num_tests, manual_mode, loan_mode);
+            p_pattern = new pub_test_1_to_1(this, config);
             break;
         }
         case TestMode::One_to_One_Sub:
         {
             // SUB - 
-            p_pattern = new sub_test_1_to_1(this, num_messages, num_tests);
+            p_pattern = new sub_test_1_to_1(this, config);
             break;
         }
         case TestMode::One_to_Many_Pub:
         {
             //1:Many Pub
-            p_pattern = new pub_test_1_to_1(this, num_tests, manual_mode, loan_mode);
+            p_pattern = new pub_test_1_to_1(this, config);
             break;
         }
         case TestMode::One_to_Many_Sub:

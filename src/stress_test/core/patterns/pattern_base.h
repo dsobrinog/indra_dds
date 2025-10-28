@@ -52,7 +52,8 @@ class pattern_base
         {
             on_test_finished(value);
             current_test++;
-            if(current_test > max_test)
+            std::cout << "Current test :  " << current_test << " / "<< max_test <<  std::endl;
+            if(current_test >= max_test)
             {
                 make_final_report();
                 on_end_test();

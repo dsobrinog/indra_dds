@@ -12,10 +12,10 @@ class sub_test_1_to_many : public sub_test_1_to_1
     Distribution lost_samples;
     
 public:
-    sub_test_1_to_many(cl_dds* dds, int expected_msg, int test, Distribution& acc_lost_samples) : sub_test_1_to_1(dds, expected_msg, test)
+    sub_test_1_to_many(cl_dds* dds, test_config _config, Distribution& acc_lost_samples) : sub_test_1_to_1(dds, _config)
     {
         lost_samples = acc_lost_samples;
-        max_test = test;
+        max_test = _config.test_count;
     };
 
     void on_test_finished(bool value)

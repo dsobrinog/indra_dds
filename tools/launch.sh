@@ -1,26 +1,38 @@
 #!/bin/bash
 
-# Set library path for Fast-DDS
 export LD_LIBRARY_PATH=/workspaces/fastdds/lib/Fast-DDS/install/lib:$LD_LIBRARY_PATH
 
-# Default config file (can be overridden with --config)
-DEFAULT_CONFIG="../config/default.json"
+# Absolute path to binary
+BINARY="/workspaces/fastdds/build/DDS_STRESS_TEST"
 
-# Check if user passed --config
-CONFIG_ARG="$DEFAULT_CONFIG"
-for i in "$@"; do
-    if [[ "$i" == --config ]]; then
-        CONFIG_ARG=""   # Already provided by user, keep it
+# Absolute default config
+DEFAULT_CONFIG="/workspaces/fastdds/config/default.json"
+
+# Check if --config is already passed
+HAS_CONFIG=false
+for arg in "$@"; do
+    if [[ "$arg" == --config ]]; then
+        HAS_CONFIG=true
         break
     fi
 done
 
-# If no --config was passed, append the default
-if [[ -z "$CONFIG_ARG" ]]; then
-    CMD="./../build/DDS_STRESS_TEST $@"
-else
-    CMD="./../build/DDS_STRESS_TEST --config $DEFAULT_CONFIG $@"
+# Build command array
+CMD=("$BINARY")
+if [ "$HAS_CONFIG" = false ]; then
+    CMD+=(--config "$DEFAULT_CONFIG")
 fi
 
-echo "Launching: $CMD"
-eval "$CMD"
+if [ -n "$LOG_FILE" ]; then
+    # Replace ${HOSTNAME} with the container's hostname
+    LOG_FILE="${LOG_FILE//\$\{HOSTNAME\}/$HOSTNAME}"
+    CMD+=(--logFile "$LOG_FILE")
+fi
+# Append remaining arguments
+CMD+=("$@")
+
+# Debug output
+echo "Launching: ${CMD[@]}"
+
+# Execute
+"${CMD[@]}"

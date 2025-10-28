@@ -1,9 +1,10 @@
 {
     "name": "pub_normal",
-    "mode": 0,
+    "mode": 1,
     "messageCount": 100,
     "test": 10,
-    "logFile": "pub_loan.log",
-    "manual_process": true,
-    "loan": true
+    "manual_process": false,
+    "loan": false,
+    
+    "listeners" : 3
 }

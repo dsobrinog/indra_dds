@@ -3,7 +3,7 @@
     "mode": 0,
     "messageCount": 100,
     "test": 10,
-    "logFile": "default_test.log",
-    "manual_process": true,
-    "loan": false
+    "manual_process": false,
+    "loan": false,
+    "listeners" : 1
 }

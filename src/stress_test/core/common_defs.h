@@ -1,16 +1,38 @@
 #pragma once
 
+#include <string>
+
 enum TestMode
 {
-    // Manual
     DefaultMode = 0,
-
-    // Auto
-    // 1:1
     One_to_One_Pub = 1,
     One_to_One_Sub = 2,
-
-    // 1:many
     One_to_Many_Pub = 3,
     One_to_Many_Sub = 4
-}; 
+};
+
+inline std::string ToString(TestMode mode)
+{
+    switch (mode)
+    {
+        case DefaultMode:      return "DefaultMode";
+        case One_to_One_Pub:   return "One_to_One_Pub";
+        case One_to_One_Sub:   return "One_to_One_Sub";
+        case One_to_Many_Pub:  return "One_to_Many_Pub";
+        case One_to_Many_Sub:  return "One_to_Many_Sub";
+        default:               return "Unknown";
+    }
+}
+
+struct test_config{
+    std::string name = "default name";
+    TestMode test_mode = TestMode::DefaultMode;
+    int message_count = 100;
+    int test_count = 10;
+    std::string logFile = "output.log";
+    bool manual_mode = false;
+    bool loan_mode = false;
+
+    // PUB
+    int listener_number = 0;
+};

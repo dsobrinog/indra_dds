@@ -20,12 +20,13 @@ protected:
 
     TestValidation test_validation;
     Distribution latencies;
-    Distribution cpu_times;;
+    Distribution cpu_times;
+    test_config config;
 
 
     Executive* exec;
 
-    enum ProcessType{ Normal = 1, Loan = 2} process_type = ProcessType::Normal;
+    enum ProcessType{ Normal = 0, Loan = 1} process_type = ProcessType::Normal;
 
     // jitter local
     double get_local_jitter()
@@ -34,11 +35,12 @@ protected:
     }
 
 public:
-    sub_test_1_to_1(cl_dds* dds, int expected_messages, int test) : pattern_base(dds) 
+    sub_test_1_to_1(cl_dds* dds, test_config _config) : pattern_base(dds), config(_config)
     {
         exec = dds->exec;
-        max_test = test;
-        sub.expected_messages_cycle = expected_messages;
+        max_test = _config.test_count;
+        sub.expected_messages_cycle = _config.message_count;
+        process_type = (ProcessType)_config.loan_mode;
     }
 
     virtual void init()
@@ -82,7 +84,7 @@ public:
             current_test_id = test_config.testId;
             sub.expected_messages_cycle = test_config.expectedEntities;
             test_active = test_config.active;
-            process_type ? ProcessType::Loan : ProcessType::Normal;
+            process_type = test_config.loan ? ProcessType::Loan : ProcessType::Normal;
 
             std::cout << "[CTRL] testId=" << current_test_id
                       << " start=" << (test_active ? "true" : "false")
@@ -142,6 +144,20 @@ public:
         ss << "-----------------------------\n";
 
         std::cout << ss.str();
+
+        if (!config.logFile.empty())
+        {
+            std::ofstream out(config.logFile, std::ios::app); // append mode
+            if (out.is_open())
+            {
+                out << ss.str();
+                out.close();
+            }
+            else
+            {
+                std::cerr << "ERROR: Could not open file " << config.logFile << " for writing.\n";
+            }
+        }
     }
 
     virtual void on_test_finished(bool value)

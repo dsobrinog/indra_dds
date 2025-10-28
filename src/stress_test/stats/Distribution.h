@@ -7,6 +7,8 @@
 #include <iostream>
 #include <cmath>
 
+#include <fstream>
+
 class Distribution
 {
 public:
@@ -124,6 +126,25 @@ public:
         std::cout << "Local Jitter: " << localJitter() << "\n";
         std::cout << "-----------------------------\n";
     }
+
+    void exportReport(const std::string& filename = "")
+    {
+        if (!filename.empty()) {
+            std::ofstream out(filename);
+            if (!out.is_open()) return;
+
+            out << "\n**** " << name_distribution <<" REPORT ****\n";
+            out << "Count: " << _values.size() << "\n";
+            out << "Mean: " << mean() << "\n";
+            out << "Min: " << min() << "\n";
+            out << "Max: " << max() << "\n";
+            out << "Mode: " << mode() << "\n";
+            out << "StdDev (global): " << stdDev() << "\n";
+            out << "Local Jitter: " << localJitter() << "\n";
+            out << "-----------------------------\n";
+        }
+    }
+
 
 private:
     std::vector<double> _values;

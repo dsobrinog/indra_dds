@@ -2,25 +2,30 @@ version: "3.9"
 
 services:
   pub:
-    image: dds_test_image
-    container_name: publisher
-    command: >
-      /workspaces/fastdds/build/DDS_STRESS_TEST
-      --config /workspaces/fastdds/config/test_1to1_loan/pub.json
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    command: ["/workspaces/fastdds/tools/launch.sh", "--config", "/workspaces/fastdds/config/test_1to1_normal/pub.json"]
     volumes:
       - ./config:/workspaces/fastdds/config
+      - ./logs:/workspaces/fastdds/logs
+    environment:
+      LOG_FILE: /workspaces/fastdds/logs/pub.log
     networks:
       - dds_test_net
 
   sub:
-    image: dds_test_image
-    command: >
-      /workspaces/fastdds/build/DDS_STRESS_TEST
-      --config /workspaces/fastdds/config/test_1to1_loan/sub.json
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    command: ["/workspaces/fastdds/tools/launch.sh", "--config", "/workspaces/fastdds/config/test_1to1_normal/sub.json"]
     volumes:
       - ./config:/workspaces/fastdds/config
+      - ./logs:/workspaces/fastdds/logs
+    environment:
+      LOG_FILE: /workspaces/fastdds/logs/sub_${HOSTNAME}.log
     deploy:
-      replicas: 3 # N subs
+      replicas: 3
     networks:
       - dds_test_net
 

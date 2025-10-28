@@ -170,10 +170,20 @@ public:
     }
 
     int current_id = 0;
-    
+    int min_subs = 0;
+    void set_expected_subs(int listeners){
+        min_subs= listeners;
+    }
+
+    int prev_matched = -1;
     bool is_matched()
     {
-        return listener_.matched_ > 0;
+        if (prev_matched != listener_.matched_ && listener_.matched_ < min_subs){
+            std::cout << "Number of SUBS MATCHED: "<< listener_.matched_ << " / " <<  min_subs << std::endl;
+            prev_matched = listener_.matched_;
+        }
+
+        return listener_.matched_ > 0 && listener_.matched_ >= min_subs;
     };
 
     virtual bool publish(AirEntity& entity)

@@ -1,0 +1,8 @@
+{
+    "name": "sub_loan",     // Name of the test
+    "mode": 0,              // 0 = Manual, 1 = Auto
+    "messageCount": 100,    // Messages to send / expect
+    "test": 10,             // Number of tests to run until final report
+    "manual_process": true, // 
+    "loan": false           // 0 = Normal Mode, 1 = LaonMode
+}

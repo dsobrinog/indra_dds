@@ -1,9 +1,8 @@
 {
     "name": "sub_normal",
-    "mode": 1,
+    "mode": 2,
     "messageCount": 100,
     "test": 10,
-    "logFile": "sub_loan.log",
     "manual_process": false,
-    "loan": true
+    "loan": false
 }
