@@ -46,3 +46,5 @@ build/
 CMakeFiles/
 CMakeCache.txt
 *.cmake
+
+tools/CMakeFiles
