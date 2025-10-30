@@ -3,7 +3,17 @@
 #include "patterns/pattern_base.h"
 #include "stress_test/core/tests/1_1/pub_test_1_to_1.h"
 #include "stress_test/core/tests/1_1/sub_test_1_to_1.h"
-#include "stress_test/core/tests/1_many/sub_test_1_to_many.hpp"
+
+#include "stress_test/DDSFactory.h"
+
+// idls fast
+#ifdef USE_FAST_DDS
+#include "IDLs/generated/inse/inse.hpp"
+#endif
+// idls cyclone
+#ifdef USE_CYCLONE_DDS
+#include "IDLs_cyclone/generated/inse/inse.h"
+#endif
 
 // #include "patterns/ping_pong_pattern.h"
 
@@ -70,34 +80,66 @@ void cl_dds::test_patterns(int mode)
     {
         number = mode;
     }
-   
 
     switch (number)
     {
-        case TestMode::One_to_One_Pub: 
+        case TestMode::One_to_One_Pub:
         {
-            // PUB - 
-            p_pattern = new pub_test_1_to_1(this, config);
-            break;
+            auto pub_control_impl = DDSFactory::createPublisherControl();
+            // Each nested case must have braces
+            switch (current_library)
+            {
+                case DDS_Library::FastDDS:
+                {
+                    #ifdef USE_FAST_DDS
+                        auto pub_impl = DDSFactory::createPublisher<AirEntity>();
+                        p_pattern = new pub_test_1_to_1<AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
+                    #endif
+                    break;
+                }
+
+                case DDS_Library::CycloneDDS:
+                {
+                    #ifdef USE_CYCLONE_DDS
+                        auto pub_impl = DDSFactory::createPublisher<cyclone_dds_AirEntity>();
+                        p_pattern = new pub_test_1_to_1<cyclone_dds_AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
+                    #endif
+                    break;
+                }
+            }
+
+            // Create pattern after nested switch
+            break; // break outer case
         }
         case TestMode::One_to_One_Sub:
         {
             // SUB - 
-            p_pattern = new sub_test_1_to_1(this, config);
-            break;
-        }
-        case TestMode::One_to_Many_Pub:
-        {
-            //1:Many Pub
-            p_pattern = new pub_test_1_to_1(this, config);
-            break;
-        }
-        case TestMode::One_to_Many_Sub:
-        {
-            //1:Many Sub
-            break;
-        }
+            auto sub_control_impl = DDSFactory::createSubscriberControl();
 
+            switch (current_library)
+            {
+                case DDS_Library::FastDDS:
+                {
+                    #ifdef USE_FAST_DDS
+                        auto sub_impl = DDSFactory::createSubscriber();
+                        p_pattern = new sub_test_1_to_1(this, config, std::move(sub_impl), std::move(sub_control_impl));
+                    #endif
+
+                    break;
+                }
+
+                case DDS_Library::CycloneDDS:
+                {
+                    #ifdef USE_CYCLONE_DDS
+                        auto sub_impl = DDSFactory::createSubscriber();
+                        p_pattern = new sub_test_1_to_1(this, config, std::move(sub_impl), std::move(sub_control_impl));
+                    #endif
+
+                    break;
+                }
+            }
+            break;
+        }
         default:
         test_patterns(number);
             break;

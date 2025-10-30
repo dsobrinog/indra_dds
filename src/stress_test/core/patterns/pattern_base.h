@@ -3,13 +3,8 @@
 
 #include "stress_test/core/executive.h"
 #include "stress_test/core/dds_module.h"
-
-#include "stress_test/pub_test.hpp"
-#include "stress_test/sub_test.hpp"
-
 #include "stress_test/stats/Distribution.h"
 #include "stress_test/stats/TestValidation.h"
-
 #include "stress_test/core/tests/test_def.h"
 
 #include <pthread.h>

@@ -2,38 +2,40 @@
 
 #include "pattern_base.h"
 
-#include "stress_test/pub_test.hpp"
-#include "stress_test/pub_control.hpp"
+#include "abstraction/IPub.h"
+#include "abstraction/IPubControl.h"
 
 #include "stress_test/core/executive.h"
 
+
+template <typename T> 
 class pub_test_1_to_1 : public pattern_base
 {
 public:
-    pub_test_1_to_1(cl_dds* dds, test_config config) : pattern_base(dds), exec(dds->exec), _config(config)
+    pub_test_1_to_1(cl_dds* dds, test_config config,   std::unique_ptr<IPub<T>> ipub, std::unique_ptr<IPubControl> ipubcontrol) : pattern_base(dds), exec(dds->exec), _config(config),
+        pub(std::move(ipub)), pub_control(std::move(ipubcontrol))
     {
         config.manual_mode ? command_type = CommandType::Manual : command_type = CommandType::Auto;
         max_test = config.test_count;
         set_num_messages(config.message_count);
-        pub.set_expected_subs(config.listener_number);
+        pub->set_expected_subs(config.listener_number);
         process_type = (ProcessType)config.loan_mode;
     };
 
     Executive* exec;
 
-    PubTest pub;
-    PubControl pub_control;
+    std::unique_ptr<IPub<T>> pub;
+    std::unique_ptr<IPubControl> pub_control;
 
     Distribution cpu_times;
     test_config _config;
 
     int message_to_send = 100;
     
-    std::vector<AirEntity> pre_allocated_entities;
-    LoanableSequence<AirEntity> pre_allocated_seq;
+    std::vector<T> pre_allocated_entities;
 
-    enum CommandType{ Manual = 1, Auto = 2} command_type = CommandType::Manual;
-    enum ProcessType{ Normal = 1, Loan = 2} process_type = ProcessType::Loan;
+    enum CommandType{ Manual = 0, Auto = 1} command_type = CommandType::Manual;
+    enum ProcessType{ Normal = 0, Loan = 1} process_type = ProcessType::Loan;
 
     void SetCommandType(CommandType type){command_type = type; };
     void SetProcessType(ProcessType type){process_type = type; };
@@ -51,33 +53,20 @@ public:
 
     void init()
     {
-        // Data publisher
-        PublisherQos pubQos = PUBLISHER_QOS_DEFAULT;
-        DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
-
-        wqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        wqos.history().depth = 100;
-        wqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
-        wqos.durability().kind = VOLATILE_DURABILITY_QOS;
-        wqos.resource_limits().max_instances = 100000;
-        wqos.resource_limits().max_samples_per_instance = 1;
-        wqos.resource_limits().max_samples = 100000;
-        wqos.resource_limits().allocated_samples = 100000;
-
-        if(pub.init(pubQos, wqos))
+        if(pub->init())
             std::cout<< "Starting publisher..." << std::endl;
         else
             std::cout << "Failed start publisher" << std::endl;
 
         // Control publisher
-        if (pub_control.init())
+        if (pub_control->init())
             std::cout<< "Starting publisher control..." << std::endl;
         else
             std::cout << "Failed start publisher control" << std::endl;
 
 
-        if(command_type == CommandType::Manual)
-            test_command();
+        // if(command_type == CommandType::Manual)
+        //     test_command();
         
         pre_allocated_entities.resize(message_to_send);
         current_test = 0;
@@ -125,7 +114,7 @@ public:
 
     void set_num_messages(int num_messages){
         message_to_send = num_messages;
-        pub.messages_per_cycle = num_messages;
+        pub->messages_per_cycle = num_messages;
     }
 
     void start_send(){
@@ -166,7 +155,7 @@ public:
     void write()
     {
         if(!send) return;
-        if(!pub.is_matched() || !pub_control.is_matched()) return;
+        if(!pub->is_matched() || !pub_control->is_matched()) return;
 
         if (state == State::Announce)
         {
@@ -174,7 +163,7 @@ public:
                 return;
             }
 
-            pub_control.publish_start(current_test + 1, pub.messages_per_cycle, process_type == ProcessType::Loan);
+            pub_control->publish_start(current_test + 1, pub->messages_per_cycle, process_type == ProcessType::Loan);
             state = State::Streaming;
             return;
         }
@@ -186,21 +175,21 @@ public:
             // OPTION 1: NORMAL
             if(process_type == ProcessType::Normal)
             {
-                for (size_t i = 0; i < pub.messages_per_cycle; i++)
+                for (size_t i = 0; i < pub->messages_per_cycle; i++)
                 {
                     pre_allocated_entities[i].id() = current_entity_id++;
-                    pub.publish(pre_allocated_entities[i]);
+                    pub->publish(pre_allocated_entities[i]);
                 }
             }
             // OPTION 2: LOANS
             else if(process_type == ProcessType::Loan)
             {
-                pub.publish_loan(pub.messages_per_cycle);
+                pub->publish_loan(pub->messages_per_cycle);
             }
             
             auto t1 = std::chrono::steady_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(t1 - t0);
-            std::cout << "Messages sent this cyle: " << pub.messages_per_cycle << std::endl;
+            std::cout << "Messages sent this cyle: " << pub->messages_per_cycle << std::endl;
             std::cout<< "CPU PROCESS TIME: " << elapsed.count() << std::endl;
 
             // CPU Distribution
@@ -224,7 +213,7 @@ public:
     {
         if(current_test <= max_test)
         {
-            pub_control.publish_stop(current_test + 1);
+            pub_control->publish_stop(current_test + 1);
             current_entity_id = 0;
             state = State::Announce;
             reset = true;

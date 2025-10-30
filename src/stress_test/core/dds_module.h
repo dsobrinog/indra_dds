@@ -5,6 +5,12 @@
 #include "common_defs.h"
 #include "stats/Distribution.h"
 
+#include "abstraction/IPub.h"
+#include "abstraction/ISub.h"
+#include "abstraction/IPubControl.h"
+#include "abstraction/ISubControl.h"
+
+
 class pattern_base;
 
 class cl_dds : public cl_module
@@ -28,6 +34,12 @@ public:
 
     // Distributions for multiple subscribers
     Distribution lost_samples;
+
+    enum class DDS_Library
+    {
+        FastDDS = 0,
+        CycloneDDS = 1
+    } current_library = DDS_Library::FastDDS;
 
 private:
     test_config config;

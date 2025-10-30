@@ -2,16 +2,16 @@
 
 #include "pattern_base.h"
 
-#include "stress_test/sub_test.hpp"
-#include "stress_test/sub_control.hpp"
+#include "abstraction/ISub.h"
+#include "abstraction/ISubControl.h"
 
 #include "stress_test/core/executive.h"
 
 class sub_test_1_to_1 : public pattern_base
 {
 protected:
-    SubTest sub;
-    SubControl sub_control;
+    std::unique_ptr<ISub> sub;
+    std::unique_ptr<ISubControl> sub_control;
 
     bool test_active = false;
     int current_test_id = 0;
@@ -35,34 +35,24 @@ protected:
     }
 
 public:
-    sub_test_1_to_1(cl_dds* dds, test_config _config) : pattern_base(dds), config(_config)
+    sub_test_1_to_1(cl_dds* dds, test_config _config, std::unique_ptr<ISub> isub, std::unique_ptr<ISubControl> isubcontrol) : pattern_base(dds), config(_config),
+    sub(std::move(isub)), sub_control(std::move(isubcontrol))
     {
         exec = dds->exec;
         max_test = _config.test_count;
-        sub.expected_messages_cycle = _config.message_count;
+        sub->expected_messages_cycle = _config.message_count;
         process_type = (ProcessType)_config.loan_mode;
     }
 
     virtual void init()
     {
-       // Data
-        SubscriberQos subQos = SUBSCRIBER_QOS_DEFAULT;
-        DataReaderQos rqos = DATAREADER_QOS_DEFAULT;
-        rqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
-        rqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        rqos.history().depth = 100;
-        rqos.resource_limits().max_instances = 0;  
-        rqos.resource_limits().max_samples = 0; 
-        rqos.resource_limits().max_samples_per_instance = 0;
-        rqos.resource_limits().allocated_samples = 100000;
-
-        if(sub.init(subQos, rqos))
+        if(sub->init())
             std::cout<< "Starting subscriber..." << std::endl;
         else
             std::cout << "Failed start subscriber" << std::endl;
 
         // Control
-        if(sub_control.init())
+        if(sub_control->init())
             std::cout<< "Starting control subscriber..." << std::endl;
         else
             std::cout << "Failed start control subscriber" << std::endl;
@@ -79,16 +69,16 @@ public:
     virtual void read()
     {
         TestConfig test_config;
-        if(sub_control.poll_control(test_config))
+        if(sub_control->poll_control(test_config))
         {
             current_test_id = test_config.testId;
-            sub.expected_messages_cycle = test_config.expectedEntities;
+            sub->expected_messages_cycle = test_config.expectedEntities;
             test_active = test_config.active;
             process_type = test_config.loan ? ProcessType::Loan : ProcessType::Normal;
 
             std::cout << "[CTRL] testId=" << current_test_id
                       << " start=" << (test_active ? "true" : "false")
-                      << " expected=" << sub.expected_messages_cycle
+                      << " expected=" << sub->expected_messages_cycle
                       << " loan active=" << test_config.loan << "\n";
             
             if (test_active)
@@ -98,16 +88,16 @@ public:
         if (!test_active) return;
 
         // Begin test
-        sub.reset_samples();
+        sub->reset_samples();
         int current_lost_samples = 0;
         auto t0 = std::chrono::steady_clock::now();
         bool result;
 
         // Process Type
         if (process_type == ProcessType::Normal)
-            result = sub.run_without_loan(current_lost_samples);              
+            result = sub->run_without_loan(current_lost_samples);              
         else if(process_type == ProcessType::Loan)
-            result = sub.run_with_loan(current_lost_samples);
+            result = sub->run_with_loan(current_lost_samples);
 
         // CPU Time
         auto t1 = std::chrono::steady_clock::now();
@@ -127,7 +117,7 @@ public:
 
     virtual void reset_test()
     {
-        sub.reset_samples();
+        sub->reset_samples();
         test_active = false;
     }
     
@@ -135,7 +125,7 @@ public:
     {
         std::stringstream ss;
         ss << "\n**** FINAL 1:1 REPORT ****\n";
-        ss << "NUMBER OF ENTITIES EXPECTED PER CYCLE: " << sub.expected_messages_cycle << "\n";
+        ss << "NUMBER OF ENTITIES EXPECTED PER CYCLE: " << sub->expected_messages_cycle << "\n";
         ss << "NUMBER OF TESTS RUN: " << current_test << "\n";
         ss << "SUCCESS RATIO: " << test_validation.get_percentage() << "%\n";
         ss << "CPU MEAN TIME: " << cpu_times.mean() << "\n";
@@ -158,6 +148,8 @@ public:
                 std::cerr << "ERROR: Could not open file " << config.logFile << " for writing.\n";
             }
         }
+
+        exec->request_simulation_end();
     }
 
     virtual void on_test_finished(bool value)

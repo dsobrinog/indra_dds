@@ -7,8 +7,6 @@ enum TestMode
     DefaultMode = 0,
     One_to_One_Pub = 1,
     One_to_One_Sub = 2,
-    One_to_Many_Pub = 3,
-    One_to_Many_Sub = 4
 };
 
 inline std::string ToString(TestMode mode)
@@ -18,8 +16,7 @@ inline std::string ToString(TestMode mode)
         case DefaultMode:      return "DefaultMode";
         case One_to_One_Pub:   return "One_to_One_Pub";
         case One_to_One_Sub:   return "One_to_One_Sub";
-        case One_to_Many_Pub:  return "One_to_Many_Pub";
-        case One_to_Many_Sub:  return "One_to_Many_Sub";
+
         default:               return "Unknown";
     }
 }

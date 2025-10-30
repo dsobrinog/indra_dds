@@ -6,7 +6,8 @@
         "/usr/include/**",
         "/usr/local/include/**",
         "${workspaceFolder}/lib/Fast-DDS/install/include/**",
-        "${workspaceFolder}/src/**"
+        "${workspaceFolder}/src/**",
+        "/opt/cyclonedds/include"
       ],
       "defines": [],
       "compilerPath": "/usr/bin/g++",

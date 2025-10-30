@@ -30,11 +30,11 @@
             "program": "${workspaceFolder}/build/DDS_STRESS_TEST",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",    
               "environment": [
                 {
                     "name": "LD_LIBRARY_PATH",
-                    "value": "${workspaceFolder}/lib/Fast-DDS/install/lib"
+                    "value": "${workspaceFolder}/lib/Fast-DDS/install/lib:/opt/cyclonedds/install/lib:/opt/cyclonedds/install/cxx/lib"
                 }
             ],
             "externalConsole": false,
