@@ -6,16 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_VERBOSE_MAKEFILE ON)
+# set(CMAKE_VERBOSE_MAKEFILE ON)
 
 
 # CMake Flags Options
 option(USE_FAST_DDS "Use Fast DDS implementation" OFF)
 option(USE_CYCLONE_DDS "Use Cyclone DDS implementation" OFF)
 option(SIMPLE_CYCLONE_TEST "Make simple Cyclone DDS test" OFF)
-
-
-
 
 # Validate that exactly one DDS implementation is selected
 if(USE_FAST_DDS AND USE_CYCLONE_DDS)
@@ -67,21 +64,25 @@ if(SIMPLE_CYCLONE_TEST AND USE_CYCLONE_DDS)
     target_compile_definitions(simple_cyclone_test PRIVATE USE_CYCLONE_DDS=1)
     return()
 endif()
+########################
+### PROJECT SETTINGS ###
+########################
 
-###################
-### PROJECT     ###
-###################
-
-# Common
+# Add JSON dependency
 add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json)
 
-#Common sources
+########################
+### SOURCE GATHERING ###
+########################
+
+# Common sources
 file(GLOB_RECURSE COMMON_SOURCES CONFIGURE_DEPENDS 
     "${CMAKE_SOURCE_DIR}/src/stress_test/*.hpp"
-    "${CMAKE_SOURCE_DIR}/src/stress_test/*.cxx"
     "${CMAKE_SOURCE_DIR}/src/stress_test/*.cpp"
+    "${CMAKE_SOURCE_DIR}/src/stress_test/*.cxx"
 )
-#FastDDS sources
+
+# FastDDS sources
 file(GLOB_RECURSE FASTDDS_SOURCES CONFIGURE_DEPENDS 
     "${CMAKE_SOURCE_DIR}/src/implementation/fast_dds/*.hpp"
     "${CMAKE_SOURCE_DIR}/src/IDL/*.cpp"
@@ -91,6 +92,7 @@ file(GLOB_RECURSE FASTDDS_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/src/IDLs/**/*.hpp"
     "${CMAKE_SOURCE_DIR}/src/IDLs/**/*.cxx"
 )
+
 # CycloneDDS sources
 file(GLOB_RECURSE CYCLONEDDS_SOURCES CONFIGURE_DEPENDS 
     "${CMAKE_SOURCE_DIR}/src/implementation/cyclone_dds/*.hpp"
@@ -98,149 +100,143 @@ file(GLOB_RECURSE CYCLONEDDS_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/src/IDLs_cyclone/*.hpp"
 )
 
-#Create common Library
-add_library(common_dds ${COMMON_SOURCES})
-target_include_directories(common_dds PRIVATE
+########################
+### UNIFIED LIBRARY  ###
+########################
+
+# Merge all sources conditionally
+set(ALL_SOURCES ${COMMON_SOURCES})
+if(USE_FAST_DDS)
+    list(APPEND ALL_SOURCES ${FASTDDS_SOURCES})
+elseif(USE_CYCLONE_DDS)
+    list(APPEND ALL_SOURCES ${CYCLONEDDS_SOURCES})
+endif()
+
+# Create a single library
+add_library(dds_impl ${ALL_SOURCES})
+
+# Common include paths
+target_include_directories(dds_impl PRIVATE
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/stress_test
     ${CMAKE_SOURCE_DIR}/src/stress_test/core
     ${CMAKE_SOURCE_DIR}/src/stress_test/core/patterns
 )
 
+# Link JSON
+target_link_libraries(dds_impl PRIVATE nlohmann_json::nlohmann_json)
+
+########################
+### FAST DDS SETUP   ###
+########################
+
 if(USE_FAST_DDS)
-    target_compile_definitions(common_dds PRIVATE USE_FAST_DDS=1)
-    target_include_directories(common_dds PRIVATE
+    message(STATUS "Building with Fast DDS support")
+
+    target_compile_definitions(dds_impl PRIVATE USE_FAST_DDS=1)
+
+    target_include_directories(dds_impl PRIVATE
+        ${CMAKE_SOURCE_DIR}/src/implementation/fast_dds
+        ${CMAKE_SOURCE_DIR}/src/IDL
         ${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/include
     )
+
+    link_directories(${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib)
+
+    target_link_libraries(dds_impl PUBLIC
+        fastdds
+        fastcdr
+        pthread
+    )
+
+    set(CMAKE_INSTALL_RPATH "${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib")
+    set(CMAKE_BUILD_RPATH   "${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib")
+
+########################
+### CYCLONE DDS SETUP ###
+########################
+
 elseif(USE_CYCLONE_DDS)
-    target_compile_definitions(common_dds PRIVATE USE_CYCLONE_DDS=1)
-    # Add custom prefix path for CycloneDDS
+    message(STATUS "Building with Cyclone DDS support")
+
+    target_compile_definitions(dds_impl PRIVATE USE_CYCLONE_DDS=1)
+
+    # Define prefix paths
     set(CMAKE_PREFIX_PATH
         "/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install"
         "/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib/cmake/CycloneDDS-CXX"
     )
 
-    # Find CycloneDDS packages automatically
+    # Find CycloneDDS
     find_package(CycloneDDS REQUIRED)
     find_package(CycloneDDS-CXX REQUIRED)
 
-    set(CYCLONEDDS_C_INCLUDE /workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/include)
+    # Verify includes
+    set(CYCLONEDDS_C_INCLUDE "/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/include")
     if(EXISTS "${CYCLONEDDS_C_INCLUDE}/dds/dds.h")
         message(STATUS "CycloneDDS C headers found at: ${CYCLONEDDS_C_INCLUDE}")
     else()
         message(FATAL_ERROR "CycloneDDS C headers NOT found!")
     endif()
 
-    set(CYCLONEDDS_LIB /workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/lib/libddsc.so.0.10.5)
+    # Verify library
+    set(CYCLONEDDS_LIB "/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/lib/libddsc.so.0.10.5")
     if(NOT EXISTS ${CYCLONEDDS_LIB})
         message(FATAL_ERROR "CycloneDDS library not found at ${CYCLONEDDS_LIB}")
     endif()
     message(STATUS "CycloneDDS library: ${CYCLONEDDS_LIB}")
 
-
+    # Optional target check
     if(TARGET CycloneDDS-CXX::ddscxx)
-        message(STATUS "CycloneDDS-CXX::ddscxx target found")
         get_target_property(CXX_INCLUDES CycloneDDS-CXX::ddscxx INTERFACE_INCLUDE_DIRECTORIES)
         message(STATUS "CycloneDDS-CXX includes: ${CXX_INCLUDES}")
     endif()
 
-    target_link_libraries(common_dds PUBLIC
-        ${CYCLONEDDS_LIB}
-        CycloneDDS-CXX::ddscxx
+    find_library(CYCLONEDDSIDL_LIB cycloneddsidl
+        PATHS /workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/lib
+        REQUIRED
     )
 
-    target_include_directories(common_dds PUBLIC
+    target_include_directories(dds_impl PUBLIC
         ${CYCLONEDDS_C_INCLUDE}
         ${CXX_INCLUDES}
         ${CMAKE_SOURCE_DIR}/src/implementation/cyclone_dds
         ${CMAKE_SOURCE_DIR}/src/IDLs_cyclone
     )
 
-endif()
-
-# Create DDS-specific libraries
-
-#FAST DDS
-if(USE_FAST_DDS)
-    add_library(fastdds_impl ${FASTDDS_SOURCES})
-    target_include_directories(fastdds_impl PRIVATE
-        ${CMAKE_SOURCE_DIR}/src/implementation/fast_dds
-        ${CMAKE_SOURCE_DIR}/src/IDL
-        ${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/include
-    )
-    # Add library search path
-    link_directories(${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib)
-
-    # Link with Fast DDS libs
-    target_link_libraries(fastdds_impl common_dds fastdds fastcdr)
-    
-    # Add compile definition
-    target_compile_definitions(fastdds_impl PRIVATE USE_FAST_DDS=1)
-
-#CYCLONE DDS
-elseif(USE_CYCLONE_DDS)
-    add_library(cyclonedds_impl ${CYCLONEDDS_SOURCES})
-    find_library(CYCLONEDDSIDL_LIB cycloneddsidl
-        PATHS /workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/lib
-        REQUIRED
-    )
-    target_link_libraries(cyclonedds_impl
-        common_dds
+    target_link_libraries(dds_impl PUBLIC
         ${CYCLONEDDS_LIB}
         CycloneDDS-CXX::ddscxx
-        ${CYCLONEDDSIDL_LIB} 
+        ${CYCLONEDDSIDL_LIB}
+        pthread
     )
 
-    # Add compile definition
-    target_compile_definitions(cyclonedds_impl PRIVATE USE_CYCLONE_DDS=1)
-    
+    set(CMAKE_INSTALL_RPATH "/workspaces/fastdds/lib/Cyclone-DDS/install/lib;/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib")
+    set(CMAKE_BUILD_RPATH   "/workspaces/fastdds/lib/Cyclone-DDS/install/lib;/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib")
 endif()
 
-# Main executable only includes main.cpp
-set(MAIN_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/stress_test/main.cpp
-)
+########################
+### MAIN EXECUTABLE  ###
+########################
 
-# message(STATUS "COMMON_SOURCES=${COMMON_SOURCES}")
-# message(STATUS "FASTDDS_SOURCES=${FASTDDS_SOURCES}")
-# message(STATUS "CYCLONEDDS_SOURCES=${CYCLONEDDS_SOURCES}")
-# message(STATUS "MAIN_SOURCES=${MAIN_SOURCES}")
+add_executable(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/stress_test/main.cpp)
 
-add_executable(${PROJECT_NAME} ${MAIN_SOURCES})
-
-# Common include directories for main executable
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/src/stress_test
     ${CMAKE_SOURCE_DIR}/src/stress_test/core
     ${CMAKE_SOURCE_DIR}/src/stress_test/core/patterns
 )
 
-# Link based on selected DDS implementation
-if(USE_FAST_DDS)
-    target_link_libraries(${PROJECT_NAME} common_dds fastdds_impl)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_FAST_DDS=1)
-elseif(USE_CYCLONE_DDS)
-    target_link_libraries(${PROJECT_NAME} common_dds cyclonedds_impl)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_CYCLONE_DDS=1)
-endif()
-
-target_link_libraries(common_dds PRIVATE nlohmann_json::nlohmann_json)
-
-# Common dependencies
-target_link_libraries(${PROJECT_NAME}
-    pthread
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    dds_impl
     nlohmann_json::nlohmann_json
+    pthread
 )
 
-# Configure RPATH 
+########################
+### RPATH SETTINGS   ###
+########################
+
 set(CMAKE_SKIP_BUILD_RPATH FALSE)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-if(USE_FAST_DDS)
-    set(CMAKE_INSTALL_RPATH "${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib")
-    set(CMAKE_BUILD_RPATH "${CMAKE_SOURCE_DIR}/lib/Fast-DDS/install/lib")
-elseif(USE_CYCLONE_DDS)
-    set(CMAKE_INSTALL_RPATH "/workspaces/fastdds/lib/Cyclone-DDS/install/lib;/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib")
-    set(CMAKE_BUILD_RPATH "/workspaces/fastdds/lib/Cyclone-DDS/install/lib;/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib")
-endif()
