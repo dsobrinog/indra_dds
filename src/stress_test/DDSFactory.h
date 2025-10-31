@@ -22,10 +22,9 @@
 
 #elif defined(USE_CYCLONE_DDS)
     // Cyclone DDS
-  
-    #include <dds/ddsc/dds_public_impl.h> 
-    #include <dds/dds.h>
-    #include <ddscxx/dds/dds.hpp>
+    // #include <dds/dds.h>        // C API
+    #include <dds/dds.hpp>      // C++ API
+
     #include "implementation/cyclone_dds/CyclonePub.hpp"
     #include "implementation/cyclone_dds/CyclonePubControl.hpp"
     #include "implementation/cyclone_dds/CycloneSub.hpp"
