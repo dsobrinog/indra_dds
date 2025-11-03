@@ -20,11 +20,10 @@
     using DefaultSub = FastSub;
     using DefaultSubControl = FastSubControl;
 
-#elif defined(USE_CYCLONE_DDS)
+#elif USE_CYCLONE_DDS
     // Cyclone DDS
-    // #include <dds/dds.h>        // C API
-    #include <dds/dds.hpp>      // C++ API
-
+    // #include <dds/dds.h>        // C API first
+    // #include <dds/dds.hpp>      // C++ API second
     #include "implementation/cyclone_dds/CyclonePub.hpp"
     #include "implementation/cyclone_dds/CyclonePubControl.hpp"
     #include "implementation/cyclone_dds/CycloneSub.hpp"

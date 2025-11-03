@@ -3,20 +3,22 @@
 #ifdef USE_CYCLONE_DDS
 
 // #include <dds/dds.h>  // C API, defines dds_instance_handle_t
-// #include <dds/dds.hpp>  // Modern C++ API
+#include <dds/dds.hpp>  // Modern C++ API
 #include <iostream>       
 
 #include "abstraction/IPub.h"
-#include "IDLs_cyclone/generated/inse/inse.h"
+
+#include "IDLs_cyclone/generated/inse/inse.hpp"
+#include <atomic>
 
     
-class CyclonePub : public IPub<cyclone_dds_AirEntity>
+class CyclonePub : public IPub<cyclone_dds::AirEntity>
 {
 private:
     dds::domain::DomainParticipant participant_;
     dds::pub::Publisher publisher_;
-    dds::topic::Topic<cyclone_dds_AirEntity> topic_;
-    dds::pub::DataWriter<cyclone_dds_AirEntity> writer_;
+    dds::topic::Topic<cyclone_dds::AirEntity> topic_;
+    dds::pub::DataWriter<cyclone_dds::AirEntity> writer_;
 
     int current_id;
     int min_subs;
@@ -26,9 +28,10 @@ public:
      CyclonePub()
         : participant_(dds::domain::DomainParticipant(0)),
           publisher_(dds::pub::Publisher(participant_)),
-          topic_(dds::topic::Topic<cyclone_dds_AirEntity>(participant_, "AirEntityTopic")),
-          writer_(dds::pub::DataWriter<cyclone_dds_AirEntity>(publisher_, topic_))
+          topic_(dds::topic::Topic<cyclone_dds::AirEntity>(participant_, "AirEntityTopic")),
+          writer_(dds::pub::DataWriter<cyclone_dds::AirEntity>(publisher_, topic_))
     {
+        std::cout<< " Cyclone DDS Publisher created!" << std::endl;
     }
 
     ~CyclonePub()
@@ -44,7 +47,7 @@ public:
         return true;
     }
 
-    bool publish(cyclone_dds_AirEntity& instance) override
+    bool publish(cyclone_dds::AirEntity& instance) override
     {
         // Cyclone DDS write
         writer_.write(instance);

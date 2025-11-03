@@ -1,5 +1,4 @@
-#ifndef DDS_H
-#define DDS_H
+#pragma once
 
 #include "module.h"
 #include "common_defs.h"
@@ -44,6 +43,3 @@ public:
 private:
     test_config config;
 };
-
-
-#endif

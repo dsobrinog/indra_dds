@@ -6,13 +6,16 @@
 
 class CycloneSub : public ISub
 {
+public:
+    CycloneSub(){
+        std::cout<< "CycloneSub created!" << std::endl;
+    }
     bool init()
     {
         return true;
     }
     bool run_without_loan(int& lost_samples)
     {
-
         return true;
     }
     bool run_with_loan(int& lost_samples){

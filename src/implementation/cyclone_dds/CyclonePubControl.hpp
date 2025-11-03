@@ -7,7 +7,10 @@
 class CyclonePubControl : public IPubControl
 {
 public:
-    CyclonePubControl(){}
+    CyclonePubControl()
+    {
+        std::cout<< "CyclonePubControl created!" << std::endl;
+    }
 
      ~CyclonePubControl(){}
 

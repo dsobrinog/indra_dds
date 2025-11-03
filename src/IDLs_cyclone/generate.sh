@@ -1,21 +1,18 @@
 #!/bin/bash
 set -e
 
-IDLC="/opt/cyclonedds/install/bin/idlc"
+# Path to CycloneDDS idlc binary
+IDLC="/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/bin/idlc"
 OUTPUT_BASE="./generated"
 
 echo "=== IDL Code Generation ==="
-echo "Using generator: cxx (instead of c++)"
 
-# Set library paths for runtime
-export LD_LIBRARY_PATH="/opt/cyclonedds/install/lib:/opt/cyclonedds/install/cxx/lib:$LD_LIBRARY_PATH"
-
-# Set path for idlc generator plugins
-export IDL_GENERATOR_PATH="/opt/cyclonedds/install/cxx/lib"
+# Add the Cyclone DDS C++ library path
+export LD_LIBRARY_PATH="/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib:$LD_LIBRARY_PATH"
 
 mkdir -p "$OUTPUT_BASE"
 
-# Find all .idl files
+# Find all .idl files in the current directory
 IDL_FILES=$(find . -maxdepth 1 -name "*.idl" -type f)
 
 if [ -z "$IDL_FILES" ]; then
@@ -31,23 +28,20 @@ for IDL_FILE in $IDL_FILES; do
     FILENAME=$(basename "$IDL_FILE")
     NAME_NO_EXT="${FILENAME%.idl}"
     OUTPUT_DIR="$OUTPUT_BASE/$NAME_NO_EXT"
-    
+
     if [ -d "$OUTPUT_DIR" ]; then
         echo "Removing old generated code for $NAME_NO_EXT"
         rm -rf "$OUTPUT_DIR"
     fi
     mkdir -p "$OUTPUT_DIR"
 
-    echo "Generating code for $FILENAME in $OUTPUT_DIR"
+    echo "Generating C++ code for $FILENAME in $OUTPUT_DIR"
 
-    # Use the correct generator name: cxx instead of c++
-    LD_LIBRARY_PATH="/opt/cyclonedds/install/lib:/opt/cyclonedds/install/cxx/lib" "$IDLC" -l c -o "$OUTPUT_DIR" "$IDL_FILE"
+    # Run the idlc compiler with C++ backend
+    "$IDLC" -l cxx -d "$OUTPUT_DIR" "$IDL_FILE"
 
     echo "✓ Completed: $FILENAME"
     echo "Generated files in $OUTPUT_DIR:"
     ls -la "$OUTPUT_DIR"
     echo ""
 done
-
-echo "All IDL files processed successfully!"
-echo "Generated code can be found in '$OUTPUT_BASE'"

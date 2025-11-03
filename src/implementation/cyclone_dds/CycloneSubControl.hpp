@@ -6,11 +6,15 @@
 
 class CycloneSubControl : public ISubControl
 {
+public:
+    CycloneSubControl(){
+        std::cout<< "CycloneSubControl created!" << std::endl;
+    }
     bool init(){
         return true;
     }
     bool poll_control(TestConfig& out){
-        return true;
+        return false;
     }
     bool has_match() const
     {

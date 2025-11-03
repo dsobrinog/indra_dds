@@ -12,13 +12,14 @@
 #endif
 // idls cyclone
 #ifdef USE_CYCLONE_DDS
-#include "IDLs_cyclone/generated/inse/inse.h"
+#include "IDLs_cyclone/generated/inse/inse.hpp"
 #endif
 
 // #include "patterns/ping_pong_pattern.h"
 
 cl_dds::cl_dds(int moduleId, int mode, Executive * _exec) : cl_module(moduleId, _exec)
 {
+   
 }
 
 cl_dds::cl_dds(test_config _config, Executive* _exec) : cl_module(0, _exec), config(_config)
@@ -34,6 +35,13 @@ cl_dds::~cl_dds()
 
 void cl_dds::init()
 {
+    #ifdef USE_FAST_DDS
+        current_library = DDS_Library::FastDDS;
+    #endif
+    #ifdef USE_CYCLONE_DDS
+        current_library = DDS_Library::CycloneDDS;
+    #endif
+
     test_patterns(config.test_mode);
     if(p_pattern)
         p_pattern->init();
@@ -101,8 +109,8 @@ void cl_dds::test_patterns(int mode)
                 case DDS_Library::CycloneDDS:
                 {
                     #ifdef USE_CYCLONE_DDS
-                        auto pub_impl = DDSFactory::createPublisher<cyclone_dds_AirEntity>();
-                        p_pattern = new pub_test_1_to_1<cyclone_dds_AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
+                        auto pub_impl = DDSFactory::createPublisher<cyclone_dds::AirEntity>();
+                        p_pattern = new pub_test_1_to_1<cyclone_dds::AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
                     #endif
                     break;
                 }
