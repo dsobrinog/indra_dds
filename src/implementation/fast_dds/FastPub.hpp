@@ -130,6 +130,7 @@ public:
         auto udp_descriptor = std::make_shared<UDPv4TransportDescriptor>();
         udp_descriptor->sendBufferSize = 65500;
         udp_descriptor->maxMessageSize = 65500;
+        udp_descriptor->non_blocking_send = true;
         participantQos.transport().user_transports.push_back(udp_descriptor);
 
         // DDS PARTICIPANT CREATION
@@ -162,7 +163,7 @@ public:
           DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
 
         wqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        wqos.history().depth = 200;
+        wqos.history().depth = 1000;
         wqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
         wqos.durability().kind = VOLATILE_DURABILITY_QOS;
         wqos.resource_limits().max_instances = 100000;

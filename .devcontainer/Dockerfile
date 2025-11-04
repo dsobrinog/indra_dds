@@ -14,23 +14,44 @@ RUN apt-get update && \
         pkg-config \
         git \
         wget \
-        curl \
+        curl
+
+# Install FastDDS dependencies
+RUN apt-get update && \
+    apt-get install -y \
         libasio-dev \
         libtinyxml2-dev \
         libssl-dev \
         python3 \
         python3-pip \
-        openjdk-11-jdk  \
+        openjdk-11-jdk
+
+ENV LD_LIBRARY_PATH=/workspaces/testdds/lib/Fast-DDS/fastdds-install/lib:$LD_LIBRARY_PATH
+
+# Install CycloneDDS dependencies
+RUN apt-get update && \
+    apt-get install -y \
         flex \
-        bison && \
+        bison
+
+# Install OpenDDS dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        perl \
+        libssl-dev \
+        libxerces-c-dev && \
     rm -rf /var/lib/apt/lists/*
-    
-    
+
+ENV DDS_ROOT=/workspaces/testdds/lib/OpenDDS/OpenDDS
+ENV ACE_ROOT=$DDS_ROOT/ACE_wrappers
+ENV PATH=$DDS_ROOT/bin:$ACE_ROOT/bin:$PATH
+ENV LD_LIBRARY_PATH=$DDS_ROOT/lib:$ACE_ROOT/lib:$LD_LIBRARY_PATH
+
 # ==============================
 # Container set up for docker compose
 # ==============================
 # Set working directory
-WORKDIR /workspaces/fastdds
+WORKDIR /workspaces/testdds
     
 # Copy project files into the container
 # COPY . .
@@ -42,7 +63,7 @@ WORKDIR /workspaces/fastdds
 #     make -j$(nproc)
 
 # Ensure launch.sh is executable
-# RUN chmod +x /workspaces/fastdds/tools/launch.sh
+# RUN chmod +x /workspaces/testdds/tools/launch.sh
 
 # Default command (can be overridden in docker-compose)
 CMD ["bash"]

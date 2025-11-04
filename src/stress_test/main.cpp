@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     auto args = parse_args(argc, argv);
     
     // Check if --config is provided
-    std::string config_path = "/workspaces/fastdds/config/default.json"; // default
+    std::string config_path = "/workspaces/testdds/config/default.json"; // default
     if (args.find("config") != args.end())
     {
         config_path = args.at("config");
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
         std::cerr << "No --config argument provided. Using default: " << config_path << std::endl;
     }
 
-    std::string logFile_path = "/workspaces/fastdds/logs/default.log"; // default
+    std::string logFile_path = "/workspaces/testdds/logs/default.log"; // default
     if (args.find("logFile") != args.end())
     {
         logFile_path = args.at("logFile");

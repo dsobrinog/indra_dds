@@ -1,0 +1,11 @@
+prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+exec_prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+libdir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/lib
+includedir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/include
+
+Name: TAO_Valuetype
+Description: TAO Valuetype Library
+Requires: TAO_AnyTypeCode, TAO
+Version: 2.5.23
+Libs: -L${libdir} -lTAO_Valuetype
+Cflags: -I${includedir}

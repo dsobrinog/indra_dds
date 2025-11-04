@@ -1,0 +1,10 @@
+prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+exec_prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+libdir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/lib
+includedir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/include
+
+Name: ACE
+Description: ADAPTIVE Communication Environment 
+Version: 6.5.23
+Libs: -L${libdir} -lACE -ldl -lrt
+Cflags: -I${includedir}

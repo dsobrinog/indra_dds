@@ -2,13 +2,13 @@
 set -e
 
 # Path to CycloneDDS idlc binary
-IDLC="/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install/bin/idlc"
+IDLC="/workspaces/testdds/lib/Cyclone-DDS/cyclonedds-install/bin/idlc"
 OUTPUT_BASE="./generated"
 
 echo "=== IDL Code Generation ==="
 
 # Add the Cyclone DDS C++ library path
-export LD_LIBRARY_PATH="/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/workspaces/testdds/lib/Cyclone-DDS/cyclonedds-cxx-install/lib:$LD_LIBRARY_PATH"
 
 mkdir -p "$OUTPUT_BASE"
 

@@ -1,0 +1,11 @@
+prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+exec_prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+libdir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/lib
+includedir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/include
+
+Name: TAO_Svc_Utils 
+Description: TAO Service Utilities Library
+Requires: TAO_PortableServer
+Version: 2.5.23
+Libs: -L${libdir} -lTAO_Svc_Utils
+Cflags: -I${includedir}

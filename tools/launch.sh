@@ -1,11 +1,11 @@
 #!/bin/bash
-export LD_LIBRARY_PATH=/workspaces/fastdds/lib/Fast-DDS/install/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/workspaces/testdds/lib/Fast-DDS/install/lib:$LD_LIBRARY_PATH
 
 # Absolute path to binary
-BINARY="/workspaces/fastdds/build/DDS_STRESS_TEST"
+BINARY="/workspaces/testdds/build/DDS_STRESS_TEST"
 
 # Absolute default config
-DEFAULT_CONFIG="/workspaces/fastdds/config/default.json"
+DEFAULT_CONFIG="/workspaces/testdds/config/default.json"
 
 # Check if --config is already passed
 HAS_CONFIG=false

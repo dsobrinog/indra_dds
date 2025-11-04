@@ -1,5 +1,5 @@
 {
-    "name": "FastDDS_project",
+    "name": "TestDDS",
     
     "build": {
         "dockerfile": "Dockerfile"

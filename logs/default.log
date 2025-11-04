@@ -1,10 +1,10 @@
 
 **** CPU TIME REPORT ****
-Count: 10
-Mean: 2.359
-Min: 1.54172
-Max: 3.92593
-Mode: 2.84202
-StdDev (global): 0.697924
-Local Jitter: 0.392747
+Count: 20
+Mean: 10.5894
+Min: 3.63783
+Max: 18.6056
+Mode: 11.5225
+StdDev (global): 4.30615
+Local Jitter: 3.37512
 -----------------------------

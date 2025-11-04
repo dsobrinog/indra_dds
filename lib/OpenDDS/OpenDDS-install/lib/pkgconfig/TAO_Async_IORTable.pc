@@ -1,0 +1,11 @@
+prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+exec_prefix=/workspaces/testdds/lib/OpenDDS/OpenDDS-install
+libdir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/lib
+includedir=/workspaces/testdds/lib/OpenDDS/OpenDDS-install/include
+
+Name: TAO_Async_IORTable
+Description: TAO Async IOR Table Library
+Requires: TAO TAO_IORTable
+Version: 2.5.23
+Libs: -L${libdir} -lTAO_Async_IORTable
+Cflags: -I${includedir}

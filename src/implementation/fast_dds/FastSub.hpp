@@ -176,7 +176,7 @@ public:
         DataReaderQos rqos = DATAREADER_QOS_DEFAULT;
         rqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
         rqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        rqos.history().depth = 100;
+        rqos.history().depth = 1000;
         rqos.resource_limits().max_instances = 0;  
         rqos.resource_limits().max_samples = 0; 
         rqos.resource_limits().max_samples_per_instance = 0;
@@ -309,7 +309,7 @@ public:
         }
         
         // Check if we got all expected entities
-        bool all_received = (received_ids.size() == expected_messages_cycle);
+        bool all_received = (received_ids.size() == expected_messages_cycle);        
 
         if (!all_received)
         {

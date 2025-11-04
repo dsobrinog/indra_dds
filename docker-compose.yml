@@ -5,12 +5,12 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
-    command: ["/workspaces/fastdds/tools/launch.sh", "--config", "/workspaces/fastdds/config/test_1to1_normal/pub.json"]
+    command: ["/workspaces/testdds/tools/launch.sh", "--config", "/workspaces/testdds/config/test_1to1_normal/pub.json"]
     volumes:
-      - ./config:/workspaces/fastdds/config
-      - ./logs:/workspaces/fastdds/logs
+      - ./config:/workspaces/testdds/config
+      - ./logs:/workspaces/testdds/logs
     environment:
-      LOG_FILE: /workspaces/fastdds/logs/pub.log
+      LOG_FILE: /workspaces/testdds/logs/pub.log
     networks:
       - dds_test_net
 
@@ -18,12 +18,12 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
-    command: ["/workspaces/fastdds/tools/launch.sh", "--config", "/workspaces/fastdds/config/test_1to1_normal/sub.json"]
+    command: ["/workspaces/testdds/tools/launch.sh", "--config", "/workspaces/testdds/config/test_1to1_normal/sub.json"]
     volumes:
-      - ./config:/workspaces/fastdds/config
-      - ./logs:/workspaces/fastdds/logs
+      - ./config:/workspaces/testdds/config
+      - ./logs:/workspaces/testdds/logs
     environment:
-      LOG_FILE: /workspaces/fastdds/logs/sub_${HOSTNAME}.log
+      LOG_FILE: /workspaces/testdds/logs/sub_${HOSTNAME}.log
     deploy:
       replicas: 3
     networks:

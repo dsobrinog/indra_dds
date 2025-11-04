@@ -37,7 +37,9 @@ public:
     enum class DDS_Library
     {
         FastDDS = 0,
-        CycloneDDS = 1
+        CycloneDDS = 1,
+        OpenDDS = 2,
+        RtiDDS = 3
     } current_library = DDS_Library::FastDDS;
 
 private:

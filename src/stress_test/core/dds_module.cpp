@@ -41,6 +41,12 @@ void cl_dds::init()
     #ifdef USE_CYCLONE_DDS
         current_library = DDS_Library::CycloneDDS;
     #endif
+    #ifdef USE_OPEN_DDS
+        current_library = DDS_Library::OpenDDS;
+    #endif
+    #ifdef USE_RTI_DDS
+        current_library = DDS_Library::RtiDDS;
+    #endif
 
     test_patterns(config.test_mode);
     if(p_pattern)
@@ -114,6 +120,15 @@ void cl_dds::test_patterns(int mode)
                     #endif
                     break;
                 }
+
+                case DDS_Library::OpenDDS:
+                {
+                    #ifdef USE_OPEN_DDS
+                        auto pub_impl = DDSFactory::createPublisher<::AirEntity>();
+                        p_pattern = new pub_test_1_to_1<::AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
+                    #endif
+                    break;
+                }
             }
 
             // Create pattern after nested switch
@@ -145,6 +160,18 @@ void cl_dds::test_patterns(int mode)
 
                     break;
                 }
+
+                case DDS_Library::OpenDDS:
+                {
+                    #ifdef USE_OPEN_DDS
+                        auto sub_impl = DDSFactory::createSubscriber();
+                        p_pattern = new sub_test_1_to_1(this, config, std::move(sub_impl), std::move(sub_control_impl));
+                    #endif
+
+                    break;
+                }
+
+
             }
             break;
         }

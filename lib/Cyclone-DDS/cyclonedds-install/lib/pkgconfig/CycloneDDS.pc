@@ -1,4 +1,4 @@
-prefix=/workspaces/fastdds/lib/Cyclone-DDS/cyclonedds-install
+prefix=/workspaces/testdds/lib/Cyclone-DDS/cyclonedds-install
 includedir=${prefix}/include
 libdir=${prefix}/lib
 

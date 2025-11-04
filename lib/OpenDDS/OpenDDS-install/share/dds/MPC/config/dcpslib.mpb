@@ -1,0 +1,5 @@
+// Base project only for OpenDDS libraries that go in DDS_ROOT/lib. This should
+// NOT be used by users, for tests, or mpbs. Use dcps instead.
+project : dcps {
+  libout      = $(DDS_ROOT)/lib
+}

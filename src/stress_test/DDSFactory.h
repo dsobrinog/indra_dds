@@ -34,7 +34,20 @@
     using DefaultSub = CycloneSub;
     using DefaultSubControl = CycloneSubControl;
 
-#else
+#elif USE_OPEN_DDS
+
+    #include "implementation/open_dds/OpenPub.hpp"
+    #include "implementation/open_dds/OpenPubControl.hpp"
+    #include "implementation/open_dds/OpenSub.hpp"
+    #include "implementation/open_dds/OpenSubControl.hpp"
+    
+    using DefaultPub = OpenPub;
+    using DefaultPubControl = OpenPubControl;
+    using DefaultSub = OpenSub;
+    using DefaultSubControl = OpenSubControl;
+
+#elif USE_RTI_DDS
+#elif
     #error "Must define either USE_FAST_DDS or USE_CYCLONE_DDS"
 #endif
 
