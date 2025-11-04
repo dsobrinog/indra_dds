@@ -43,6 +43,10 @@
 # Ignore build folder
 build/
 
+lib/OpenDDS/OpenDDS-install/lib/*.so*
+lib/Fast-DDS/fastdds-install/lib/*.so*
+
+
 CMakeFiles/
 CMakeCache.txt
 *.cmake
