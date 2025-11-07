@@ -2,10 +2,13 @@
 
 #include <unordered_set>
 
+class ParticipantManager;
+
 // Subscriber DDS Abstraction
 class ISub
 {
 public: 
+    virtual void set_participant_manager(ParticipantManager* participant_manager){};
     virtual bool init() = 0;
 
     virtual bool run_without_loan(int& lost_samples) = 0;

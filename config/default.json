@@ -1,7 +1,7 @@
 {
     "name": "default_test",
     "mode": 0,
-    "messageCount": 1000,
+    "messageCount": 200,
     "test": 20,
     "manual_process": false,
     "loan": false,

@@ -1,4 +1,5 @@
 // TestControl.idl
+@topic
 struct TestControl
 {
     @key long test_id;            // groups messages for a given test run

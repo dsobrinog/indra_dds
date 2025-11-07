@@ -179,40 +179,9 @@ if(USE_OPEN_DDS)
         ${CMAKE_SOURCE_DIR}/src/IDLs_open/inse.idl
     )
 
-    ###############################################
-    ### PHASE 1: GENERATE DDS CODE FROM IDL FILES #
-    ###############################################
-    add_custom_target(generate_dds_code ALL COMMENT "Generating OpenDDS IDL bindings")
-
-    foreach(idl ${IDL_FILES})
-        get_filename_component(base ${idl} NAME_WE)
-        set(gen_dir ${GENERATED_DIR}/${base})
-        file(MAKE_DIRECTORY ${gen_dir})
-
-        add_custom_command(
-            TARGET generate_dds_code
-            COMMAND ${OPENDDS_ROOT}/bin/opendds_idl -Lc++11 -o ${gen_dir} ${idl}
-            COMMAND ${OPENDDS_ROOT}/bin/tao_idl
-                --idl-version 4
-                -I${OPENDDS_SHARE}
-                -I${OPENDDS_SHARE}/DCPS
-                -I${OPENDDS_SHARE}/DCPS/RTPS
-                -I${CMAKE_SOURCE_DIR}/src/IDLs_open
-                -o ${gen_dir}
-                ${gen_dir}/${base}TypeSupport.idl
-            COMMENT "Generating DDS bindings for ${base}.idl"
-        )
-
-        list(APPEND GENERATED_SOURCES
-            ${gen_dir}/${base}TypeSupportImpl.cpp
-            ${gen_dir}/${base}TypeSupportImpl.h
-        )
-    endforeach()
-
-    ###############################################
-    ### PHASE 2: COMPILE YOUR MAIN EXECUTABLE #####
-    ###############################################
-
+    file(GLOB_RECURSE GENERATED_SOURCES
+        "${GENERATED_DIR}/*/*.cpp"
+    )
     # Sources: generated + implementation
     file(GLOB_RECURSE OPENDDS_SOURCES CONFIGURE_DEPENDS
         ${CMAKE_SOURCE_DIR}/src/implementation/open_dds/*.cpp
@@ -225,9 +194,6 @@ if(USE_OPEN_DDS)
         ${COMMON_SOURCES}
         ${OPENDDS_SOURCES}
     )
-
-    # Make sure the executable waits for IDL generation
-    add_dependencies(${PROJECT_NAME} generate_dds_code)
 
     # Include directories
     target_include_directories(${PROJECT_NAME} PUBLIC
@@ -247,6 +213,8 @@ if(USE_OPEN_DDS)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         nlohmann_json::nlohmann_json
         OpenDDS_Dcps
+        OpenDDS_Udp
+        OpenDDS_Rtps_Udp
         ACE
         TAO
         TAO_Valuetype

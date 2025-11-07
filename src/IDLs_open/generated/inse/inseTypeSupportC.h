@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:148
 
-#ifndef _TAO_IDL__WORKSPACES_TESTDDS_SRC_IDLS_OPEN_GENERATED_INSE_INSETYPESUPPORTC_R0TP00_H_
-#define _TAO_IDL__WORKSPACES_TESTDDS_SRC_IDLS_OPEN_GENERATED_INSE_INSETYPESUPPORTC_R0TP00_H_
+#ifndef _TAO_IDL___GENERATED_INSE_INSETYPESUPPORTC_PPPH8P_H_
+#define _TAO_IDL___GENERATED_INSE_INSETYPESUPPORTC_PPPH8P_H_
 
 
 #include /**/ "ace/config-all.h"
@@ -39,6 +39,7 @@
 #include "tao/AnyTypeCode/AnyTypeCode_methods.h"
 #include "tao/AnyTypeCode/Any.h"
 #include "tao/ORB.h"
+#include "tao/SystemException.h"
 #include "tao/Basic_Types_IDLv4.h"
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
@@ -49,20 +50,470 @@ namespace CORBA
 
 TAO_END_VERSIONED_NAMESPACE_DECL
 
+#include "tao/ORB_Constants.h"
+#include "dds/DCPS/ZeroCopyInfoSeq_T.h"
+#include "dds/DCPS/ZeroCopySeq_T.h"
+#include "tao/Object.h"
+#include "tao/String_Manager_T.h"
+#include "tao/Sequence_T.h"
+#include "tao/Objref_VarOut_T.h"
+#include "tao/Seq_Var_T.h"
+#include "tao/Seq_Out_T.h"
 #include "tao/Arg_Traits_T.h"
 #include "tao/Basic_Arguments.h"
 #include "tao/Special_Basic_Arguments.h"
 #include "tao/Any_Insert_Policy_T.h"
 #include "tao/Fixed_Size_Argument_T.h"
 #include "tao/Var_Size_Argument_T.h"
+#include "tao/Object_Argument_T.h"
+#include "tao/UB_String_Arguments.h"
 #include /**/ "tao/Version.h"
 #include /**/ "tao/Versioned_Namespace.h"
 
 #include "inseC.h"
+#include "dds/DdsDcpsInfrastructureC.h"
+#include "dds/DdsDcpsPublicationC.h"
+#include "dds/DdsDcpsSubscriptionExtC.h"
+#include "dds/DdsDcpsTopicC.h"
+#include "dds/DdsDcpsTypeSupportExtC.h"
+#include "dds/DdsDynamicDataC.h"
 
 #if TAO_MAJOR_VERSION != 2 || TAO_MINOR_VERSION != 5 || TAO_MICRO_VERSION != 23
 #error This file should be regenerated with TAO_IDL
 #endif
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_sequence/sequence_ch.cpp:98
+
+
+
+typedef ::TAO::DCPS::ZeroCopyDataSeq< AirEntity, DCPS_ZERO_COPY_SEQ_DEFAULT_SIZE> AirEntitySeq;
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_decl.cpp:33
+
+extern  ::CORBA::TypeCode_ptr const _tc_AirEntitySeq;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:747
+
+
+
+#if !defined (_AIRENTITYTYPESUPPORT__VAR_OUT_CH_)
+#define _AIRENTITYTYPESUPPORT__VAR_OUT_CH_
+
+class AirEntityTypeSupport;
+typedef AirEntityTypeSupport *AirEntityTypeSupport_ptr;
+typedef TAO_Objref_Var_T<AirEntityTypeSupport> AirEntityTypeSupport_var;
+typedef TAO_Objref_Out_T<AirEntityTypeSupport> AirEntityTypeSupport_out;
+
+
+#endif /* end #if !defined */
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:39
+
+
+
+class  AirEntityTypeSupport
+  : public virtual ::OpenDDS::DCPS::TypeSupport
+
+{
+public:
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:302
+
+  typedef AirEntityTypeSupport_ptr _ptr_type;
+  typedef AirEntityTypeSupport_var _var_type;
+  typedef AirEntityTypeSupport_out _out_type;
+
+  static void _tao_any_destructor (void *);
+
+  // The static operations.
+  static AirEntityTypeSupport_ptr _duplicate (AirEntityTypeSupport_ptr obj);
+
+  static void _tao_release (AirEntityTypeSupport_ptr obj);
+
+  static AirEntityTypeSupport_ptr _narrow (::CORBA::Object_ptr obj);
+  static AirEntityTypeSupport_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+  static AirEntityTypeSupport_ptr _nil (void);
+
+  virtual ::DDS::ReturnCode_t create_sample_rc (
+    ::AirEntity & dst,
+    ::DDS::DynamicData_ptr src) = 0;
+
+  virtual ::AirEntity create_sample (
+    ::DDS::DynamicData_ptr src) = 0;
+
+  virtual ::DDS::ReturnCode_t create_dynamic_sample_rc (
+    ::DDS::DynamicData_ptr & dst,
+    const ::AirEntity & src) = 0;
+
+  virtual ::DDS::DynamicData_ptr create_dynamic_sample (
+    const ::AirEntity & src) = 0;
+
+  virtual ::DDS::ReturnCode_t encode_to_string (
+    const ::AirEntity & sample,
+    ::CORBA::String_out encoded,
+    ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
+
+  virtual ::DDS::ReturnCode_t encode_to_bytes (
+    const ::AirEntity & sample,
+    ::DDS::OctetSeq_out encoded,
+    ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
+
+  virtual ::DDS::ReturnCode_t decode_from_string (
+    const char * encoded,
+    ::AirEntity_out sample,
+    ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
+
+  virtual ::DDS::ReturnCode_t decode_from_bytes (
+    const ::DDS::OctetSeq & encoded,
+    ::AirEntity_out sample,
+    ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
+
+  
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:135
+
+  
+
+  virtual ::CORBA::Boolean _is_a (const char *type_id);
+  virtual const char* _interface_repository_id (void) const;
+  virtual ::CORBA::Boolean marshal (TAO_OutputCDR &cdr);
+
+protected:
+  // Abstract or local interface only.
+  AirEntityTypeSupport (void);
+
+  
+
+  virtual ~AirEntityTypeSupport (void);
+
+private:
+  // Private and unimplemented for concrete interfaces.
+  ACE_UNIMPLEMENTED_FUNC (AirEntityTypeSupport (const AirEntityTypeSupport &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityTypeSupport (AirEntityTypeSupport &&))
+#endif /* ACE_HAS_CPP11 */
+  ACE_UNIMPLEMENTED_FUNC (AirEntityTypeSupport &operator= (const AirEntityTypeSupport &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityTypeSupport &operator= (AirEntityTypeSupport &&))
+#endif /* ACE_HAS_CPP11 */
+};
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_decl.cpp:33
+
+extern  ::CORBA::TypeCode_ptr const _tc_AirEntityTypeSupport;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:747
+
+
+
+#if !defined (_AIRENTITYDATAWRITER__VAR_OUT_CH_)
+#define _AIRENTITYDATAWRITER__VAR_OUT_CH_
+
+class AirEntityDataWriter;
+typedef AirEntityDataWriter *AirEntityDataWriter_ptr;
+typedef TAO_Objref_Var_T<AirEntityDataWriter> AirEntityDataWriter_var;
+typedef TAO_Objref_Out_T<AirEntityDataWriter> AirEntityDataWriter_out;
+
+
+#endif /* end #if !defined */
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:39
+
+
+
+class  AirEntityDataWriter
+  : public virtual ::DDS::DataWriter
+
+{
+public:
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:302
+
+  typedef AirEntityDataWriter_ptr _ptr_type;
+  typedef AirEntityDataWriter_var _var_type;
+  typedef AirEntityDataWriter_out _out_type;
+
+  static void _tao_any_destructor (void *);
+
+  // The static operations.
+  static AirEntityDataWriter_ptr _duplicate (AirEntityDataWriter_ptr obj);
+
+  static void _tao_release (AirEntityDataWriter_ptr obj);
+
+  static AirEntityDataWriter_ptr _narrow (::CORBA::Object_ptr obj);
+  static AirEntityDataWriter_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+  static AirEntityDataWriter_ptr _nil (void);
+
+  virtual ::DDS::InstanceHandle_t register_instance (
+    const ::AirEntity & instance) = 0;
+
+  virtual ::DDS::InstanceHandle_t register_instance_w_timestamp (
+    const ::AirEntity & instance,
+    const ::DDS::Time_t & timestamp) = 0;
+
+  virtual ::DDS::ReturnCode_t unregister_instance (
+    const ::AirEntity & instance,
+    ::DDS::InstanceHandle_t handle) = 0;
+
+  virtual ::DDS::ReturnCode_t unregister_instance_w_timestamp (
+    const ::AirEntity & instance,
+    ::DDS::InstanceHandle_t handle,
+    const ::DDS::Time_t & timestamp) = 0;
+
+  virtual ::DDS::ReturnCode_t write (
+    const ::AirEntity & instance_data,
+    ::DDS::InstanceHandle_t handle) = 0;
+
+  virtual ::DDS::ReturnCode_t write_w_timestamp (
+    const ::AirEntity & instance_data,
+    ::DDS::InstanceHandle_t handle,
+    const ::DDS::Time_t & source_timestamp) = 0;
+
+  virtual ::DDS::ReturnCode_t dispose (
+    const ::AirEntity & instance_data,
+    ::DDS::InstanceHandle_t instance_handle) = 0;
+
+  virtual ::DDS::ReturnCode_t dispose_w_timestamp (
+    const ::AirEntity & instance_data,
+    ::DDS::InstanceHandle_t instance_handle,
+    const ::DDS::Time_t & source_timestamp) = 0;
+
+  virtual ::DDS::ReturnCode_t get_key_value (
+    ::AirEntity & key_holder,
+    ::DDS::InstanceHandle_t handle) = 0;
+
+  virtual ::DDS::InstanceHandle_t lookup_instance (
+    const ::AirEntity & instance_data) = 0;
+
+  
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:135
+
+  
+
+  virtual ::CORBA::Boolean _is_a (const char *type_id);
+  virtual const char* _interface_repository_id (void) const;
+  virtual ::CORBA::Boolean marshal (TAO_OutputCDR &cdr);
+
+protected:
+  // Abstract or local interface only.
+  AirEntityDataWriter (void);
+
+  
+
+  virtual ~AirEntityDataWriter (void);
+
+private:
+  // Private and unimplemented for concrete interfaces.
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataWriter (const AirEntityDataWriter &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataWriter (AirEntityDataWriter &&))
+#endif /* ACE_HAS_CPP11 */
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataWriter &operator= (const AirEntityDataWriter &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataWriter &operator= (AirEntityDataWriter &&))
+#endif /* ACE_HAS_CPP11 */
+};
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_decl.cpp:33
+
+extern  ::CORBA::TypeCode_ptr const _tc_AirEntityDataWriter;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:747
+
+
+
+#if !defined (_AIRENTITYDATAREADER__VAR_OUT_CH_)
+#define _AIRENTITYDATAREADER__VAR_OUT_CH_
+
+class AirEntityDataReader;
+typedef AirEntityDataReader *AirEntityDataReader_ptr;
+typedef TAO_Objref_Var_T<AirEntityDataReader> AirEntityDataReader_var;
+typedef TAO_Objref_Out_T<AirEntityDataReader> AirEntityDataReader_out;
+
+
+#endif /* end #if !defined */
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:39
+
+
+
+class  AirEntityDataReader
+  : public virtual ::OpenDDS::DCPS::DataReaderEx
+
+{
+public:
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:302
+
+  typedef AirEntityDataReader_ptr _ptr_type;
+  typedef AirEntityDataReader_var _var_type;
+  typedef AirEntityDataReader_out _out_type;
+
+  static void _tao_any_destructor (void *);
+
+  // The static operations.
+  static AirEntityDataReader_ptr _duplicate (AirEntityDataReader_ptr obj);
+
+  static void _tao_release (AirEntityDataReader_ptr obj);
+
+  static AirEntityDataReader_ptr _narrow (::CORBA::Object_ptr obj);
+  static AirEntityDataReader_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+  static AirEntityDataReader_ptr _nil (void);
+
+  virtual ::DDS::ReturnCode_t read (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t take (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t read_w_condition (
+    ::AirEntitySeq & data_values,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t take_w_condition (
+    ::AirEntitySeq & data_values,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t read_next_sample (
+    ::AirEntity & received_data,
+    ::DDS::SampleInfo & sample_info) = 0;
+
+  virtual ::DDS::ReturnCode_t take_next_sample (
+    ::AirEntity & received_data,
+    ::DDS::SampleInfo & sample_info) = 0;
+
+  virtual ::DDS::ReturnCode_t read_instance (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t take_instance (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t read_instance_w_condition (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t take_instance_w_condition (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t read_next_instance (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t take_next_instance (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t a_handle,
+    ::DDS::SampleStateMask sample_states,
+    ::DDS::ViewStateMask view_states,
+    ::DDS::InstanceStateMask instance_states) = 0;
+
+  virtual ::DDS::ReturnCode_t read_next_instance_w_condition (
+    ::AirEntitySeq & data_values,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t previous_handle,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t take_next_instance_w_condition (
+    ::AirEntitySeq & data_values,
+    ::DDS::SampleInfoSeq & sample_infos,
+    ::CORBA::Long max_samples,
+    ::DDS::InstanceHandle_t previous_handle,
+    ::DDS::ReadCondition_ptr a_condition) = 0;
+
+  virtual ::DDS::ReturnCode_t return_loan (
+    ::AirEntitySeq & received_data,
+    ::DDS::SampleInfoSeq & info_seq) = 0;
+
+  virtual ::DDS::ReturnCode_t get_key_value (
+    ::AirEntity & key_holder,
+    ::DDS::InstanceHandle_t handle) = 0;
+
+  virtual ::DDS::InstanceHandle_t lookup_instance (
+    const ::AirEntity & instance_data) = 0;
+
+  
+  // TAO_IDL - Generated from
+  // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_ch.cpp:135
+
+  
+
+  virtual ::CORBA::Boolean _is_a (const char *type_id);
+  virtual const char* _interface_repository_id (void) const;
+  virtual ::CORBA::Boolean marshal (TAO_OutputCDR &cdr);
+
+protected:
+  // Abstract or local interface only.
+  AirEntityDataReader (void);
+
+  
+
+  virtual ~AirEntityDataReader (void);
+
+private:
+  // Private and unimplemented for concrete interfaces.
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataReader (const AirEntityDataReader &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataReader (AirEntityDataReader &&))
+#endif /* ACE_HAS_CPP11 */
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataReader &operator= (const AirEntityDataReader &))
+#if defined (ACE_HAS_CPP11)
+  ACE_UNIMPLEMENTED_FUNC (AirEntityDataReader &operator= (AirEntityDataReader &&))
+#endif /* ACE_HAS_CPP11 */
+};
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_decl.cpp:33
+
+extern  ::CORBA::TypeCode_ptr const _tc_AirEntityDataReader;
 // TAO_IDL - Generated from
 // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_arg_traits.cpp:64
 
@@ -89,6 +540,114 @@ TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 // Traits specializations.
 namespace TAO
 {
+
+#if !defined (_AIRENTITYTYPESUPPORT__TRAITS_)
+#define _AIRENTITYTYPESUPPORT__TRAITS_
+
+  template<>
+  struct  Objref_Traits< ::AirEntityTypeSupport>
+  {
+    static ::AirEntityTypeSupport_ptr duplicate (
+        ::AirEntityTypeSupport_ptr p);
+    static void release (
+        ::AirEntityTypeSupport_ptr p);
+    static ::AirEntityTypeSupport_ptr nil (void);
+    static ::CORBA::Boolean marshal (
+        const ::AirEntityTypeSupport_ptr p,
+        TAO_OutputCDR & cdr);
+  };
+
+#endif /* end #if !defined */
+
+#if !defined (_AIRENTITYDATAWRITER__TRAITS_)
+#define _AIRENTITYDATAWRITER__TRAITS_
+
+  template<>
+  struct  Objref_Traits< ::AirEntityDataWriter>
+  {
+    static ::AirEntityDataWriter_ptr duplicate (
+        ::AirEntityDataWriter_ptr p);
+    static void release (
+        ::AirEntityDataWriter_ptr p);
+    static ::AirEntityDataWriter_ptr nil (void);
+    static ::CORBA::Boolean marshal (
+        const ::AirEntityDataWriter_ptr p,
+        TAO_OutputCDR & cdr);
+  };
+
+#endif /* end #if !defined */
+
+#if !defined (_AIRENTITYDATAREADER__TRAITS_)
+#define _AIRENTITYDATAREADER__TRAITS_
+
+  template<>
+  struct  Objref_Traits< ::AirEntityDataReader>
+  {
+    static ::AirEntityDataReader_ptr duplicate (
+        ::AirEntityDataReader_ptr p);
+    static void release (
+        ::AirEntityDataReader_ptr p);
+    static ::AirEntityDataReader_ptr nil (void);
+    static ::CORBA::Boolean marshal (
+        const ::AirEntityDataReader_ptr p,
+        TAO_OutputCDR & cdr);
+  };
+
+#endif /* end #if !defined */
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_ch.cpp:40
+
+
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+ void operator<<= (::CORBA::Any &, AirEntityTypeSupport_ptr); // copying
+ void operator<<= (::CORBA::Any &, AirEntityTypeSupport_ptr *); // non-copying
+ ::CORBA::Boolean operator>>= (const ::CORBA::Any &, AirEntityTypeSupport_ptr &);
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_ch.cpp:40
+
+
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+ void operator<<= (::CORBA::Any &, AirEntityDataWriter_ptr); // copying
+ void operator<<= (::CORBA::Any &, AirEntityDataWriter_ptr *); // non-copying
+ ::CORBA::Boolean operator>>= (const ::CORBA::Any &, AirEntityDataWriter_ptr &);
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_ch.cpp:40
+
+
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+ void operator<<= (::CORBA::Any &, AirEntityDataReader_ptr); // copying
+ void operator<<= (::CORBA::Any &, AirEntityDataReader_ptr *); // non-copying
+ ::CORBA::Boolean operator>>= (const ::CORBA::Any &, AirEntityDataReader_ptr &);
 }
 TAO_END_VERSIONED_NAMESPACE_DECL
 

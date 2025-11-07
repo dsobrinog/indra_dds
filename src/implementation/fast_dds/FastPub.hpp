@@ -13,7 +13,6 @@
 #include <fastdds/dds/topic/TypeSupport.hpp>
 
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
-#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 
 #include <fastdds/dds/core/LoanableSequence.hpp>
 
@@ -163,13 +162,13 @@ public:
           DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
 
         wqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        wqos.history().depth = 1000;
+        wqos.history().depth = 200;
         wqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
         wqos.durability().kind = VOLATILE_DURABILITY_QOS;
-        wqos.resource_limits().max_instances = 100000;
-        wqos.resource_limits().max_samples_per_instance = 1;
-        wqos.resource_limits().max_samples = 100000;
-        wqos.resource_limits().allocated_samples = 100000;
+        wqos.resource_limits().max_instances = 1000;
+        wqos.resource_limits().max_samples_per_instance = 200;
+        wqos.resource_limits().max_samples = wqos.resource_limits().max_instances * wqos.resource_limits().max_samples_per_instance;
+        wqos.resource_limits().allocated_samples = wqos.resource_limits().max_instances * wqos.resource_limits().max_samples_per_instance;
         writer_ = publisher_->create_datawriter(topic_, wqos, &listener_);
         if (writer_ == nullptr)
         {

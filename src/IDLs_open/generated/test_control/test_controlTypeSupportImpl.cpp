@@ -3,13 +3,33 @@
 
 #include <cstring>
 #include <stdexcept>
+#include "dds/DCPS/BuiltInTopicUtils.h"
+#include "dds/DCPS/ContentFilteredTopicImpl.h"
+#include "dds/DCPS/DataReaderImpl_T.h"
+#include "dds/DCPS/DataWriterImpl_T.h"
 #include "dds/DCPS/FilterEvaluator.h"
+#include "dds/DCPS/MultiTopicDataReader_T.h"
 #include "dds/DCPS/PoolAllocator.h"
+#include "dds/DCPS/PublicationInstance.h"
+#include "dds/DCPS/PublisherImpl.h"
+#include "dds/DCPS/Qos_Helper.h"
+#include "dds/DCPS/RakeData.h"
+#include "dds/DCPS/RakeResults_T.h"
+#include "dds/DCPS/ReceivedDataElementList.h"
+#include "dds/DCPS/Registered_Data_Types.h"
+#include "dds/DCPS/Service_Participant.h"
+#include "dds/DCPS/SubscriberImpl.h"
+#include "dds/DCPS/Util.h"
+#include "dds/DCPS/XTypes/TypeObject.h"
+#include "dds/DCPS/debug.h"
+#include "dds/DdsDcpsDomainC.h"
+#include "dds/DCPS/JsonValueReader.h"
+#include "dds/DCPS/JsonValueWriter.h"
 
 #ifdef OPENDDS_IDL_FILE_SPECIFIC
 #  undef OPENDDS_IDL_FILE_SPECIFIC
 #endif
-#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_test_controltypesupportimpl_cpp_47lyl8##_##base##index
+#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_test_controltypesupportimpl_cpp_mrszn0##_##base##index
 
 
 
@@ -29,7 +49,7 @@ template<> const XTypes::TypeIdentifier& getMinimalTypeIdentifier<TestControl_xt
   static XTypes::TypeIdentifier ti;
   ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, TheServiceParticipant->get_static_xtypes_lock(), ti);
   if (ti.kind() == XTypes::TK_NONE) {
-    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(183, 151, 46, 4, 221, 39, 214, 79, 51, 161, 239, 57, 47, 50));
+    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(0, 64, 75, 171, 150, 13, 34, 136, 201, 230, 69, 62, 149, 208));
   }
   return ti;
 }
@@ -97,6 +117,28 @@ bool vread(OpenDDS::DCPS::ValueReader& value_reader,  ::TestControl& value)
 }
 
 bool vread(OpenDDS::DCPS::ValueReader& value_reader, const NestedKeyOnly< ::TestControl>& value)
+{
+  ACE_UNUSED_ARG(value_reader);
+  ACE_UNUSED_ARG(value);
+  static const ListMemberHelper::Pair pairs[] = {{"test_id",0},{0,0}};
+  ListMemberHelper helper(pairs);
+  if (!value_reader.begin_struct(OpenDDS::DCPS::APPENDABLE)) return false;
+  XTypes::MemberId member_id;
+  while (value_reader.members_remaining()) {
+    if (!value_reader.begin_struct_member(member_id, helper)) return false;
+    switch (member_id) {
+    case 0: {
+      if (!value_reader.read_int32(value.value.test_id())) return false;
+      break;
+    }
+    }
+    if (!value_reader.end_struct_member()) return false;
+  }
+  if (!value_reader.end_struct()) return false;
+  return true;
+}
+
+bool vread(OpenDDS::DCPS::ValueReader& value_reader, const KeyOnly< ::TestControl>& value)
 {
   ACE_UNUSED_ARG(value_reader);
   ACE_UNUSED_ARG(value);
@@ -231,6 +273,32 @@ bool vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const  ::TestControl& valu
 }
 
 bool vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const NestedKeyOnly<const  ::TestControl>& value)
+{
+  ACE_UNUSED_ARG(value_writer);
+  ACE_UNUSED_ARG(value);
+  if (!value_writer.begin_struct(OpenDDS::DCPS::APPENDABLE)) {
+    return false;
+  }
+  {
+    MemberParam param(0, true, "test_id", false, true);
+    if (!value_writer.begin_struct_member(param)) {
+      return false;
+    }
+    if (param.present) {
+      if (!value_writer.write_int32(value.value.test_id())) {
+        return false;
+      }
+    } else {
+      value_writer.write_absent_value();
+    }
+    if (!value_writer.end_struct_member()) {
+      return false;
+    }
+  }
+  return value_writer.end_struct();
+}
+
+bool vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const KeyOnly<const  ::TestControl>& value)
 {
   ACE_UNUSED_ARG(value_writer);
   ACE_UNUSED_ARG(value);
@@ -437,9 +505,242 @@ bool operator>>(Serializer& strm, const NestedKeyOnly< ::TestControl>& stru)
   return true;
 }
 
+void serialized_size(const Encoding& encoding, size_t& size, const KeyOnly<const ::TestControl>& stru)
+{
+  ACE_UNUSED_ARG(encoding);
+  ACE_UNUSED_ARG(size);
+  ACE_UNUSED_ARG(stru);
+  if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
+    serialized_size_delimiter(encoding, size);
+  }
+  primitive_serialized_size(encoding, size, stru.value.test_id());
+}
+
+bool operator<<(Serializer& strm, const KeyOnly<const ::TestControl>& stru)
+{
+  ACE_UNUSED_ARG(strm);
+  ACE_UNUSED_ARG(stru);
+  const Encoding& encoding = strm.encoding();
+  ACE_UNUSED_ARG(encoding);
+  size_t total_size = 0;
+  if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
+    serialized_size(encoding, total_size, stru);
+    if (!strm.write_delimiter(total_size)) {
+      return false;
+    }
+  }
+  return (strm << stru.value.test_id());
+}
+
+bool operator>>(Serializer& strm, const KeyOnly< ::TestControl>& stru)
+{
+  ACE_UNUSED_ARG(strm);
+  ACE_UNUSED_ARG(stru);
+  const Encoding& encoding = strm.encoding();
+  ACE_UNUSED_ARG(encoding);
+  bool reached_end_of_struct = false;
+  ACE_UNUSED_ARG(reached_end_of_struct);
+  size_t total_size = 0;
+  if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
+    if (!strm.read_delimiter(total_size)) {
+      return false;
+    }
+  }
+  const size_t end_of_struct = strm.rpos() + total_size;
+
+  reached_end_of_struct |= (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() >= end_of_struct);
+  if (reached_end_of_struct) {
+    stru.value.test_id() = 0;
+  } else {
+    if (!(strm >> stru.value.test_id())) {
+      return false;
+    }
+  }
+  if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() < end_of_struct) {
+    strm.skip(end_of_struct - strm.rpos());
+  }
+  return true;
+}
+
 } }
 OPENDDS_END_VERSIONED_NAMESPACE_DECL
 
+OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace OpenDDS {
+namespace DCPS {
+bool DDSTraits< ::TestControl>::is_key(const char* field)
+{
+  ACE_UNUSED_ARG(field);
+  if (!ACE_OS::strcmp(field, "test_id")) {
+    return true;
+  }
+  return false;
+}
+} // namespace DCPS
+} // namespace OpenDDS
+OPENDDS_END_VERSIONED_NAMESPACE_DECL
+
+::DDS::DataWriter_ptr TestControlTypeSupportImpl::create_datawriter()
+{
+  typedef OpenDDS::DCPS::DataWriterImpl_T<TestControl> DataWriterImplType;
+  ::DDS::DataWriter_ptr writer_impl = ::DDS::DataWriter::_nil();
+  ACE_NEW_NORETURN(writer_impl,
+                   DataWriterImplType());
+  return writer_impl;
+}
+
+::DDS::DataReader_ptr TestControlTypeSupportImpl::create_datareader()
+{
+  typedef OpenDDS::DCPS::DataReaderImpl_T<TestControl> DataReaderImplType;
+  ::DDS::DataReader_ptr reader_impl = ::DDS::DataReader::_nil();
+  ACE_NEW_NORETURN(reader_impl,
+                   DataReaderImplType());
+  return reader_impl;
+}
+
+#ifndef OPENDDS_NO_MULTI_TOPIC
+::DDS::DataReader_ptr TestControlTypeSupportImpl::create_multitopic_datareader()
+{
+  typedef OpenDDS::DCPS::DataReaderImpl_T<TestControl> DataReaderImplType;
+  typedef OpenDDS::DCPS::MultiTopicDataReader_T<TestControl, DataReaderImplType> MultiTopicDataReaderImplType;
+  ::DDS::DataReader_ptr multitopic_reader_impl = ::DDS::DataReader::_nil();
+  ACE_NEW_NORETURN(multitopic_reader_impl,
+                   MultiTopicDataReaderImplType());
+  return multitopic_reader_impl;
+}
+#endif /* !OPENDDS_NO_MULTI_TOPIC */
+
+#ifndef OPENDDS_SAFETY_PROFILE
+TestControl TestControlTypeSupportImpl::create_sample(::DDS::DynamicData_ptr src)
+{
+  TestControl value;
+  const ::DDS::ReturnCode_t rc = OpenDDS::DCPS::TypeSupportImpl_T<TestControl>::create_sample_rc(value, src);
+  if (rc != ::DDS::RETCODE_OK && OpenDDS::DCPS::log_level >= OpenDDS::DCPS::LogLevel::Warning) {
+    ACE_ERROR((LM_WARNING, "(%P|%t) WARNING: TestControlTypeSupportImpl::create_sample: "
+      "create_sample_rc failed: %C\n", OpenDDS::DCPS::retcode_to_string(rc)));
+  }
+  return value;
+}
+#endif
+
+#ifndef OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE
+const OpenDDS::DCPS::MetaStruct& TestControlTypeSupportImpl::getMetaStructForType() const
+{
+  return OpenDDS::DCPS::getMetaStruct<TestControl>();
+}
+#endif /* !OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE */
+
+namespace {
+  OpenDDS::DCPS::TypeSupportInitializer<TestControlTypeSupportImpl> ts_init_TestControl;
+}
+
+const OpenDDS::XTypes::TypeIdentifier& TestControlTypeSupportImpl::getMinimalTypeIdentifier() const
+{
+  return OpenDDS::DCPS::getMinimalTypeIdentifier<OpenDDS::DCPS::TestControl_xtag>();
+}
+
+const OpenDDS::XTypes::TypeMap& TestControlTypeSupportImpl::getMinimalTypeMap() const
+{
+  return OpenDDS::DCPS::getMinimalTypeMap<OpenDDS::DCPS::TestControl_xtag>();
+}
+
+const OpenDDS::XTypes::TypeIdentifier& TestControlTypeSupportImpl::getCompleteTypeIdentifier() const
+{
+  static OpenDDS::XTypes::TypeIdentifier ti;
+  return ti;
+}
+
+const OpenDDS::XTypes::TypeMap& TestControlTypeSupportImpl::getCompleteTypeMap() const
+{
+  static OpenDDS::XTypes::TypeMap tm;
+  return tm;
+}
+
+::DDS::ReturnCode_t TestControlTypeSupportImpl::encode_to_string(const TestControl& in, CORBA::String_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_WRITER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+    OpenDDS::DCPS::JsonValueWriter<rapidjson::Writer<rapidjson::StringBuffer> > jvw(writer);
+    if (!vwrite(jvw, in)) {
+      return ::DDS::RETCODE_ERROR;
+    }
+    out = buffer.GetString();
+    return ::DDS::RETCODE_OK;
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = "";
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t TestControlTypeSupportImpl::encode_to_bytes(const TestControl& in, ::DDS::OctetSeq_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_WRITER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    CORBA::String_var buffer;
+    const ::DDS::ReturnCode_t ret = encode_to_string(in, buffer, format);
+    if (ret == ::DDS::RETCODE_OK) {
+      const ::DDS::UInt32 len = static_cast< ::DDS::UInt32>(std::strlen(buffer));
+      out = new ::DDS::OctetSeq(len);
+      out->length(len);
+      std::memcpy(out->get_buffer(), buffer, len);
+      return ::DDS::RETCODE_OK;
+    } else {
+      out = new ::DDS::OctetSeq();
+      return ret;
+    }
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = new ::DDS::OctetSeq();
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t TestControlTypeSupportImpl::decode_from_string(const char* in, TestControl_out param, OpenDDS::DCPS::RepresentationFormat* format)
+{
+  TestControl* out = &param;
+  OpenDDS::DCPS::set_default(*out);
+#if OPENDDS_HAS_JSON_VALUE_READER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    rapidjson::StringStream buffer(in);
+    OpenDDS::DCPS::JsonValueReader<> jvr(buffer);
+    return vread(jvr, *out) ? ::DDS::RETCODE_OK : ::DDS::RETCODE_ERROR;
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t TestControlTypeSupportImpl::decode_from_bytes(const ::DDS::OctetSeq& in, TestControl_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_READER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    return decode_from_string(reinterpret_cast<const char*>(in.get_buffer()), out, format);
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = TestControl();
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+TestControlTypeSupport::_ptr_type TestControlTypeSupportImpl::_narrow(CORBA::Object_ptr obj)
+{
+  return TypeSupportType::_narrow(obj);
+}
 #ifndef OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
@@ -453,7 +754,7 @@ struct MetaStructImpl< ::TestControl> : MetaStruct {
 
   void deallocate(void* stru) const { delete static_cast<T*>(stru); }
 
-  size_t numDcpsKeys() const { return 0; }
+  size_t numDcpsKeys() const { return 1; }
 
 #endif /* OPENDDS_NO_MULTI_TOPIC */
 
@@ -749,7 +1050,8 @@ public:
       const NestedKeyOnly<const  ::TestControl> nested_key_only(value_);
       DCPS::serialized_size(enc, size, nested_key_only);
     } else {
-      return false; // Non-topic type
+      KeyOnly<const  ::TestControl> key_only(value_);
+      DCPS::serialized_size(enc, size, key_only);
     }
     return true;
   }
@@ -763,7 +1065,8 @@ public:
       NestedKeyOnly<const  ::TestControl> nested_key_only(value_);
       return ser << nested_key_only;
     } else {
-      return false; // Non-topic type
+      KeyOnly<const  ::TestControl> key_only(value_);
+      return ser << key_only;
     }
   }
 
@@ -919,7 +1222,7 @@ namespace OpenDDS { namespace DCPS {
 namespace {
 XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)()
 {
-  static const unsigned char to_bytes[] = { 115, 0, 0, 0, 241, 81, 10, 0, 1, 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 6, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 33, 0, 4, 46, 6, 205, 164, 0, 11, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 234, 43, 38, 118, 0, 11, 0, 0, 0, 2, 0, 0, 0, 1, 0, 4, 162, 7, 115, 172, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1, 139, 156, 43, 186, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 4, 255, 24, 221, 134, 0, 11, 0, 0, 0, 5, 0, 0, 0, 1, 0, 4, 169, 2, 0, 26  };
+  static const unsigned char to_bytes[] = { 115, 0, 0, 0, 241, 81, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 6, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 33, 0, 4, 46, 6, 205, 164, 0, 11, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 234, 43, 38, 118, 0, 11, 0, 0, 0, 2, 0, 0, 0, 1, 0, 4, 162, 7, 115, 172, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1, 139, 156, 43, 186, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 4, 255, 24, 221, 134, 0, 11, 0, 0, 0, 5, 0, 0, 0, 1, 0, 4, 169, 2, 0, 26  };
   XTypes::TypeObject to;
   if (!to_type_object(to_bytes, sizeof(to_bytes), to)) {
     throw std::runtime_error("Could not deserialize minimal Type Object 0");
@@ -930,7 +1233,7 @@ XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)()
 XTypes::TypeMap OPENDDS_IDL_FILE_SPECIFIC(get_minimal_type_map_private, 0)()
 {
   XTypes::TypeMap tm;
-  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(183, 151, 46, 4, 221, 39, 214, 79, 51, 161, 239, 57, 47, 50))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)();
+  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(0, 64, 75, 171, 150, 13, 34, 136, 201, 230, 69, 62, 149, 208))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)();
   return tm;
 }
 

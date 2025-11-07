@@ -2,12 +2,15 @@
 
 #include "ITopic.h"
 
+class ParticipantManager;
+
 template <typename T>
 class IPub
 {
 public:
     virtual ~IPub() = default;
 
+    virtual void set_participant_manager(ParticipantManager* participant_manager){}
     virtual bool init() = 0;
     virtual bool publish(T& instance) = 0;
     virtual bool publish_loan(size_t count) = 0;

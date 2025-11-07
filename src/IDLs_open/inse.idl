@@ -212,6 +212,7 @@ struct MovementAirEntity
     //};
 
 // Air Entity
+@topic
 @extensibility(FINAL)
 struct AirEntity
 {

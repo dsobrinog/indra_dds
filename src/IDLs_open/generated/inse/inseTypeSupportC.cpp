@@ -30,10 +30,770 @@
 #include "tao/AnyTypeCode/Null_RefCount_Policy.h"
 #include "tao/AnyTypeCode/TypeCode_Constants.h"
 #include "tao/AnyTypeCode/Alias_TypeCode_Static.h"
+#include "tao/AnyTypeCode/Objref_TypeCode_Static.h"
+#include "tao/AnyTypeCode/Sequence_TypeCode_Static.h"
+#include "tao/AnyTypeCode/String_TypeCode_Static.h"
 #include "tao/CDR.h"
 #include "tao/CDR.h"
+#include "tao/AnyTypeCode/Any.h"
+#include "tao/AnyTypeCode/Any_Impl_T.h"
+#include "tao/AnyTypeCode/Any_Dual_Impl_T.h"
+#include "ace/OS_NS_string.h"
 
 #if !defined (__ACE_INLINE__)
 #include "inseTypeSupportC.inl"
 #endif /* !defined INLINE */
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/alias_typecode.cpp:47
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_defn.cpp:457
+
+
+#ifndef _TAO_TYPECODE_AirEntitySeq_GUARD
+#define _TAO_TYPECODE_AirEntitySeq_GUARD
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+namespace TAO
+{
+  namespace TypeCode
+  {
+    namespace
+    {
+      TAO::TypeCode::Sequence< ::CORBA::TypeCode_ptr const *,
+                              TAO::Null_RefCount_Policy>
+        AirEntitySeq_0 (
+          ::CORBA::tk_sequence,
+          &_tc_AirEntity,
+          0U);
+        
+      ::CORBA::TypeCode_ptr const tc_AirEntitySeq_0 =
+        &AirEntitySeq_0;
+    }
+  }
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+#endif /* _TAO_TYPECODE_AirEntitySeq_GUARD */
+
+static TAO::TypeCode::Alias<char const *,
+                            ::CORBA::TypeCode_ptr const *,
+                            TAO::Null_RefCount_Policy>
+  _tao_tc_AirEntitySeq (
+    ::CORBA::tk_alias,
+    "IDL:AirEntitySeq:1.0",
+    "AirEntitySeq",
+    &TAO::TypeCode::tc_AirEntitySeq_0);
+  
+::CORBA::TypeCode_ptr const _tc_AirEntitySeq =
+  &_tao_tc_AirEntitySeq;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for AirEntityTypeSupport.
+
+AirEntityTypeSupport_ptr
+TAO::Objref_Traits<AirEntityTypeSupport>::duplicate (
+    AirEntityTypeSupport_ptr p)
+{
+  return AirEntityTypeSupport::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<AirEntityTypeSupport>::release (
+    AirEntityTypeSupport_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+AirEntityTypeSupport_ptr
+TAO::Objref_Traits<AirEntityTypeSupport>::nil (void)
+{
+  return AirEntityTypeSupport::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<AirEntityTypeSupport>::marshal (
+    const AirEntityTypeSupport_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+AirEntityTypeSupport::AirEntityTypeSupport (void)
+{}
+
+AirEntityTypeSupport::~AirEntityTypeSupport (void)
+{
+}
+
+void
+AirEntityTypeSupport::_tao_any_destructor (void *_tao_void_pointer)
+{
+  AirEntityTypeSupport *_tao_tmp_pointer =
+    static_cast<AirEntityTypeSupport *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+AirEntityTypeSupport_ptr
+AirEntityTypeSupport::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityTypeSupport::_duplicate (
+      dynamic_cast<AirEntityTypeSupport_ptr> (_tao_objref));
+}
+
+AirEntityTypeSupport_ptr
+AirEntityTypeSupport::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityTypeSupport::_duplicate (
+      dynamic_cast<AirEntityTypeSupport_ptr> (_tao_objref));
+}
+
+AirEntityTypeSupport_ptr
+AirEntityTypeSupport::_nil (void)
+{
+  return 0;
+}
+
+AirEntityTypeSupport_ptr
+AirEntityTypeSupport::_duplicate (AirEntityTypeSupport_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+AirEntityTypeSupport::_tao_release (AirEntityTypeSupport_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+AirEntityTypeSupport::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/TypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:OpenDDS/DCPS/TypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:AirEntityTypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* AirEntityTypeSupport::_interface_repository_id (void) const
+{
+  return "IDL:AirEntityTypeSupport:1.0";
+}
+
+::CORBA::Boolean
+AirEntityTypeSupport::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_AirEntityTypeSupport (
+    ::CORBA::tk_local_interface,
+    "IDL:AirEntityTypeSupport:1.0",
+    "AirEntityTypeSupport");
+  
+::CORBA::TypeCode_ptr const _tc_AirEntityTypeSupport =
+  &_tao_tc_AirEntityTypeSupport;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for AirEntityDataWriter.
+
+AirEntityDataWriter_ptr
+TAO::Objref_Traits<AirEntityDataWriter>::duplicate (
+    AirEntityDataWriter_ptr p)
+{
+  return AirEntityDataWriter::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<AirEntityDataWriter>::release (
+    AirEntityDataWriter_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+AirEntityDataWriter_ptr
+TAO::Objref_Traits<AirEntityDataWriter>::nil (void)
+{
+  return AirEntityDataWriter::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<AirEntityDataWriter>::marshal (
+    const AirEntityDataWriter_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+AirEntityDataWriter::AirEntityDataWriter (void)
+{}
+
+AirEntityDataWriter::~AirEntityDataWriter (void)
+{
+}
+
+void
+AirEntityDataWriter::_tao_any_destructor (void *_tao_void_pointer)
+{
+  AirEntityDataWriter *_tao_tmp_pointer =
+    static_cast<AirEntityDataWriter *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+AirEntityDataWriter_ptr
+AirEntityDataWriter::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityDataWriter::_duplicate (
+      dynamic_cast<AirEntityDataWriter_ptr> (_tao_objref));
+}
+
+AirEntityDataWriter_ptr
+AirEntityDataWriter::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityDataWriter::_duplicate (
+      dynamic_cast<AirEntityDataWriter_ptr> (_tao_objref));
+}
+
+AirEntityDataWriter_ptr
+AirEntityDataWriter::_nil (void)
+{
+  return 0;
+}
+
+AirEntityDataWriter_ptr
+AirEntityDataWriter::_duplicate (AirEntityDataWriter_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+AirEntityDataWriter::_tao_release (AirEntityDataWriter_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+AirEntityDataWriter::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/Entity:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/DataWriter:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:AirEntityDataWriter:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* AirEntityDataWriter::_interface_repository_id (void) const
+{
+  return "IDL:AirEntityDataWriter:1.0";
+}
+
+::CORBA::Boolean
+AirEntityDataWriter::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_AirEntityDataWriter (
+    ::CORBA::tk_local_interface,
+    "IDL:AirEntityDataWriter:1.0",
+    "AirEntityDataWriter");
+  
+::CORBA::TypeCode_ptr const _tc_AirEntityDataWriter =
+  &_tao_tc_AirEntityDataWriter;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for AirEntityDataReader.
+
+AirEntityDataReader_ptr
+TAO::Objref_Traits<AirEntityDataReader>::duplicate (
+    AirEntityDataReader_ptr p)
+{
+  return AirEntityDataReader::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<AirEntityDataReader>::release (
+    AirEntityDataReader_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+AirEntityDataReader_ptr
+TAO::Objref_Traits<AirEntityDataReader>::nil (void)
+{
+  return AirEntityDataReader::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<AirEntityDataReader>::marshal (
+    const AirEntityDataReader_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+AirEntityDataReader::AirEntityDataReader (void)
+{}
+
+AirEntityDataReader::~AirEntityDataReader (void)
+{
+}
+
+void
+AirEntityDataReader::_tao_any_destructor (void *_tao_void_pointer)
+{
+  AirEntityDataReader *_tao_tmp_pointer =
+    static_cast<AirEntityDataReader *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+AirEntityDataReader_ptr
+AirEntityDataReader::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityDataReader::_duplicate (
+      dynamic_cast<AirEntityDataReader_ptr> (_tao_objref));
+}
+
+AirEntityDataReader_ptr
+AirEntityDataReader::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return AirEntityDataReader::_duplicate (
+      dynamic_cast<AirEntityDataReader_ptr> (_tao_objref));
+}
+
+AirEntityDataReader_ptr
+AirEntityDataReader::_nil (void)
+{
+  return 0;
+}
+
+AirEntityDataReader_ptr
+AirEntityDataReader::_duplicate (AirEntityDataReader_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+AirEntityDataReader::_tao_release (AirEntityDataReader_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+AirEntityDataReader::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/Entity:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/DataReader:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:OpenDDS/DCPS/DataReaderEx:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:AirEntityDataReader:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* AirEntityDataReader::_interface_repository_id (void) const
+{
+  return "IDL:AirEntityDataReader:1.0";
+}
+
+::CORBA::Boolean
+AirEntityDataReader::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_AirEntityDataReader (
+    ::CORBA::tk_local_interface,
+    "IDL:AirEntityDataReader:1.0",
+    "AirEntityDataReader");
+  
+::CORBA::TypeCode_ptr const _tc_AirEntityDataReader =
+  &_tao_tc_AirEntityDataReader;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityTypeSupport>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityTypeSupport>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityTypeSupport>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityTypeSupport_ptr _tao_elem)
+{
+  AirEntityTypeSupport_ptr _tao_objptr =
+    AirEntityTypeSupport::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityTypeSupport_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<AirEntityTypeSupport>::insert (
+    _tao_any,
+    AirEntityTypeSupport::_tao_any_destructor,
+    _tc_AirEntityTypeSupport,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    AirEntityTypeSupport_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<AirEntityTypeSupport>::extract (
+        _tao_any,
+        AirEntityTypeSupport::_tao_any_destructor,
+        _tc_AirEntityTypeSupport,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataWriter>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataWriter>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataWriter>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityDataWriter_ptr _tao_elem)
+{
+  AirEntityDataWriter_ptr _tao_objptr =
+    AirEntityDataWriter::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityDataWriter_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<AirEntityDataWriter>::insert (
+    _tao_any,
+    AirEntityDataWriter::_tao_any_destructor,
+    _tc_AirEntityDataWriter,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    AirEntityDataWriter_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<AirEntityDataWriter>::extract (
+        _tao_any,
+        AirEntityDataWriter::_tao_any_destructor,
+        _tc_AirEntityDataWriter,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataReader>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataReader>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<AirEntityDataReader>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityDataReader_ptr _tao_elem)
+{
+  AirEntityDataReader_ptr _tao_objptr =
+    AirEntityDataReader::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  AirEntityDataReader_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<AirEntityDataReader>::insert (
+    _tao_any,
+    AirEntityDataReader::_tao_any_destructor,
+    _tc_AirEntityDataReader,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    AirEntityDataReader_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<AirEntityDataReader>::extract (
+        _tao_any,
+        AirEntityDataReader::_tao_any_destructor,
+        _tc_AirEntityDataReader,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 

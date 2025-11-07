@@ -30,10 +30,770 @@
 #include "tao/AnyTypeCode/Null_RefCount_Policy.h"
 #include "tao/AnyTypeCode/TypeCode_Constants.h"
 #include "tao/AnyTypeCode/Alias_TypeCode_Static.h"
+#include "tao/AnyTypeCode/Objref_TypeCode_Static.h"
+#include "tao/AnyTypeCode/Sequence_TypeCode_Static.h"
+#include "tao/AnyTypeCode/String_TypeCode_Static.h"
 #include "tao/CDR.h"
 #include "tao/CDR.h"
+#include "tao/AnyTypeCode/Any.h"
+#include "tao/AnyTypeCode/Any_Impl_T.h"
+#include "tao/AnyTypeCode/Any_Dual_Impl_T.h"
+#include "ace/OS_NS_string.h"
 
 #if !defined (__ACE_INLINE__)
 #include "test_controlTypeSupportC.inl"
 #endif /* !defined INLINE */
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/alias_typecode.cpp:47
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/typecode_defn.cpp:457
+
+
+#ifndef _TAO_TYPECODE_TestControlSeq_GUARD
+#define _TAO_TYPECODE_TestControlSeq_GUARD
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+namespace TAO
+{
+  namespace TypeCode
+  {
+    namespace
+    {
+      TAO::TypeCode::Sequence< ::CORBA::TypeCode_ptr const *,
+                              TAO::Null_RefCount_Policy>
+        TestControlSeq_0 (
+          ::CORBA::tk_sequence,
+          &_tc_TestControl,
+          0U);
+        
+      ::CORBA::TypeCode_ptr const tc_TestControlSeq_0 =
+        &TestControlSeq_0;
+    }
+  }
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+#endif /* _TAO_TYPECODE_TestControlSeq_GUARD */
+
+static TAO::TypeCode::Alias<char const *,
+                            ::CORBA::TypeCode_ptr const *,
+                            TAO::Null_RefCount_Policy>
+  _tao_tc_TestControlSeq (
+    ::CORBA::tk_alias,
+    "IDL:TestControlSeq:1.0",
+    "TestControlSeq",
+    &TAO::TypeCode::tc_TestControlSeq_0);
+  
+::CORBA::TypeCode_ptr const _tc_TestControlSeq =
+  &_tao_tc_TestControlSeq;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for TestControlTypeSupport.
+
+TestControlTypeSupport_ptr
+TAO::Objref_Traits<TestControlTypeSupport>::duplicate (
+    TestControlTypeSupport_ptr p)
+{
+  return TestControlTypeSupport::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<TestControlTypeSupport>::release (
+    TestControlTypeSupport_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+TestControlTypeSupport_ptr
+TAO::Objref_Traits<TestControlTypeSupport>::nil (void)
+{
+  return TestControlTypeSupport::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<TestControlTypeSupport>::marshal (
+    const TestControlTypeSupport_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+TestControlTypeSupport::TestControlTypeSupport (void)
+{}
+
+TestControlTypeSupport::~TestControlTypeSupport (void)
+{
+}
+
+void
+TestControlTypeSupport::_tao_any_destructor (void *_tao_void_pointer)
+{
+  TestControlTypeSupport *_tao_tmp_pointer =
+    static_cast<TestControlTypeSupport *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+TestControlTypeSupport_ptr
+TestControlTypeSupport::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlTypeSupport::_duplicate (
+      dynamic_cast<TestControlTypeSupport_ptr> (_tao_objref));
+}
+
+TestControlTypeSupport_ptr
+TestControlTypeSupport::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlTypeSupport::_duplicate (
+      dynamic_cast<TestControlTypeSupport_ptr> (_tao_objref));
+}
+
+TestControlTypeSupport_ptr
+TestControlTypeSupport::_nil (void)
+{
+  return 0;
+}
+
+TestControlTypeSupport_ptr
+TestControlTypeSupport::_duplicate (TestControlTypeSupport_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+TestControlTypeSupport::_tao_release (TestControlTypeSupport_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+TestControlTypeSupport::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/TypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:OpenDDS/DCPS/TypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:TestControlTypeSupport:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* TestControlTypeSupport::_interface_repository_id (void) const
+{
+  return "IDL:TestControlTypeSupport:1.0";
+}
+
+::CORBA::Boolean
+TestControlTypeSupport::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_TestControlTypeSupport (
+    ::CORBA::tk_local_interface,
+    "IDL:TestControlTypeSupport:1.0",
+    "TestControlTypeSupport");
+  
+::CORBA::TypeCode_ptr const _tc_TestControlTypeSupport =
+  &_tao_tc_TestControlTypeSupport;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for TestControlDataWriter.
+
+TestControlDataWriter_ptr
+TAO::Objref_Traits<TestControlDataWriter>::duplicate (
+    TestControlDataWriter_ptr p)
+{
+  return TestControlDataWriter::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<TestControlDataWriter>::release (
+    TestControlDataWriter_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+TestControlDataWriter_ptr
+TAO::Objref_Traits<TestControlDataWriter>::nil (void)
+{
+  return TestControlDataWriter::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<TestControlDataWriter>::marshal (
+    const TestControlDataWriter_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+TestControlDataWriter::TestControlDataWriter (void)
+{}
+
+TestControlDataWriter::~TestControlDataWriter (void)
+{
+}
+
+void
+TestControlDataWriter::_tao_any_destructor (void *_tao_void_pointer)
+{
+  TestControlDataWriter *_tao_tmp_pointer =
+    static_cast<TestControlDataWriter *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+TestControlDataWriter_ptr
+TestControlDataWriter::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlDataWriter::_duplicate (
+      dynamic_cast<TestControlDataWriter_ptr> (_tao_objref));
+}
+
+TestControlDataWriter_ptr
+TestControlDataWriter::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlDataWriter::_duplicate (
+      dynamic_cast<TestControlDataWriter_ptr> (_tao_objref));
+}
+
+TestControlDataWriter_ptr
+TestControlDataWriter::_nil (void)
+{
+  return 0;
+}
+
+TestControlDataWriter_ptr
+TestControlDataWriter::_duplicate (TestControlDataWriter_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+TestControlDataWriter::_tao_release (TestControlDataWriter_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+TestControlDataWriter::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/Entity:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/DataWriter:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:TestControlDataWriter:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* TestControlDataWriter::_interface_repository_id (void) const
+{
+  return "IDL:TestControlDataWriter:1.0";
+}
+
+::CORBA::Boolean
+TestControlDataWriter::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_TestControlDataWriter (
+    ::CORBA::tk_local_interface,
+    "IDL:TestControlDataWriter:1.0",
+    "TestControlDataWriter");
+  
+::CORBA::TypeCode_ptr const _tc_TestControlDataWriter =
+  &_tao_tc_TestControlDataWriter;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/interface_cs.cpp:47
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+// Traits specializations for TestControlDataReader.
+
+TestControlDataReader_ptr
+TAO::Objref_Traits<TestControlDataReader>::duplicate (
+    TestControlDataReader_ptr p)
+{
+  return TestControlDataReader::_duplicate (p);
+}
+
+void
+TAO::Objref_Traits<TestControlDataReader>::release (
+    TestControlDataReader_ptr p)
+{
+  ::CORBA::release (p);
+}
+
+TestControlDataReader_ptr
+TAO::Objref_Traits<TestControlDataReader>::nil (void)
+{
+  return TestControlDataReader::_nil ();
+}
+
+::CORBA::Boolean
+TAO::Objref_Traits<TestControlDataReader>::marshal (
+    const TestControlDataReader_ptr p,
+    TAO_OutputCDR & cdr)
+{
+  return ::CORBA::Object::marshal (p, cdr);
+}
+
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+
+TestControlDataReader::TestControlDataReader (void)
+{}
+
+TestControlDataReader::~TestControlDataReader (void)
+{
+}
+
+void
+TestControlDataReader::_tao_any_destructor (void *_tao_void_pointer)
+{
+  TestControlDataReader *_tao_tmp_pointer =
+    static_cast<TestControlDataReader *> (_tao_void_pointer);
+  ::CORBA::release (_tao_tmp_pointer);
+}
+
+TestControlDataReader_ptr
+TestControlDataReader::_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlDataReader::_duplicate (
+      dynamic_cast<TestControlDataReader_ptr> (_tao_objref));
+}
+
+TestControlDataReader_ptr
+TestControlDataReader::_unchecked_narrow (
+    ::CORBA::Object_ptr _tao_objref)
+{
+  return TestControlDataReader::_duplicate (
+      dynamic_cast<TestControlDataReader_ptr> (_tao_objref));
+}
+
+TestControlDataReader_ptr
+TestControlDataReader::_nil (void)
+{
+  return 0;
+}
+
+TestControlDataReader_ptr
+TestControlDataReader::_duplicate (TestControlDataReader_ptr obj)
+{
+  if (! ::CORBA::is_nil (obj))
+    {
+      obj->_add_ref ();
+    }
+  return obj;
+}
+
+void
+TestControlDataReader::_tao_release (TestControlDataReader_ptr obj)
+{
+  ::CORBA::release (obj);
+}
+
+::CORBA::Boolean
+TestControlDataReader::_is_a (const char *value)
+{
+  if (
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/Entity:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:DDS/DataReader:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:OpenDDS/DCPS/DataReaderEx:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:TestControlDataReader:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/LocalObject:1.0"
+        ) == 0 ||
+      ACE_OS::strcmp (
+          value,
+          "IDL:omg.org/CORBA/Object:1.0"
+        ) == 0
+    )
+    {
+      return true; // success using local knowledge
+    }
+  else
+    {
+      return false;
+    }
+}
+
+const char* TestControlDataReader::_interface_repository_id (void) const
+{
+  return "IDL:TestControlDataReader:1.0";
+}
+
+::CORBA::Boolean
+TestControlDataReader::marshal (TAO_OutputCDR & /* cdr */)
+{
+  return false;
+}
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_typecode/objref_typecode.cpp:68
+
+static TAO::TypeCode::Objref<char const *,
+                             TAO::Null_RefCount_Policy>
+  _tao_tc_TestControlDataReader (
+    ::CORBA::tk_local_interface,
+    "IDL:TestControlDataReader:1.0",
+    "TestControlDataReader");
+  
+::CORBA::TypeCode_ptr const _tc_TestControlDataReader =
+  &_tao_tc_TestControlDataReader;
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlTypeSupport>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlTypeSupport>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlTypeSupport>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlTypeSupport_ptr _tao_elem)
+{
+  TestControlTypeSupport_ptr _tao_objptr =
+    TestControlTypeSupport::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlTypeSupport_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<TestControlTypeSupport>::insert (
+    _tao_any,
+    TestControlTypeSupport::_tao_any_destructor,
+    _tc_TestControlTypeSupport,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    TestControlTypeSupport_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<TestControlTypeSupport>::extract (
+        _tao_any,
+        TestControlTypeSupport::_tao_any_destructor,
+        _tc_TestControlTypeSupport,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataWriter>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataWriter>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataWriter>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlDataWriter_ptr _tao_elem)
+{
+  TestControlDataWriter_ptr _tao_objptr =
+    TestControlDataWriter::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlDataWriter_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<TestControlDataWriter>::insert (
+    _tao_any,
+    TestControlDataWriter::_tao_any_destructor,
+    _tc_TestControlDataWriter,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    TestControlDataWriter_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<TestControlDataWriter>::extract (
+        _tao_any,
+        TestControlDataWriter::_tao_any_destructor,
+        _tc_TestControlDataWriter,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+// TAO_IDL - Generated from
+// /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_interface/any_op_cs.cpp:37
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataReader>::to_object (
+      ::CORBA::Object_ptr &_tao_elem) const
+  {
+    _tao_elem = ::CORBA::Object::_duplicate (this->value_);
+    return true;
+  }
+}
+
+namespace TAO
+{
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataReader>::marshal_value (TAO_OutputCDR &)
+  {
+    return false;
+  }
+
+  template<>
+  ::CORBA::Boolean
+  Any_Impl_T<TestControlDataReader>::demarshal_value (TAO_InputCDR &)
+  {
+    return false;
+  }
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace CORBA {
+
+
+
+/// Copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlDataReader_ptr _tao_elem)
+{
+  TestControlDataReader_ptr _tao_objptr =
+    TestControlDataReader::_duplicate (_tao_elem);
+  _tao_any <<= &_tao_objptr;
+}
+
+/// Non-copying insertion.
+void
+operator<<= (
+  ::CORBA::Any &_tao_any,
+  TestControlDataReader_ptr *_tao_elem)
+{
+  TAO::Any_Impl_T<TestControlDataReader>::insert (
+    _tao_any,
+    TestControlDataReader::_tao_any_destructor,
+    _tc_TestControlDataReader,
+    *_tao_elem);
+}
+
+::CORBA::Boolean
+operator>>= (
+    const ::CORBA::Any &_tao_any,
+    TestControlDataReader_ptr &_tao_elem)
+{
+  return
+    TAO::Any_Impl_T<TestControlDataReader>::extract (
+        _tao_any,
+        TestControlDataReader::_tao_any_destructor,
+        _tc_TestControlDataReader,
+        _tao_elem);
+}
+
+}
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 

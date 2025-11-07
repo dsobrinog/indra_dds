@@ -35,6 +35,14 @@
                 {
                     "name": "LD_LIBRARY_PATH",
                     "value": "${workspaceFolder}/lib/Fast-DDS/install/lib:/opt/cyclonedds/install/lib:/opt/cyclonedds/install/cxx/lib"
+                },
+                {
+                    "name": "DCPSInfoRepo",
+                    "value": "file:///workspaces/testdds/tools/repo.ior"
+                },
+                {
+                    "name": "DDS_ROOT",
+                    "value": "/workspaces/testdds/lib/OpenDDS"  
                 }
             ],
             "externalConsole": false,

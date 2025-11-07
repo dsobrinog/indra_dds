@@ -25,16 +25,24 @@
 // TAO_IDL - Generated from
 // /workspaces/testdds/lib/OpenDDS/OpenDDS/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:454
 
-#ifndef _TAO_IDL__WORKSPACES_TESTDDS_SRC_IDLS_OPEN_GENERATED_TEST_CONTROL_TEST_CONTROLTYPESUPPORTS_X0XHEH_H_
-#define _TAO_IDL__WORKSPACES_TESTDDS_SRC_IDLS_OPEN_GENERATED_TEST_CONTROL_TEST_CONTROLTYPESUPPORTS_X0XHEH_H_
+#ifndef _TAO_IDL___GENERATED_TEST_CONTROL_TEST_CONTROLTYPESUPPORTS_4PH0PP_H_
+#define _TAO_IDL___GENERATED_TEST_CONTROL_TEST_CONTROLTYPESUPPORTS_4PH0PP_H_
 
 
 #include "test_controlTypeSupportC.h"
-#include "test_controlS.h"
+// #include "test_controlS.h"
+#include "dds/DdsDcpsInfrastructureS.h"
+#include "dds/DdsDcpsPublicationS.h"
+#include "dds/DdsDcpsSubscriptionExtS.h"
+#include "dds/DdsDcpsTopicS.h"
+#include "dds/DdsDcpsTypeSupportExtS.h"
+#include "dds/DdsDynamicDataS.h"
 #include "tao/PortableServer/Basic_SArguments.h"
 #include "tao/PortableServer/Special_Basic_SArguments.h"
 #include "tao/PortableServer/Fixed_Size_SArgument_T.h"
 #include "tao/PortableServer/Var_Size_SArgument_T.h"
+#include "tao/PortableServer/Object_SArg_Traits.h"
+#include "tao/PortableServer/UB_String_SArguments.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once

@@ -17,8 +17,6 @@
 
 using namespace eprosima::fastdds::dds;
 
-
-
 class FastSubControl : public ISubControl
 {
 public:

@@ -5,6 +5,7 @@
 #include "stress_test/core/tests/1_1/sub_test_1_to_1.h"
 
 #include "stress_test/DDSFactory.h"
+#include "stress_test/DDSParticipantManager.h"
 
 // idls fast
 #ifdef USE_FAST_DDS
@@ -19,22 +20,25 @@
 
 cl_dds::cl_dds(int moduleId, int mode, Executive * _exec) : cl_module(moduleId, _exec)
 {
-   
 }
 
 cl_dds::cl_dds(test_config _config, Executive* _exec) : cl_module(0, _exec), config(_config)
 {
     if(config.manual_mode)
         config.listener_number = 1;
+    
 }
 
 cl_dds::~cl_dds()
 {
+    delete participant_factory;
 }
 
 
 void cl_dds::init()
 {
+    participant_factory = new ParticipantManagerFactory();
+
     #ifdef USE_FAST_DDS
         current_library = DDS_Library::FastDDS;
     #endif
@@ -95,11 +99,15 @@ void cl_dds::test_patterns(int mode)
         number = mode;
     }
 
+    auto domain_participant = participant_factory->create();
+
     switch (number)
     {
         case TestMode::One_to_One_Pub:
         {
             auto pub_control_impl = DDSFactory::createPublisherControl();
+            pub_control_impl.get()->set_participant_manager(domain_participant.get());
+
             // Each nested case must have braces
             switch (current_library)
             {
@@ -125,6 +133,7 @@ void cl_dds::test_patterns(int mode)
                 {
                     #ifdef USE_OPEN_DDS
                         auto pub_impl = DDSFactory::createPublisher<::AirEntity>();
+                        pub_impl.get()->set_participant_manager(domain_participant.get());
                         p_pattern = new pub_test_1_to_1<::AirEntity>(this, config, std::move(pub_impl), std::move(pub_control_impl));
                     #endif
                     break;
@@ -138,6 +147,7 @@ void cl_dds::test_patterns(int mode)
         {
             // SUB - 
             auto sub_control_impl = DDSFactory::createSubscriberControl();
+            sub_control_impl.get()->set_participant_manager(domain_participant.get());
 
             switch (current_library)
             {
@@ -165,6 +175,7 @@ void cl_dds::test_patterns(int mode)
                 {
                     #ifdef USE_OPEN_DDS
                         auto sub_impl = DDSFactory::createSubscriber();
+                        sub_impl.get()->set_participant_manager(domain_participant.get());
                         p_pattern = new sub_test_1_to_1(this, config, std::move(sub_impl), std::move(sub_control_impl));
                     #endif
 

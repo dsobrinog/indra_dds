@@ -11,6 +11,7 @@
 
 
 class pattern_base;
+class ParticipantManagerFactory;
 
 class cl_dds : public cl_module
 {
@@ -41,6 +42,8 @@ public:
         OpenDDS = 2,
         RtiDDS = 3
     } current_library = DDS_Library::FastDDS;
+
+    ParticipantManagerFactory* participant_factory = nullptr;
 
 private:
     test_config config;

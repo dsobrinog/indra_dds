@@ -4,13 +4,33 @@
 #include <cstring>
 #include <stdexcept>
 #include <utility>
+#include "dds/DCPS/BuiltInTopicUtils.h"
+#include "dds/DCPS/ContentFilteredTopicImpl.h"
+#include "dds/DCPS/DataReaderImpl_T.h"
+#include "dds/DCPS/DataWriterImpl_T.h"
 #include "dds/DCPS/FilterEvaluator.h"
+#include "dds/DCPS/MultiTopicDataReader_T.h"
 #include "dds/DCPS/PoolAllocator.h"
+#include "dds/DCPS/PublicationInstance.h"
+#include "dds/DCPS/PublisherImpl.h"
+#include "dds/DCPS/Qos_Helper.h"
+#include "dds/DCPS/RakeData.h"
+#include "dds/DCPS/RakeResults_T.h"
+#include "dds/DCPS/ReceivedDataElementList.h"
+#include "dds/DCPS/Registered_Data_Types.h"
+#include "dds/DCPS/Service_Participant.h"
+#include "dds/DCPS/SubscriberImpl.h"
+#include "dds/DCPS/Util.h"
+#include "dds/DCPS/XTypes/TypeObject.h"
+#include "dds/DCPS/debug.h"
+#include "dds/DdsDcpsDomainC.h"
+#include "dds/DCPS/JsonValueReader.h"
+#include "dds/DCPS/JsonValueWriter.h"
 
 #ifdef OPENDDS_IDL_FILE_SPECIFIC
 #  undef OPENDDS_IDL_FILE_SPECIFIC
 #endif
-#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_insetypesupportimpl_cpp_kvlt00##_##base##index
+#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_insetypesupportimpl_cpp_00z8fl##_##base##index
 
 
 
@@ -6149,7 +6169,7 @@ template<> const XTypes::TypeIdentifier& getMinimalTypeIdentifier<AirEntity_xtag
   static XTypes::TypeIdentifier ti;
   ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, TheServiceParticipant->get_static_xtypes_lock(), ti);
   if (ti.kind() == XTypes::TK_NONE) {
-    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(202, 203, 129, 135, 110, 6, 225, 225, 212, 176, 27, 72, 37, 114));
+    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(171, 235, 44, 82, 237, 195, 183, 169, 151, 123, 12, 117, 29, 84));
   }
   return ti;
 }
@@ -6212,6 +6232,28 @@ bool vread(OpenDDS::DCPS::ValueReader& value_reader,  ::AirEntity& value)
 }
 
 bool vread(OpenDDS::DCPS::ValueReader& value_reader, const NestedKeyOnly< ::AirEntity>& value)
+{
+  ACE_UNUSED_ARG(value_reader);
+  ACE_UNUSED_ARG(value);
+  static const ListMemberHelper::Pair pairs[] = {{"id",0},{0,0}};
+  ListMemberHelper helper(pairs);
+  if (!value_reader.begin_struct(OpenDDS::DCPS::FINAL)) return false;
+  XTypes::MemberId member_id;
+  while (value_reader.members_remaining()) {
+    if (!value_reader.begin_struct_member(member_id, helper)) return false;
+    switch (member_id) {
+    case 0: {
+      if (!value_reader.read_int32(value.value.id())) return false;
+      break;
+    }
+    }
+    if (!value_reader.end_struct_member()) return false;
+  }
+  if (!value_reader.end_struct()) return false;
+  return true;
+}
+
+bool vread(OpenDDS::DCPS::ValueReader& value_reader, const KeyOnly< ::AirEntity>& value)
 {
   ACE_UNUSED_ARG(value_reader);
   ACE_UNUSED_ARG(value);
@@ -6387,6 +6429,32 @@ bool vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const NestedKeyOnly<const 
   return value_writer.end_struct();
 }
 
+bool vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const KeyOnly<const  ::AirEntity>& value)
+{
+  ACE_UNUSED_ARG(value_writer);
+  ACE_UNUSED_ARG(value);
+  if (!value_writer.begin_struct(OpenDDS::DCPS::FINAL)) {
+    return false;
+  }
+  {
+    MemberParam param(0, true, "id", false, true);
+    if (!value_writer.begin_struct_member(param)) {
+      return false;
+    }
+    if (param.present) {
+      if (!value_writer.write_int32(value.value.id())) {
+        return false;
+      }
+    } else {
+      value_writer.write_absent_value();
+    }
+    if (!value_writer.end_struct_member()) {
+      return false;
+    }
+  }
+  return value_writer.end_struct();
+}
+
 } }
 OPENDDS_END_VERSIONED_NAMESPACE_DECL
 
@@ -6475,9 +6543,211 @@ bool operator>>(Serializer& strm, const NestedKeyOnly< ::AirEntity>& stru)
   return (strm >> stru.value.id());
 }
 
+void serialized_size(const Encoding& encoding, size_t& size, const KeyOnly<const ::AirEntity>& stru)
+{
+  ACE_UNUSED_ARG(encoding);
+  ACE_UNUSED_ARG(size);
+  ACE_UNUSED_ARG(stru);
+  primitive_serialized_size(encoding, size, stru.value.id());
+}
+
+bool operator<<(Serializer& strm, const KeyOnly<const ::AirEntity>& stru)
+{
+  ACE_UNUSED_ARG(strm);
+  ACE_UNUSED_ARG(stru);
+  const Encoding& encoding = strm.encoding();
+  ACE_UNUSED_ARG(encoding);
+  return (strm << stru.value.id());
+}
+
+bool operator>>(Serializer& strm, const KeyOnly< ::AirEntity>& stru)
+{
+  ACE_UNUSED_ARG(strm);
+  ACE_UNUSED_ARG(stru);
+  const Encoding& encoding = strm.encoding();
+  ACE_UNUSED_ARG(encoding);
+  return (strm >> stru.value.id());
+}
+
 } }
 OPENDDS_END_VERSIONED_NAMESPACE_DECL
 
+OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
+namespace OpenDDS {
+namespace DCPS {
+bool DDSTraits< ::AirEntity>::is_key(const char* field)
+{
+  ACE_UNUSED_ARG(field);
+  if (!ACE_OS::strcmp(field, "id")) {
+    return true;
+  }
+  return false;
+}
+} // namespace DCPS
+} // namespace OpenDDS
+OPENDDS_END_VERSIONED_NAMESPACE_DECL
+
+::DDS::DataWriter_ptr AirEntityTypeSupportImpl::create_datawriter()
+{
+  typedef OpenDDS::DCPS::DataWriterImpl_T<AirEntity> DataWriterImplType;
+  ::DDS::DataWriter_ptr writer_impl = ::DDS::DataWriter::_nil();
+  ACE_NEW_NORETURN(writer_impl,
+                   DataWriterImplType());
+  return writer_impl;
+}
+
+::DDS::DataReader_ptr AirEntityTypeSupportImpl::create_datareader()
+{
+  typedef OpenDDS::DCPS::DataReaderImpl_T<AirEntity> DataReaderImplType;
+  ::DDS::DataReader_ptr reader_impl = ::DDS::DataReader::_nil();
+  ACE_NEW_NORETURN(reader_impl,
+                   DataReaderImplType());
+  return reader_impl;
+}
+
+#ifndef OPENDDS_NO_MULTI_TOPIC
+::DDS::DataReader_ptr AirEntityTypeSupportImpl::create_multitopic_datareader()
+{
+  typedef OpenDDS::DCPS::DataReaderImpl_T<AirEntity> DataReaderImplType;
+  typedef OpenDDS::DCPS::MultiTopicDataReader_T<AirEntity, DataReaderImplType> MultiTopicDataReaderImplType;
+  ::DDS::DataReader_ptr multitopic_reader_impl = ::DDS::DataReader::_nil();
+  ACE_NEW_NORETURN(multitopic_reader_impl,
+                   MultiTopicDataReaderImplType());
+  return multitopic_reader_impl;
+}
+#endif /* !OPENDDS_NO_MULTI_TOPIC */
+
+#ifndef OPENDDS_SAFETY_PROFILE
+AirEntity AirEntityTypeSupportImpl::create_sample(::DDS::DynamicData_ptr src)
+{
+  AirEntity value;
+  const ::DDS::ReturnCode_t rc = OpenDDS::DCPS::TypeSupportImpl_T<AirEntity>::create_sample_rc(value, src);
+  if (rc != ::DDS::RETCODE_OK && OpenDDS::DCPS::log_level >= OpenDDS::DCPS::LogLevel::Warning) {
+    ACE_ERROR((LM_WARNING, "(%P|%t) WARNING: AirEntityTypeSupportImpl::create_sample: "
+      "create_sample_rc failed: %C\n", OpenDDS::DCPS::retcode_to_string(rc)));
+  }
+  return value;
+}
+#endif
+
+#ifndef OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE
+const OpenDDS::DCPS::MetaStruct& AirEntityTypeSupportImpl::getMetaStructForType() const
+{
+  return OpenDDS::DCPS::getMetaStruct<AirEntity>();
+}
+#endif /* !OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE */
+
+namespace {
+  OpenDDS::DCPS::TypeSupportInitializer<AirEntityTypeSupportImpl> ts_init_AirEntity;
+}
+
+const OpenDDS::XTypes::TypeIdentifier& AirEntityTypeSupportImpl::getMinimalTypeIdentifier() const
+{
+  return OpenDDS::DCPS::getMinimalTypeIdentifier<OpenDDS::DCPS::AirEntity_xtag>();
+}
+
+const OpenDDS::XTypes::TypeMap& AirEntityTypeSupportImpl::getMinimalTypeMap() const
+{
+  return OpenDDS::DCPS::getMinimalTypeMap<OpenDDS::DCPS::AirEntity_xtag>();
+}
+
+const OpenDDS::XTypes::TypeIdentifier& AirEntityTypeSupportImpl::getCompleteTypeIdentifier() const
+{
+  static OpenDDS::XTypes::TypeIdentifier ti;
+  return ti;
+}
+
+const OpenDDS::XTypes::TypeMap& AirEntityTypeSupportImpl::getCompleteTypeMap() const
+{
+  static OpenDDS::XTypes::TypeMap tm;
+  return tm;
+}
+
+::DDS::ReturnCode_t AirEntityTypeSupportImpl::encode_to_string(const AirEntity& in, CORBA::String_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_WRITER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+    OpenDDS::DCPS::JsonValueWriter<rapidjson::Writer<rapidjson::StringBuffer> > jvw(writer);
+    if (!vwrite(jvw, in)) {
+      return ::DDS::RETCODE_ERROR;
+    }
+    out = buffer.GetString();
+    return ::DDS::RETCODE_OK;
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = "";
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t AirEntityTypeSupportImpl::encode_to_bytes(const AirEntity& in, ::DDS::OctetSeq_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_WRITER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    CORBA::String_var buffer;
+    const ::DDS::ReturnCode_t ret = encode_to_string(in, buffer, format);
+    if (ret == ::DDS::RETCODE_OK) {
+      const ::DDS::UInt32 len = static_cast< ::DDS::UInt32>(std::strlen(buffer));
+      out = new ::DDS::OctetSeq(len);
+      out->length(len);
+      std::memcpy(out->get_buffer(), buffer, len);
+      return ::DDS::RETCODE_OK;
+    } else {
+      out = new ::DDS::OctetSeq();
+      return ret;
+    }
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = new ::DDS::OctetSeq();
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t AirEntityTypeSupportImpl::decode_from_string(const char* in, AirEntity_out param, OpenDDS::DCPS::RepresentationFormat* format)
+{
+  AirEntity* out = &param;
+  OpenDDS::DCPS::set_default(*out);
+#if OPENDDS_HAS_JSON_VALUE_READER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    rapidjson::StringStream buffer(in);
+    OpenDDS::DCPS::JsonValueReader<> jvr(buffer);
+    return vread(jvr, *out) ? ::DDS::RETCODE_OK : ::DDS::RETCODE_ERROR;
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+::DDS::ReturnCode_t AirEntityTypeSupportImpl::decode_from_bytes(const ::DDS::OctetSeq& in, AirEntity_out out, OpenDDS::DCPS::RepresentationFormat* format)
+{
+#if OPENDDS_HAS_JSON_VALUE_READER
+  OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
+  if (jrf) {
+    return decode_from_string(reinterpret_cast<const char*>(in.get_buffer()), out, format);
+  }
+#else
+  ACE_UNUSED_ARG(in);
+  ACE_UNUSED_ARG(format);
+#endif
+  out = AirEntity();
+  return ::DDS::RETCODE_UNSUPPORTED;
+}
+
+AirEntityTypeSupport::_ptr_type AirEntityTypeSupportImpl::_narrow(CORBA::Object_ptr obj)
+{
+  return TypeSupportType::_narrow(obj);
+}
 #ifndef OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
@@ -6491,7 +6761,7 @@ struct MetaStructImpl< ::AirEntity> : MetaStruct {
 
   void deallocate(void* stru) const { delete static_cast<T*>(stru); }
 
-  size_t numDcpsKeys() const { return 0; }
+  size_t numDcpsKeys() const { return 1; }
 
 #endif /* OPENDDS_NO_MULTI_TOPIC */
 
@@ -6794,7 +7064,8 @@ public:
       const NestedKeyOnly<const  ::AirEntity> nested_key_only(value_);
       DCPS::serialized_size(enc, size, nested_key_only);
     } else {
-      return false; // Non-topic type
+      KeyOnly<const  ::AirEntity> key_only(value_);
+      DCPS::serialized_size(enc, size, key_only);
     }
     return true;
   }
@@ -6808,7 +7079,8 @@ public:
       NestedKeyOnly<const  ::AirEntity> nested_key_only(value_);
       return ser << nested_key_only;
     } else {
-      return false; // Non-topic type
+      KeyOnly<const  ::AirEntity> key_only(value_);
+      return ser << key_only;
     }
   }
 
@@ -7027,7 +7299,7 @@ XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 3)()
 
 XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 4)()
 {
-  static const unsigned char to_bytes[] = { 99, 0, 0, 0, 241, 81, 9, 0, 1, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 0, 5, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 1, 0, 10, 40, 193, 227, 126, 0, 11, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 186, 86, 155, 128, 0, 11, 0, 0, 0, 2, 0, 0, 0, 1, 0, 9, 20, 216, 147, 48, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 9, 80, 155, 252, 193, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 9, 30, 38, 40, 44  };
+  static const unsigned char to_bytes[] = { 163, 0, 0, 0, 241, 81, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 147, 0, 0, 0, 7, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 33, 0, 4, 184, 11, 183, 116, 0, 25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 241, 30, 75, 105, 66, 30, 240, 98, 236, 94, 15, 139, 113, 71, 43, 60, 41, 34, 243, 0, 0, 0, 25, 0, 0, 0, 2, 0, 0, 0, 1, 0, 241, 75, 136, 36, 87, 104, 65, 227, 12, 148, 47, 50, 158, 189, 55, 116, 188, 193, 224, 0, 0, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 16, 4, 17, 210, 217, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 4, 236, 33, 120, 126, 0, 11, 0, 0, 0, 5, 0, 0, 0, 1, 0, 4, 241, 51, 199, 27, 0, 11, 0, 0, 0, 6, 0, 0, 0, 1, 0, 16, 49, 175, 130, 229  };
   XTypes::TypeObject to;
   if (!to_type_object(to_bytes, sizeof(to_bytes), to)) {
     throw std::runtime_error("Could not deserialize minimal Type Object 4");
@@ -7037,7 +7309,7 @@ XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 4)()
 
 XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 5)()
 {
-  static const unsigned char to_bytes[] = { 163, 0, 0, 0, 241, 81, 9, 0, 1, 0, 0, 0, 0, 0, 0, 0, 147, 0, 0, 0, 7, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 33, 0, 4, 184, 11, 183, 116, 0, 25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 241, 30, 75, 105, 66, 30, 240, 98, 236, 94, 15, 139, 113, 71, 43, 60, 41, 34, 243, 0, 0, 0, 25, 0, 0, 0, 2, 0, 0, 0, 1, 0, 241, 75, 136, 36, 87, 104, 65, 227, 12, 148, 47, 50, 158, 189, 55, 116, 188, 193, 224, 0, 0, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 16, 4, 17, 210, 217, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 4, 236, 33, 120, 126, 0, 11, 0, 0, 0, 5, 0, 0, 0, 1, 0, 4, 241, 51, 199, 27, 0, 11, 0, 0, 0, 6, 0, 0, 0, 1, 0, 16, 49, 175, 130, 229  };
+  static const unsigned char to_bytes[] = { 99, 0, 0, 0, 241, 81, 9, 0, 1, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 0, 5, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 1, 0, 10, 40, 193, 227, 126, 0, 11, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 186, 86, 155, 128, 0, 11, 0, 0, 0, 2, 0, 0, 0, 1, 0, 9, 20, 216, 147, 48, 0, 11, 0, 0, 0, 3, 0, 0, 0, 1, 0, 9, 80, 155, 252, 193, 0, 11, 0, 0, 0, 4, 0, 0, 0, 1, 0, 9, 30, 38, 40, 44  };
   XTypes::TypeObject to;
   if (!to_type_object(to_bytes, sizeof(to_bytes), to)) {
     throw std::runtime_error("Could not deserialize minimal Type Object 5");
@@ -7052,8 +7324,8 @@ XTypes::TypeMap OPENDDS_IDL_FILE_SPECIFIC(get_minimal_type_map_private, 0)()
   tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(30, 75, 105, 66, 30, 240, 98, 236, 94, 15, 139, 113, 71, 43))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 1)();
   tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(52, 149, 7, 93, 88, 100, 175, 148, 45, 231, 218, 253, 4, 175))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 2)();
   tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(75, 136, 36, 87, 104, 65, 227, 12, 148, 47, 50, 158, 189, 55))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 3)();
-  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(194, 72, 57, 198, 197, 136, 61, 164, 1, 11, 121, 251, 157, 45))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 4)();
-  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(202, 203, 129, 135, 110, 6, 225, 225, 212, 176, 27, 72, 37, 114))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 5)();
+  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(171, 235, 44, 82, 237, 195, 183, 169, 151, 123, 12, 117, 29, 84))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 4)();
+  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(194, 72, 57, 198, 197, 136, 61, 164, 1, 11, 121, 251, 157, 45))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 5)();
   return tm;
 }
 

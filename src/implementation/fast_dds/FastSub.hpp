@@ -132,8 +132,6 @@ public:
 
     bool init() override
     {
-       
-
         // PARTICIPANT CONFIG (QoS)
         DomainParticipantQos participantQos;
         participantQos.wire_protocol().builtin.discovery_config.leaseDuration = c_TimeInfinite; // DEBUG PURPUSE
@@ -176,10 +174,10 @@ public:
         DataReaderQos rqos = DATAREADER_QOS_DEFAULT;
         rqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
         rqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        rqos.history().depth = 1000;
-        rqos.resource_limits().max_instances = 0;  
-        rqos.resource_limits().max_samples = 0; 
-        rqos.resource_limits().max_samples_per_instance = 0;
+        rqos.history().depth = 200;
+        rqos.resource_limits().max_instances = 1000;  
+        rqos.resource_limits().max_samples_per_instance = 200;
+        rqos.resource_limits().max_samples = rqos.resource_limits().max_instances * rqos.resource_limits().max_samples_per_instance; 
         rqos.resource_limits().allocated_samples = 100000;
 
         // CUSTOM DATA READER
