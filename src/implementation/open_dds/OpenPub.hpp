@@ -137,11 +137,11 @@ public:
         publisher_->get_default_datawriter_qos(wqos);
 
         wqos.history.kind = DDS::KEEP_LAST_HISTORY_QOS;
-        wqos.history.depth = 200;
+        wqos.history.depth = 1;
         wqos.reliability.kind = DDS::BEST_EFFORT_RELIABILITY_QOS;
         wqos.durability.kind = DDS::VOLATILE_DURABILITY_QOS;
-        wqos.resource_limits.max_instances = 1000;
-        wqos.resource_limits.max_samples_per_instance = 200;
+        wqos.resource_limits.max_instances = 200;
+        wqos.resource_limits.max_samples_per_instance = 1;
         wqos.resource_limits.max_samples =
             wqos.resource_limits.max_instances * wqos.resource_limits.max_samples_per_instance;
 

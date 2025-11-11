@@ -143,6 +143,8 @@ public:
         type_.register_type(participant_);
         std::cout << "AirEntity type is_plain(): " << std::boolalpha << type_->is_plain(XCDR2_DATA_REPRESENTATION) << std::endl;
         std::cout << "AirEntity type is_bounded() = " << type_.is_bounded() << std::endl;
+        int size = (int)type_->calculate_serialized_size(&air_entity, XCDR2_DATA_REPRESENTATION);
+        std::cout << "Size of Air Entity Serialized: " << size << std::endl;
 
         // DDS TOPIC
         topic_ = participant_->create_topic("AirEntityTopic", "AirEntity", TOPIC_QOS_DEFAULT);
@@ -159,14 +161,14 @@ public:
         }
 
         // CUSTOM DATA WRITER
-          DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
+        DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
 
-        wqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        wqos.history().depth = 200;
         wqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
+        wqos.history().kind = KEEP_LAST_HISTORY_QOS;
+        wqos.history().depth = 1;
         wqos.durability().kind = VOLATILE_DURABILITY_QOS;
-        wqos.resource_limits().max_instances = 1000;
-        wqos.resource_limits().max_samples_per_instance = 200;
+        wqos.resource_limits().max_instances = 200;
+        wqos.resource_limits().max_samples_per_instance = 1;
         wqos.resource_limits().max_samples = wqos.resource_limits().max_instances * wqos.resource_limits().max_samples_per_instance;
         wqos.resource_limits().allocated_samples = wqos.resource_limits().max_instances * wqos.resource_limits().max_samples_per_instance;
         writer_ = publisher_->create_datawriter(topic_, wqos, &listener_);

@@ -2,7 +2,7 @@
     "name": "default_test",
     "mode": 0,
     "messageCount": 200,
-    "test": 20,
+    "test": 100,
     "manual_process": false,
     "loan": false,
     "listeners" : 1

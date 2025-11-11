@@ -33,12 +33,12 @@ public:
             "-DCPSInfoRepo", "file:///workspaces/testdds/tools/repo.ior"
         };
 
-        if (debug) {
-            args.push_back("-DCPSDebugLevel");
-            args.push_back("10");
-            args.push_back("-ORBVerboseLogging");
-            args.push_back("1");
-        }
+        // if (debug) {
+        //     args.push_back("-DCPSDebugLevel");
+        //     args.push_back("10");
+        //     args.push_back("-ORBVerboseLogging");
+        //     args.push_back("1");
+        // }
 
         int argc = static_cast<int>(args.size());
         participant_ = TheParticipantFactoryWithArgs(argc, const_cast<char**>(args.data()))
@@ -66,6 +66,81 @@ public:
     }
 };
 #endif
+
+
+#ifdef USE_CYCLONE_DDS
+
+#include <dds/dds.hpp>
+#include <string>
+#include <iostream>
+#include <stdexcept>
+
+class CycloneDDSParticipantManager : public ParticipantManager
+{
+private:
+    dds::domain::DomainParticipant participant_{dds::core::null}; // starts empty
+    bool debug_ = false;
+
+public:
+    CycloneDDSParticipantManager() = default;
+
+    bool Init()
+    {
+        try
+        {
+            uint32_t domain_id = 0;
+
+            // Default QoS
+            dds::domain::qos::DomainParticipantQos participantQos;
+
+            // Create participant by value (safe)
+            participant_ = dds::domain::DomainParticipant(domain_id, participantQos);
+
+            if (debug_)
+                std::cout << "[CycloneDDS] Participant created successfully.\n";
+
+            return true;
+        }
+        catch (const dds::core::Exception& e)
+        {
+            std::cerr << "[CycloneDDS] Exception during Init: " << e.what() << std::endl;
+            return false;
+        }
+    }
+
+    void* getParticipant()
+    {
+        return static_cast<void*>(&participant_);
+    }
+
+    void SetDebugMode(bool value)
+    {
+        debug_ = value;
+    }
+
+    void shutdown()
+    {
+        try
+        {
+            if (participant_ != dds::core::null)
+            {
+                participant_.close();
+                participant_ = dds::domain::DomainParticipant(dds::core::null);
+
+                if (debug_)
+                    std::cout << "[CycloneDDS] Participant deleted.\n";
+            }
+        }
+        catch (const dds::core::Exception& e)
+        {
+            std::cerr << "[CycloneDDS] Exception during shutdown: " << e.what() << std::endl;
+        }
+    }
+};
+
+#endif // USE_CYCLONE_DDS
+
+
 
 #ifdef USE_FAST_DDS
 

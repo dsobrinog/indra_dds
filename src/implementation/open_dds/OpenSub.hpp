@@ -128,11 +128,11 @@ public:
 
         dr_qos.reliability.kind = DDS::BEST_EFFORT_RELIABILITY_QOS;
         dr_qos.history.kind = DDS::KEEP_LAST_HISTORY_QOS;
-        dr_qos.history.depth = 200;
+        dr_qos.history.depth = 1;
 
         // Resource limits similar to Fast DDS
-        dr_qos.resource_limits.max_instances = 1000;
-        dr_qos.resource_limits.max_samples_per_instance = 200;
+        dr_qos.resource_limits.max_instances = 200;
+        dr_qos.resource_limits.max_samples_per_instance = 1;
         dr_qos.resource_limits.max_samples = dr_qos.resource_limits.max_instances * dr_qos.resource_limits.max_samples_per_instance;
 
         reader_ = subscriber_->create_datareader(

@@ -178,7 +178,8 @@ public:
                 for (size_t i = 0; i < pub->messages_per_cycle; i++)
                 {
                     pre_allocated_entities[i].id() = current_entity_id++;
-                    pub->publish(pre_allocated_entities[i]);
+                    if(pub->publish(pre_allocated_entities[i]) == false)
+                        throw new std::runtime_error("[PUB TEST] Failed to publish entity");
                 }
             }
             // OPTION 2: LOANS

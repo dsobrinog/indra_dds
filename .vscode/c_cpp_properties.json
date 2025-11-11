@@ -5,7 +5,7 @@
       "includePath": [
         "/usr/include/**",
         "/usr/local/include/**",
-        "${workspaceFolder}/lib/Fast-DDS/install/include/**",
+        "${workspaceFolder}/lib/Fast-DDS/fastdds-install/include",
         "${workspaceFolder}/lib/OpenDDS/OpenDDS-install/include",
         "${workspaceFolder}/src/**"
       ],

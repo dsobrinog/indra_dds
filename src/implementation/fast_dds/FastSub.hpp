@@ -174,11 +174,11 @@ public:
         DataReaderQos rqos = DATAREADER_QOS_DEFAULT;
         rqos.reliability().kind = BEST_EFFORT_RELIABILITY_QOS;
         rqos.history().kind = KEEP_LAST_HISTORY_QOS;
-        rqos.history().depth = 200;
-        rqos.resource_limits().max_instances = 1000;  
-        rqos.resource_limits().max_samples_per_instance = 200;
+        rqos.history().depth = 1;
+        rqos.resource_limits().max_instances = 200;  
+        rqos.resource_limits().max_samples_per_instance = 1;
         rqos.resource_limits().max_samples = rqos.resource_limits().max_instances * rqos.resource_limits().max_samples_per_instance; 
-        rqos.resource_limits().allocated_samples = 100000;
+        rqos.resource_limits().allocated_samples = rqos.resource_limits().max_samples;
 
         // CUSTOM DATA READER
         reader_ = subscriber_->create_datareader(topic_, rqos, &listener_);
@@ -299,6 +299,10 @@ public:
             if(pre_allocated_info[i].valid_data)
             {
                 received_ids.insert(pre_allocated_data[i].id());
+                // if (i != pre_allocated_data[i].id())
+                // {
+                //     std::cout << "ERROR!! " << pre_allocated_data[i].id() << " / " << "on index: " << i << std::endl;
+                // }
             }
             else
             {
